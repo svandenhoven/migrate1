@@ -1,0 +1,5 @@
+# For more information on CODEOWNERS files, see: https://docs.gitlab.com/ee/user/project/code_owners.html
+
+# Applies if not overriden by later rule
+[Default]
+*                    @gl-docsteam
