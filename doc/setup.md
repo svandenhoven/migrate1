@@ -26,3 +26,23 @@ To set up your workstation for GitLab Docs:
    ```shell
    make setup
    ```
+
+1. The website build will pull content from project directories that are
+checked out in the same location as `gitlab-docs-hugo`. You can use your
+existing cloned repositories, or you can clone them all at once by running this command:
+
+   ```shell
+   make clone-docs-projects
+   ```
+
+In either case, your resulting file structure should look like this:
+
+   ```markdown
+   .
+   ├── charts-gitlab/
+   ├── gitlab/
+   ├── gitlab-docs-hugo/
+   ├── gitlab-runner/
+   ├── gitlab-operator/
+   └── omnibus-gitlab/
+   ```
