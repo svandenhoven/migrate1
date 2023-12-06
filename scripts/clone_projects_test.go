@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"os"
 	"testing"
 )
 
@@ -11,41 +10,37 @@ func TestShouldSkipClone(t *testing.T) {
 		name               string
 		CI_PIPELINE_SOURCE string
 		branch             string
-		defaultBranch      string
+		product            Product
 		expectedReturn     bool
 	}{
 		{
 			name:               "Remote branch is the same as product default",
 			CI_PIPELINE_SOURCE: "trigger",
 			branch:             "main",
-			defaultBranch:      "main",
+			product:            Product{DefaultBranch: "main"},
 			expectedReturn:     true,
 		},
 		{
 			name:               "Pipeline triggered via API (multi-project pipeline)",
 			CI_PIPELINE_SOURCE: "push",
 			branch:             "main",
-			defaultBranch:      "main",
+			product:            Product{DefaultBranch: "main"},
 			expectedReturn:     false,
 		},
 		{
 			name:               "Remote branch and default branch are different",
 			CI_PIPELINE_SOURCE: "trigger",
 			branch:             "my-new-feature",
-			defaultBranch:      "main",
+			product:            Product{DefaultBranch: "main"},
 			expectedReturn:     false,
 		},
 	}
 
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
-			os.Setenv("CI_PIPELINE_SOURCE", tc.CI_PIPELINE_SOURCE)
+			t.Setenv("CI_PIPELINE_SOURCE", tc.CI_PIPELINE_SOURCE)
 
-			defer func() {
-				os.Unsetenv("CI_PIPELINE_SOURCE")
-			}()
-
-			actualReturn := shouldSkipClone(tc.branch, tc.defaultBranch)
+			actualReturn := tc.product.ShouldSkipClone(tc.branch)
 
 			if actualReturn != tc.expectedReturn {
 				t.Errorf("Unexpected result. Got (%t), want (%t)",
@@ -53,7 +48,6 @@ func TestShouldSkipClone(t *testing.T) {
 			}
 		})
 	}
-
 }
 
 func TestProductCloneInfo(t *testing.T) {
@@ -111,16 +105,11 @@ func TestProductCloneInfo(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
-			os.Setenv(fmt.Sprintf("MERGE_REQUEST_IID_%s", tc.envVarSuffix), tc.mergeRequestIID)
-			os.Setenv(fmt.Sprintf("BRANCH_%s", tc.envVarSuffix), tc.branchName)
-
-			defer func() {
-				os.Unsetenv(fmt.Sprintf("MERGE_REQUEST_IID_%s", tc.envVarSuffix))
-				os.Unsetenv(fmt.Sprintf("BRANCH_%s", tc.envVarSuffix))
-			}()
+			t.Setenv(fmt.Sprintf("MERGE_REQUEST_IID_%s", tc.envVarSuffix), tc.mergeRequestIID)
+			t.Setenv(fmt.Sprintf("BRANCH_%s", tc.envVarSuffix), tc.branchName)
 
 			// Call the function and check the results
-			actualBranch, actualRef := productCloneInfo(tc.productName, tc.product)
+			actualBranch, actualRef := tc.product.CloneInfo(tc.productName)
 
 			if actualBranch != tc.expectedBranch || actualRef != tc.expectedRef {
 				t.Errorf("Unexpected result. Got (%s, %s), want (%s, %s)",
