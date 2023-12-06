@@ -1,0 +1,26 @@
+---
+# This file is used by:
+# 
+# - scripts/clone_projects.go
+#
+products:
+  gitlab:
+    repo: 'https://gitlab.com/gitlab-org/gitlab.git'
+    default_branch: 'master'
+    clone_dir: '../gitlab'
+  omnibus:
+    repo: 'https://gitlab.com/gitlab-org/omnibus-gitlab.git'
+    default_branch: 'master'
+    clone_dir: '../omnibus-gitlab'
+  runner:
+    repo: 'https://gitlab.com/gitlab-org/gitlab-runner.git'
+    default_branch: 'main'
+    clone_dir: '../gitlab-runner'
+  charts:
+    repo: 'https://gitlab.com/gitlab-org/charts/gitlab.git'
+    default_branch: 'master'
+    clone_dir: '../charts-gitlab'
+  operator:
+    repo: 'https://gitlab.com/gitlab-org/cloud-native/gitlab-operator.git'
+    default_branch: 'master'
+    clone_dir: '../gitlab-operator'
