@@ -46,3 +46,11 @@ In either case, your resulting file structure should look like this:
    ├── gitlab-operator/
    └── omnibus-gitlab/
    ```
+
+1. Compile the site, and view a local preview:
+
+   ```shell
+   make view
+   ```
+
+You can now browse the site at [`http://localhost:1313`](http://localhost:1313). Changes you make to markdown content or website source files should be visible immediately.

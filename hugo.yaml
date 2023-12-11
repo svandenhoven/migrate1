@@ -1,0 +1,21 @@
+baseURL: https://docs.gitlab.com
+languageCode: en-US
+locale: en-US
+title: GitLab Docs
+defaultContentLanguage: en
+theme: gitlab-docs
+
+module:
+  mounts:
+  - source: content
+    target: content
+  - source: ../gitlab/doc
+    target: content
+  - source: ../omnibus-gitlab/doc
+    target: content/omnibus
+  - source: ../gitlab-runner/docs
+    target: content/runner
+  - source: ../charts-gitlab/doc
+    target: content/charts
+  - source: ../gitlab-operator/doc
+    target: content/operator

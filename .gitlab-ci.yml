@@ -1,9 +1,11 @@
 stages:
+  - build
   - test
 
 variables:
   DOCKER_VERSION: "20.10.15"
   GO_VERSION: "1.21"
+  HUGO_VERSION: "0.121.0"
   DEBIAN_VERSION: "bullseye"
   POLICY: pull
 
@@ -21,10 +23,40 @@ default:
   tags:
     - gitlab-org
 
+.retry:
+  retry: 2
+
 .go-matrix-job:
   parallel:
     matrix:
       - GO_VERSION: ["1.19", "1.20", "1.21"]
+
+################################################################################
+# Build jobs
+################################################################################
+
+compile:
+  image: registry.gitlab.com/pages/hugo/hugo_extended:${HUGO_VERSION}
+  stage: build
+  extends:
+    - .retry
+  script:
+    - apk add bash make yq findutils go
+    # Print environment info
+    - hugo env
+    # Fetch docs content
+    - make clone-docs-projects
+    # Compile the site
+    - hugo --gc --minify
+    # Compress files with gzip
+    - find public -type f -regex '.*\.\(css\|html\|js\|txt\|xml\)$' -exec gzip -f -k {} \;
+    # Print the final size of the public directory
+    - SIZE_AFTER_COMPRESS=$(du -sh public/ | awk '{print $1}')
+    - echo -e "Size after adding compressed versions ..... $SIZE_AFTER_COMPRESS"
+  artifacts:
+    paths:
+      - public
+    expire_in: 1d
 
 ################################################################################
 # Test jobs
@@ -32,10 +64,12 @@ default:
 
 shellcheck-tests:
   image: koalaman/shellcheck-alpine:latest
+  stage: test
   script:
     - shellcheck scripts/*.sh
 
 go-tests:
+  stage: test
   extends:
     - .go-matrix-job
   script:
