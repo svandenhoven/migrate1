@@ -17,6 +17,7 @@ To add an additional set of product documentation to <https://docs.gitlab.com> f
             content_dir: 'doc'
             default_branch: 'master'
             clone_dir: '../gitlab'
+            docs_dir: 'doc'
       ```
 
       Where:
@@ -25,3 +26,20 @@ To add an additional set of product documentation to <https://docs.gitlab.com> f
       - `content_dir`: The relative path where the docs reside within the repo.
       - `default_branch`: Default Git branch for the project.
       - `clone_dir`: Target destination for the project repo. Usually this will just be the project name, located in the parent directory. Be sure to avoid duplicating `clone_dir` between products.
+      - `docs_dir`: Directory name where docs content is located.
+
+   1. Edit [`hugo.yaml`] and add the new content source under `mounts`:
+
+   ```yaml
+   module:
+   mounts:
+      # <existing sources>
+      # Add a new entry like this at the end:
+   - source: ../my-new-product/docs
+     target: content
+   ```
+
+   Where:
+
+   - `source`: The relative path to the new content source. This will be the `clone_dir` you used in `products.yaml`, plus the directory name for where the documentation files are located (`docs_dir` in the previous step).
+   - `target`: This should always be `content`.
