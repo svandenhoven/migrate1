@@ -7,7 +7,7 @@ setup: install-asdf-dependencies
 
 install-asdf-dependencies:
 	@printf "\n$(INFO)INFO: Installing and updating asdf dependencies...$(END)\n"
-	@sh ./scripts/install-asdf-dependencies.sh
+	@scripts/install-asdf-dependencies.sh
 
 test: shellcheck-tests go-tests
 
@@ -21,9 +21,9 @@ go-tests:
 
 clone-docs-projects:
 	@printf "\n$(INFO)INFO: Fetching docs content sources...$(END)\n"
-	@go run ./scripts/clone_projects.go
+	@go run scripts/clone_projects.go
 	@printf "\n$(INFO)INFO: Running content update scripts...$(END)\n"
-	@sh ./scripts/content-post-process.sh
+	@scripts/content-post-process.sh
 
 view:
 	@hugo serve
