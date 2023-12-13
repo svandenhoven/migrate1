@@ -1,48 +1,56 @@
-stages:
-  - build
-  - test
-
-variables:
-  DOCKER_VERSION: "20.10.15"
-  GO_VERSION: "1.21"
-  HUGO_VERSION: "0.121.0"
-  DEBIAN_VERSION: "bullseye"
-  POLICY: pull
-
-workflow:
-  rules: &workflow_rules
-    # For merge requests, create a pipeline.
-    - if: '$CI_MERGE_REQUEST_IID'
-    # For `main` branch, create a pipeline (this includes on schedules, pushes, merges, etc.).
-    - if: '$CI_COMMIT_BRANCH == "main"'
-    # For tags, create a pipeline.
-    - if: '$CI_COMMIT_TAG'
-
+---
 default:
   image: golang:${GO_VERSION}-${DEBIAN_VERSION}
   tags:
     - gitlab-org
 
-.retry:
-  retry: 2
+stages:
+  - build
+  - test
+
+variables:
+  # Versions specified here are production versions
+  # See also .tool-versions file for development versions
+  # See also GO_VERSION declared in .go-matrix-job
+  GO_VERSION: "1.21"
+  GO_VERSION_PREVIOUS: "1.20"
+  HUGO_VERSION: "0.121.1"
+  SHELLCHECK_VERSION: "0.9.0"
+  YQ_VERSION: "4.40.5"
+
+  # Other required variables
+  DEBIAN_VERSION: "bookworm"
+
+workflow:
+  rules: &workflow_rules
+    # For merge requests, create a pipeline
+    - if: '$CI_MERGE_REQUEST_IID'
+    # For 'main' branch, create a pipeline, including on schedules, pushes, and, merges)
+    - if: '$CI_COMMIT_BRANCH == "main"'
+    # For tags, create a pipeline
+    - if: '$CI_COMMIT_TAG'
 
 .go-matrix-job:
   parallel:
     matrix:
-      - GO_VERSION: ["1.19", "1.20", "1.21"]
+      # Should match GO_VERSION_PREVIOUS and GO_VERSION variables declared above
+      - GO_VERSION: ["1.20", "1.21"]
 
 ################################################################################
 # Build jobs
 ################################################################################
 
 compile:
-  image: registry.gitlab.com/pages/hugo/hugo_extended:${HUGO_VERSION}
   stage: build
-  extends:
-    - .retry
   script:
-    - apk add bash make yq findutils go
-    # Print environment info
+    # Install yq
+    - curl --output /usr/local/bin/yq --location https://github.com/mikefarah/yq/releases/download/v${YQ_VERSION}/yq_linux_amd64
+    - chmod +x /usr/local/bin/yq
+    - yq --version
+    # Install Hugo
+    - curl --output hugo_extended_${HUGO_VERSION}_linux-amd64.deb --location https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb
+    - dpkg --install hugo_extended_${HUGO_VERSION}_linux-amd64.deb
+    # Print Hugo environment info
     - hugo env
     # Fetch docs content
     - make clone-docs-projects
@@ -63,7 +71,7 @@ compile:
 ################################################################################
 
 shellcheck-tests:
-  image: koalaman/shellcheck-alpine:latest
+  image: koalaman/shellcheck-alpine:v${SHELLCHECK_VERSION}
   stage: test
   script:
     - shellcheck scripts/*.sh

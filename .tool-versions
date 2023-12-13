@@ -1,4 +1,6 @@
-hugo 0.121.0
-golang 1.21.4
+# Versions specified here are development versions
+# See also .gitlab-ci.yml file for production versions
+golang 1.21.4 1.20.12
+hugo extended_0.121.1
 shellcheck 0.9.0
-yq 4.40.4
+yq 4.40.5
