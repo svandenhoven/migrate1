@@ -1,4 +1,4 @@
-.PHONY: all setup go-tests test clone-docs-projects view
+.PHONY: all clean test setup
 
 INFO = \033[32m
 END = \033[0m
@@ -9,7 +9,7 @@ install-asdf-dependencies:
 	@printf "\n$(INFO)INFO: Installing and updating asdf dependencies...$(END)\n"
 	@scripts/install-asdf-dependencies.sh
 
-test: shellcheck-tests go-tests
+test: shellcheck-tests go-tests yaml-tests
 
 shellcheck-tests:
 	@printf "\n$(INFO)INFO: Running shellcheck tests...$(END)\n"
@@ -18,6 +18,10 @@ shellcheck-tests:
 go-tests:
 	@printf "\n$(INFO)INFO: Running Go tests...$(END)\n"
 	@go test ./scripts/...
+
+yaml-tests:
+	@printf "\n$(INFO)INFO: Running YAML tests...$(END)\n"
+	@yamllint .
 
 clone-docs-projects:
 	@printf "\n$(INFO)INFO: Fetching docs content sources...$(END)\n"

@@ -1,0 +1,10 @@
+---
+extends: default
+
+ignore:
+  - public/
+
+rules:
+  line-length: false
+  indentation:
+    indent-sequences: whatever
