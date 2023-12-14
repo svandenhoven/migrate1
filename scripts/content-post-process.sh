@@ -3,8 +3,6 @@
 # Updates Docs content for compatibility with Hugo.
 # See doc/post-processing.md for more information.
 
-source scripts/helpers/colors.sh
-
 # Ensure yq is available
 if ! command -v yq >/dev/null 2>&1; then
   >&2 printf "${ERROR}ERROR: yq is required but not installed. Exiting.${END}\n"
@@ -24,4 +22,4 @@ for ENTRY in $(yq eval '.products | keys | .[]' "$PRODUCTS_YAML"); do
     find "$DOCS_PATH" -type f -name 'index.md' -execdir mv '{}' '_index.md' \;
 done
 
-printf "${INFO}INFO: Content updates complete!${END}\n"
+printf "INFO: Content updates complete!\n"
