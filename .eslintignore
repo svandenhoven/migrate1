@@ -1,0 +1,5 @@
+/coverage/
+/node_modules/
+/public/
+/tmp/
+/themes/gitlab-docs/static/js

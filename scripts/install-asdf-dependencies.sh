@@ -25,3 +25,8 @@ while IFS= read -r LINE; do
 done < .tool-versions
 
 asdf install
+
+# Use corepack to add Yarn
+# - https://yarnpkg.com/getting-started/install
+# - https://github.com/asdf-vm/asdf-nodejs#corepack
+corepack enable && asdf reshim nodejs

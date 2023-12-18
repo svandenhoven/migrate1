@@ -1,3 +1,17 @@
+# Hugo-generated files
 .hugo_build.lock
 public/
 resources/
+
+# Vite-generated files
+themes/gitlab-docs/static/js
+
+# Yarn-generated files
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+node_modules
