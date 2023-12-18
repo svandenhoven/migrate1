@@ -3,6 +3,7 @@ extends: default
 
 ignore:
   - public/
+  - node_modules/
 
 rules:
   line-length: false

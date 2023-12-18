@@ -3,13 +3,16 @@
 INFO = \033[32m
 END = \033[0m
 
-setup: install-asdf-dependencies
+setup: install-asdf-dependencies install-nodejs-dependencies
 
 install-asdf-dependencies:
 	@printf "\n$(INFO)INFO: Installing and updating asdf dependencies...$(END)\n"
 	@scripts/install-asdf-dependencies.sh
 
-test: shellcheck-tests go-tests yaml-tests
+install-nodejs-dependencies:
+	@yarn install
+
+test: shellcheck-tests go-tests jest-tests lint-frontend yaml-tests
 
 shellcheck-tests:
 	@printf "\n$(INFO)INFO: Running shellcheck tests...$(END)\n"
@@ -18,6 +21,16 @@ shellcheck-tests:
 go-tests:
 	@printf "\n$(INFO)INFO: Running Go tests...$(END)\n"
 	@go test ./scripts/...
+
+jest-tests:
+	@printf "\n$(INFO)INFO: Running JavaScript tests...$(END)\n"
+	@yarn test --passWithNoTests
+
+lint-frontend:
+	@printf "\n$(INFO)INFO: Running frontend linters...$(END)\n"
+	@yarn eslint
+	@yarn prettier
+	@yarn stylelint
 
 yaml-tests:
 	@printf "\n$(INFO)INFO: Running YAML tests...$(END)\n"
@@ -30,4 +43,5 @@ clone-docs-projects:
 	@scripts/content-post-process.sh
 
 view:
+	@yarn build
 	@hugo serve

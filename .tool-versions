@@ -5,3 +5,4 @@ hugo extended_0.121.1
 shellcheck 0.9.0
 yamllint 1.33.0
 yq 4.40.5
+nodejs 20.10.0
