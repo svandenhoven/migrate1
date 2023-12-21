@@ -1,0 +1,18 @@
+---
+pre-push:
+  parallel: true
+  commands:
+    shellcheck-tests:
+      run: make shellcheck-tests
+
+    go-tests:
+      run: make go-tests
+
+    jest-tests:
+      run: make jest-tests
+
+    lint-frontend:
+      run: make lint-frontend
+
+    yaml-tests:
+      run: make yaml-tests
