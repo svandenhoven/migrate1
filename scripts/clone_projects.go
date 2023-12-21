@@ -114,10 +114,22 @@ func (p Product) Clone(productName string) error {
 
 	// Initialize the repository, and fetch the desired branch and refspec
 	log.Printf("[Info] Fetching %s on branch %s at commit %s", productName, branch, refspec)
-	runGitCommand("-c", fmt.Sprintf("init.defaultBranch=%s", branch), "init")
-	runGitCommand("remote", "add", "origin", p.Repo)
-	runGitCommand("fetch", "--depth", "1", "origin", refspec)
-	runGitCommand("-c", "advice.detachedHead=false", "checkout", "FETCH_HEAD")
+	_, err := runGitCommand("-c", fmt.Sprintf("init.defaultBranch=%s", branch), "init")
+	if err != nil {
+		return fmt.Errorf("Error initializing repository: %v\n", err)
+	}
+	_, err = runGitCommand("remote", "add", "origin", p.Repo)
+	if err != nil {
+		return fmt.Errorf("Error adding repository origin: %v\n", err)
+	}
+	_, err = runGitCommand("fetch", "--depth", "1", "origin", refspec)
+	if err != nil {
+		return fmt.Errorf("Error fetching repository log: %v\n", err)
+	}
+	_, err = runGitCommand("-c", "advice.detachedHead=false", "checkout", "FETCH_HEAD")
+	if err != nil {
+		return fmt.Errorf("Error checking out: %v\n", err)
+	}
 
 	// Print the last commit message
 	logMessage, err := runGitCommand("log", "--oneline", "-n", "1")

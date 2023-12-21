@@ -15,11 +15,12 @@ variables:
   # See also GO_VERSION declared in .go-matrix-job
   GO_VERSION: "1.21"
   GO_VERSION_PREVIOUS: "1.20"
+  GOLANGCI_LINT_VERSION: "1.55.2"
   HUGO_VERSION: "0.121.1"
+  NODE_VERSION: "20"
   SHELLCHECK_VERSION: "0.9.0"
   YAMLLINT_VERSION: "1.33.0"
   YQ_VERSION: "4.40.5"
-  NODE_VERSION: "20"
 
   # Linux distribution versions
   ALPINE_VERSION: "3.19"
@@ -107,6 +108,14 @@ shellcheck-tests:
   needs: []
   script:
     - shellcheck scripts/*.sh
+
+lint-go:
+  image: golangci/golangci-lint:v${GOLANGCI_LINT_VERSION}-alpine
+  stage: test
+  needs: []
+  script:
+    - apk add make
+    - make lint-go
 
 go-tests:
   stage: test
