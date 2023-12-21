@@ -1,51 +1,62 @@
-.PHONY: all clean test setup
-
 INFO = \033[32m
 END = \033[0m
 
+.PHONY: setup
 setup: install-asdf-dependencies install-nodejs-dependencies
 
+.PHONY: install-asdf-dependencies
 install-asdf-dependencies:
 	@printf "\n$(INFO)INFO: Installing and updating asdf dependencies...$(END)\n"
 	@scripts/install-asdf-dependencies.sh
 
+.PHONY: install-nodejs-dependencies
 install-nodejs-dependencies:
+	@printf "\n$(INFO)INFO: Installing Node.js packages...$(END)\n"
 	@yarn install
 
+.PHONY: test
 test: shellcheck-tests lint-go go-tests jest-tests lint-frontend yaml-tests
 
+.PHONY: shellcheck-tests
 shellcheck-tests:
 	@printf "\n$(INFO)INFO: Running shellcheck tests...$(END)\n"
 	@shellcheck scripts/*.sh
 
+.PHONY: lint-go
 lint-go:
 	@printf "\n$(INFO)INFO: Running Go linting...$(END)\n"
 	@golangci-lint run
 
+.PHONY: go-tests
 go-tests:
 	@printf "\n$(INFO)INFO: Running Go tests...$(END)\n"
 	@go test ./scripts/...
 
-jest-tests:
+.PHONY: jest-tests
+jest-tests: install-nodejs-dependencies
 	@printf "\n$(INFO)INFO: Running JavaScript tests...$(END)\n"
 	@yarn test --passWithNoTests
 
-lint-frontend:
+.PHONY: lint-frontend
+lint-frontend: install-nodejs-dependencies
 	@printf "\n$(INFO)INFO: Running frontend linters...$(END)\n"
 	@yarn eslint
 	@yarn prettier
 	@yarn stylelint
 
+.PHONY: yaml-tests
 yaml-tests:
 	@printf "\n$(INFO)INFO: Running YAML tests...$(END)\n"
 	@yamllint .
 
+.PHONY: clone-docs-projects
 clone-docs-projects:
 	@printf "\n$(INFO)INFO: Fetching docs content sources...$(END)\n"
 	@go run scripts/clone_projects.go
 	@printf "\n$(INFO)INFO: Running content update scripts...$(END)\n"
 	@scripts/content-post-process.sh
 
+.PHONY: view
 view:
 	@yarn build
 	@hugo serve
