@@ -12,11 +12,15 @@ install-asdf-dependencies:
 install-nodejs-dependencies:
 	@yarn install
 
-test: shellcheck-tests go-tests jest-tests lint-frontend yaml-tests
+test: shellcheck-tests lint-go go-tests jest-tests lint-frontend yaml-tests
 
 shellcheck-tests:
 	@printf "\n$(INFO)INFO: Running shellcheck tests...$(END)\n"
 	@shellcheck scripts/*.sh
+
+lint-go:
+	@printf "\n$(INFO)INFO: Running Go linting...$(END)\n"
+	@golangci-lint run
 
 go-tests:
 	@printf "\n$(INFO)INFO: Running Go tests...$(END)\n"
