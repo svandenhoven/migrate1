@@ -15,9 +15,9 @@ install-nodejs-dependencies:
 	@yarn install
 
 .PHONY: test
-test: shellcheck-tests lint-go go-tests jest-tests lint-frontend yaml-tests
+test: shellcheck-tests lint-go go-tests jest-tests lint-frontend lint-yaml
 
-.PHONY: shellcheck-tests
+.PHONY: lint-shell-scripts
 shellcheck-tests:
 	@printf "\n$(INFO)INFO: Running shellcheck tests...$(END)\n"
 	@shellcheck scripts/*.sh
@@ -44,8 +44,8 @@ lint-frontend: install-nodejs-dependencies
 	@yarn prettier
 	@yarn stylelint
 
-.PHONY: yaml-tests
-yaml-tests:
+.PHONY: lint-yaml
+lint-yaml:
 	@printf "\n$(INFO)INFO: Running YAML tests...$(END)\n"
 	@yamllint .
 

@@ -5,9 +5,10 @@ default:
     - gitlab-org
 
 stages:
+  - lint
+  - test
   - prebuild
   - build
-  - test
 
 variables:
   # Versions specified here are production versions
@@ -50,11 +51,69 @@ workflow:
     - yarn install --immutable
 
 ################################################################################
+# Lint jobs
+################################################################################
+
+lint:frontend:
+  stage: lint
+  needs: []
+  extends:
+    - .yarn
+  script:
+    - make lint-frontend
+
+lint:go:
+  image: golangci/golangci-lint:v${GOLANGCI_LINT_VERSION}-alpine
+  stage: lint
+  needs: []
+  script:
+    - apk add make
+    - make lint-go
+
+lint:shell-scripts:
+  image: koalaman/shellcheck-alpine:v${SHELLCHECK_VERSION}
+  stage: lint
+  needs: []
+  script:
+    - apk add make
+    - make lint-shell-scripts
+
+lint:yaml:
+  image: python:alpine${ALPINE_VERSION}
+  stage: lint
+  needs: []
+  script:
+    - pip install yamllint==${YAMLLINT_VERSION}
+    - apk add make
+    - make lint-yaml
+
+################################################################################
+# Test jobs
+################################################################################
+
+test:go:
+  stage: test
+  needs: []
+  extends:
+    - .go-matrix-job
+  script:
+    - make go-tests
+
+test:jest:
+  stage: test
+  needs: []
+  extends:
+    - .yarn
+  script:
+    - make jest-tests
+
+################################################################################
 # Build jobs
 ################################################################################
 
-compile_frontend:
+prebuild:compile_frontend:
   stage: prebuild
+  needs: []
   extends:
     - .yarn
   script:
@@ -70,7 +129,7 @@ compile_frontend:
       - themes/gitlab-docs/static/js/
     expire_in: 1d
 
-compile_site:
+build:compile_site:
   stage: build
   script:
     # Install yq
@@ -92,58 +151,8 @@ compile_site:
     - SIZE_AFTER_COMPRESS=$(du -sh public/ | awk '{print $1}')
     - echo -e "Size after adding compressed versions ..... $SIZE_AFTER_COMPRESS"
   dependencies:
-    - compile_frontend
+    - prebuild:compile_frontend
   artifacts:
     paths:
       - public
     expire_in: 1d
-
-################################################################################
-# Test jobs
-################################################################################
-
-shellcheck-tests:
-  image: koalaman/shellcheck-alpine:v${SHELLCHECK_VERSION}
-  stage: test
-  needs: []
-  script:
-    - shellcheck scripts/*.sh
-
-lint-go:
-  image: golangci/golangci-lint:v${GOLANGCI_LINT_VERSION}-alpine
-  stage: test
-  needs: []
-  script:
-    - apk add make
-    - make lint-go
-
-go-tests:
-  stage: test
-  needs: []
-  extends:
-    - .go-matrix-job
-  script:
-    - make go-tests
-
-jest-tests:
-  stage: test
-  extends:
-    - .yarn
-  script:
-    - make jest-tests
-
-lint-frontend:
-  stage: test
-  extends:
-    - .yarn
-  script:
-    - make lint-frontend
-
-yaml-tests:
-  image: python:alpine${ALPINE_VERSION}
-  stage: test
-  needs: []
-  script:
-    - pip install yamllint==${YAMLLINT_VERSION}
-    - apk add make
-    - make yaml-tests
