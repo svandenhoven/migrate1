@@ -20,6 +20,10 @@ for ENTRY in $(yq eval '.products | keys | .[]' "$PRODUCTS_YAML"); do
     # Rename index files
     printf "Renaming index files in ${CLONE_DIR}...\n"
     find "$DOCS_PATH" -type f -name 'index.md' -execdir mv '{}' '_index.md' \;
+
+    # Temporary: Update front matter
+    printf "Updating front matter in ${CLONE_DIR}...\n"
+    find "$DOCS_PATH" -type f -name "*.md" -print0 | xargs -0 go run ./scripts/migration/frontmatter.go
 done
 
 printf "INFO: Content updates complete!\n"
