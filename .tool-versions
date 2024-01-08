@@ -2,7 +2,7 @@
 # See also .gitlab-ci.yml file for production versions
 golang 1.21.4 1.20.12
 golangci-lint 1.55.2
-hugo extended_0.121.1
+hugo extended_0.121.2
 nodejs 20.10.0
 shellcheck 0.9.0
 yamllint 1.33.0
