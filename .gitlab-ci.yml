@@ -146,7 +146,8 @@ prebuild:compile_frontend:
       - .yarn/cache
   artifacts:
     paths:
-      - themes/gitlab-docs/static/js/
+      - themes/gitlab-docs/static/vite/
+      - themes/gitlab-docs/static/gitlab_ui/
     expire_in: 1d
 
 build:compile_site:
