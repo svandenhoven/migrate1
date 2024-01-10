@@ -40,7 +40,7 @@ article.docs-content {
     text-decoration: none;
   }
   a[href^="http"]:not([href*="gitlab.com"]):not([href*="docs.gitlab-review.app"])::after {
-    content: url("/gitlab_ui/svgs/external-link.svg");
+    content: url("../gitlab_ui/svgs/external-link.svg");
     margin-left: 0.25rem;
     display: inline-block;
     vertical-align: middle;
@@ -48,7 +48,7 @@ article.docs-content {
   /* Permalinks */
   a.anchor {
     transition: all .3s;
-    background: url("/gitlab_ui/svgs/link.svg") no-repeat;
+    background: url("../gitlab_ui/svgs/link.svg") no-repeat;
     opacity: 0;
     width: 16px;
     height: 16px;
@@ -181,14 +181,14 @@ ul.docs-social a::before {
 }
 /* FontAwesome social icons */
 .twitter::before {
-  background-image: url("/fa-icons/x-twitter.svg");
+  background-image: url("../fa-icons/x-twitter.svg");
 }
 .facebook::before {
-  background-image: url("/fa-icons/facebook.svg");
+  background-image: url("../fa-icons/facebook.svg");
 }
 .linkedin::before {
-  background-image: url("/fa-icons/linkedin.svg");
+  background-image: url("../fa-icons/linkedin.svg");
 }
 .youtube::before {
-  background-image: url("/fa-icons/youtube.svg");
+  background-image: url("../fa-icons/youtube.svg");
 }

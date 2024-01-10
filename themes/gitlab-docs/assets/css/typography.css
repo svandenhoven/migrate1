@@ -11,7 +11,7 @@
   font-style: normal;
   /* stylelint-disable-next-line property-no-unknown */
   font-named-instance: 'Regular';
-  src: url('/gitlab_ui/fonts/GitLabSans.woff2') format('woff2');
+  src: url('../gitlab_ui/fonts/GitLabSans.woff2') format('woff2');
 }
 @font-face {
   font-family: 'GitLab Sans';
@@ -19,21 +19,21 @@
   font-style: italic;
   /* stylelint-disable-next-line property-no-unknown */
   font-named-instance: 'Regular';
-  src: url('/gitlab_ui/fonts/GitLabSans-Italic.woff2') format('woff2');
+  src: url('../gitlab_ui/fonts/GitLabSans-Italic.woff2') format('woff2');
 }
 @font-face {
   font-family: 'GitLab Mono';
   font-weight: 100 900;
   font-display: swap;
   font-style: normal;
-  src: url('/gitlab_ui/fonts/GitLabMono.woff2') format('woff2');
+  src: url('../gitlab_ui/fonts/GitLabMono.woff2') format('woff2');
 }
 @font-face {
   font-family: 'GitLab Mono';
   font-weight: 100 900;
   font-display: swap;
   font-style: italic;
-  src: url('/gitlab_ui/fonts/GitLabMono-Italic.woff2') format('woff2');
+  src: url('../gitlab_ui/fonts/GitLabMono-Italic.woff2') format('woff2');
 }
 
 h1,
