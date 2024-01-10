@@ -19,14 +19,20 @@ import (
 
 // FrontMatter represents the YAML front matter structure
 type FrontMatter struct {
-	RedirectTo  string `yaml:"redirect_to,omitempty"`
-	RemoveDate  string `yaml:"remove_date,omitempty"`
-	Type        string `yaml:"type,omitempty"`
-	Stage       string `yaml:"stage,omitempty"`
-	Group       string `yaml:"group,omitempty"`
-	Info        string `yaml:"info,omitempty"`
-	Description string `yaml:"description,omitempty"`
-	Title       string `yaml:"title,omitempty"`
+	RedirectTo  string  `yaml:"redirect_to,omitempty"`
+	RemoveDate  string  `yaml:"remove_date,omitempty"`
+	Type        string  `yaml:"type,omitempty"`
+	Stage       string  `yaml:"stage,omitempty"`
+	Group       string  `yaml:"group,omitempty"`
+	Info        string  `yaml:"info,omitempty"`
+	Description string  `yaml:"description,omitempty"`
+	Title       string  `yaml:"title,omitempty"`
+	Layout      string  `yaml:"layout,omitempty"`
+	Cascade     Cascade `yaml:"cascade,omitempty"`
+}
+
+type Cascade struct {
+	Layout string `yaml:"layout,omitempty"`
 }
 
 func main() {
@@ -95,6 +101,7 @@ func updateContent(content []byte, filename string) (string, error) {
 
 	// Modify file contents
 	frontMatterData, body = updateTitles(frontMatterData, body, filename)
+	frontMatterData = updateIndexPage(frontMatterData, filename)
 
 	// Convert content back to a string
 	updatedFrontMatter, err := yaml.Marshal(frontMatterData)
@@ -132,4 +139,15 @@ func updateTitles(fm FrontMatter, body string, filename string) (FrontMatter, st
 	}
 
 	return fm, body
+}
+
+/**
+ * Set layout properties.
+ */
+func updateIndexPage(fm FrontMatter, filename string) FrontMatter {
+	if filename == "../gitlab/doc/_index.md" {
+		fm.Layout = "home"
+		fm.Cascade.Layout = "single"
+	}
+	return fm
 }

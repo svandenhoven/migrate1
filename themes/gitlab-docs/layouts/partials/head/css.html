@@ -1,9 +1,16 @@
-{{- with resources.Get "css/main.css" }}
-  {{- if eq hugo.Environment "development" }}
-    <link rel="stylesheet" href="{{ .RelPermalink }}">
-  {{- else }}
-    {{- with . | minify | fingerprint }}
-      <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+{{- define "renderCSS" }}
+  {{- with (resources.Get .) }} 
+    {{- if eq hugo.Environment "development" }}
+      <link rel="stylesheet" href="{{ .RelPermalink }}">
+    {{- else }}
+      {{- with . | minify | fingerprint }}
+        <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+      {{- end }}
     {{- end }}
   {{- end }}
 {{- end }}
+
+{{- template "renderCSS" "css/variables.css" }}
+{{- template "renderCSS" "css/typography.css" }}
+{{- template "renderCSS" "css/layout.css" }}
+{{- template "renderCSS" "css/main.css" }}

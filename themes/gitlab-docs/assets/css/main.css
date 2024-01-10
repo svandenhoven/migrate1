@@ -1,3 +1,194 @@
+.placeholder {
+  font-size: 0.75rem;
+  font-style: italic;
+}
+
+/* Header */
+a.header-logo:hover {
+  text-decoration: none;
+}
+.border-light {
+  border-color: rgba(255,255,255,.32) !important;
+}
+.cta-button {
+  vertical-align: text-top;
+  background-color: var(--cta-button);
+  color: var(--white);
+  padding: 0.5rem 0.75rem;
+  line-height: 1rem;
+  border-radius: 0.25rem;
+  display: inline-flex;
+}
+.cta-button:hover {
+  text-decoration: none;
+  color: var(--white);
+}
+
 /**
- * main.css
+ * Docs content
  */
+article.docs-content {
+  /* Links */
+  a {
+    color: var(--purple-700);
+    border-bottom: 1px solid rgba(89,67,182,.24);
+    transition: .15s linear, border-bottom-color .15s linear;
+  }
+  a:hover {
+    color: var(--purple-900);
+    border-bottom: 1px solid var(--purple-900);
+    text-decoration: none;
+  }
+  a[href^="http"]:not([href*="gitlab.com"]):not([href*="docs.gitlab-review.app"])::after {
+    content: url("/gitlab_ui/svgs/external-link.svg");
+    margin-left: 0.25rem;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  /* Permalinks */
+  a.anchor {
+    transition: all .3s;
+    background: url("/gitlab_ui/svgs/link.svg") no-repeat;
+    opacity: 0;
+    width: 16px;
+    height: 16px;
+    transform: scale(1.5);
+    margin-left: 0.5rem;
+    border-bottom: 0;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  a.anchor:hover {
+    border-bottom: 0;
+    opacity: 1;
+  }
+
+  /* Tables */
+  table {
+    font-size: 0.875rem;
+    margin-bottom: 1.5em;
+    border-collapse: collapse;
+    width: 100%;
+    position: relative;
+    line-height: 1.5;
+    max-width: 100%;
+    overflow: auto;
+
+    thead tr {
+      border-top: 0;
+    }
+
+    th {
+      background-color: var(--white);
+      color: var(--gray-950);
+      line-height: 1.25;
+      position: sticky;
+      vertical-align: top;
+      z-index: 1;
+      top: var(--header-height);
+    }
+
+    th, td {
+      padding: 1em;
+    }
+
+    tr {
+      border-top: 1px solid var(--gray-50);
+    }
+    tr:last-child {
+      border-bottom: 1px solid var(--gray-50);
+    }
+
+    td {
+      vertical-align: top;
+      max-width: 12rem;
+      a {
+        border-bottom: 0;
+      }
+    }
+  }
+
+  /* Code samples */
+  pre {
+    padding: 1rem 0.75rem;
+  }
+  *:not(pre)>code {
+    background-color: var(--gray-50);
+    color: var(--gray-900);
+    border-radius: 4px;
+    line-height: 1;
+    overflow-wrap: break-word;
+    padding: 2px;
+  }
+  a code {
+    color: var(--purple-700);
+  }
+  a:hover code {
+    background-color: var(--t-indigo-100);
+  }
+
+  /* Other elements */
+  li {
+    margin-bottom: 0.5rem;
+  }
+
+  img {
+    border: 1px solid var(--gray-100);
+    border-radius: 0.5rem;
+    padding: 0.25rem;
+  }
+}
+
+/* Help & Feedback */
+.help-feedback {
+  background-color: var(--t-indigo-50);
+
+  h2 {
+    font-size: 1.067rem;
+    font-weight: 700;
+    margin: 0;
+  }
+  h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0.75rem 0 0.25rem;
+  }
+
+  .feedback {
+    flex: 0 0 60%;
+  }
+  .feedback p {
+    margin-bottom: 0;
+  }
+
+  .gl-button:hover {
+    border-bottom: 0;
+  }
+}
+
+/* Footer */
+ul.docs-footer-links a:hover {
+  text-decoration: none;
+  color: var(--gray-900);
+}
+ul.docs-social a::before {
+  background-repeat: no-repeat;
+  content: "";
+  display: inline-block;
+  margin-left: 0.75rem;
+  width: 18px;
+  height: 18px;
+}
+/* FontAwesome social icons */
+.twitter::before {
+  background-image: url("/fa-icons/x-twitter.svg");
+}
+.facebook::before {
+  background-image: url("/fa-icons/facebook.svg");
+}
+.linkedin::before {
+  background-image: url("/fa-icons/linkedin.svg");
+}
+.youtube::before {
+  background-image: url("/fa-icons/youtube.svg");
+}

@@ -1,4 +1,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
 <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}</title>
+
+<!-- GitLab Fonts and UI -->
+<link rel="preload" href="/gitlab_ui/fonts/GitLabSans.woff2" as="font" crossorigin />
+<link rel="preload" href="/gitlab_ui/fonts/GitLabSans-Italic.woff2" as="font" crossorigin />
+<link rel="prefetch" href="/gitlab_ui/fonts/GitLabMono.woff2" as="font" crossorigin />
+<link rel="stylesheet" href="/gitlab_ui/ui/index.css">
+<link rel="stylesheet" href="/gitlab_ui/ui/utility_classes.css">
+
+<!-- Custom styles -->
 {{ partialCached "head/css.html" . }}

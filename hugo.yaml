@@ -1,10 +1,42 @@
----
 baseURL: https://docs.gitlab.com
 languageCode: en-US
 locale: en-US
 title: GitLab Docs
 defaultContentLanguage: en
 theme: gitlab-docs
+
+markup:
+  goldmark:
+    renderer:
+      # Allows for HTML rendering
+      unsafe: true
+
+menus:
+  social:
+  - name: Twitter
+    url: https://twitter.com/gitlab
+  - name: Facebook
+    url: https://www.facebook.com/gitlab
+  - name: LinkedIn
+    url: https://www.linkedin.com/company/gitlab-com
+  - name: YouTube
+    url: https://www.youtube.com/channel/UCnMGQ8QHMAnVIsI3xJrihhg
+  footer:
+  - name: Docs Repo
+    url: https://gitlab.com/gitlab-org/gitlab-docs
+    weight: 1
+  - name: About GitLab
+    url: https://about.gitlab.com/company/
+    weight: 2
+  - name: Terms
+    url: https://about.gitlab.com/terms/
+    weight: 3
+  - name: Privacy Statement
+    url: https://about.gitlab.com/privacy/
+    weight: 4
+  - name: Contact
+    url: https://about.gitlab.com/company/contact/
+    weight: 5
 
 module:
   mounts:

@@ -1,7 +1,15 @@
 {{ define "main" }}
-  {{ .Content }}
-  {{ range site.RegularPages }}
-    <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
-    {{ .Summary }}
-  {{ end }}
+<div class="container gl-pt-6">
+  <p class="placeholder">
+    Placeholder for the <a href="https://gitlab.com/gitlab-org/technical-writing-group/gitlab-docs-hugo/-/issues/20">homepage</a>.<br>
+    For now, check out an interior page:
+  </p>
+  <ul>
+    {{ range site.RegularPages }}
+      {{- if .LinkTitle }}
+        <li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
+      {{ end }}
+    {{ end }}
+  </ul>
+</div>
 {{ end }}
