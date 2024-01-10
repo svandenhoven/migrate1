@@ -1,10 +1,28 @@
 {{ define "main" }}
-  <h1>{{ .Title }}</h1>
+<div class="template-single">
+  <div class="global-nav gl-border gl-border-dashed">
+    <p class="gl-p-5 placeholder">
+      Placeholder for <br><a href="https://gitlab.com/gitlab-org/technical-writing-group/gitlab-docs-hugo/-/issues/8">
+      global navigation</a>.
+    </p>
+  </div>
 
-  {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
-  {{ $dateHuman := .Date | time.Format ":date_long" }}
-  <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
+  <div class="main-content">
+    <article class="docs-content gl-pb-7">
+      <h1 class="gl-mt-8 gl-mb-6">{{ .Title }}</h1>
+      {{ .Content }}
+      {{ partial "feedback.html" . }}
+    </article>
+    <footer class="gl-pb-6">
+      {{ partial "footer.html" . }}
+    </footer>
+  </div>
 
-  {{ .Content }}
-  {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
+  <div class="toc gl-border gl-border-dashed">
+    <p class="gl-p-5 placeholder">
+      Placeholder for <br><a href="https://gitlab.com/gitlab-org/technical-writing-group/gitlab-docs-hugo/-/issues/19">
+      table of contents</a>.
+    </p>
+  </div>
+</div>
 {{ end }}

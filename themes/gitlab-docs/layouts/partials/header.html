@@ -1,2 +1,17 @@
-<h1>{{ site.Title }}</h1>
-{{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+<a class="header-logo gitlab-display-flex" href="/">
+  <img src="/gitlab-logo-header.svg" alt="GitLab documentation home" class="logo">
+  <span class="border-light gl-ml-2 gl-pl-3 gl-py-1 gl-border-l gl-vertical-align-middle gl-text-white">Docs</span>
+</a>
+
+<div>
+  <ul class="navbar-nav gl-flex-direction-row gl-align-items-center gl-mb-0">
+    <li class="nav-item gl-mr-5">
+      <a class="nav-link gl-text-white!" href="https://about.gitlab.com/releases/categories/releases/" target="_blank">What's new?</a>
+    </li>
+    <li class="nav-item">
+      <a class="cta-button" href="https://gitlab.com/-/trial_registrations/new?glm_source=docs.gitlab.com&amp;glm_content=navigation-cta-docs" target="_blank" rel="noopener noreferrer" role="button">
+        Get free trial
+      </a>
+    </li>
+  </ul>
+</div>

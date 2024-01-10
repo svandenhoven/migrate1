@@ -1,0 +1,77 @@
+/*
+ * Font-face declarations copied from GitLab:
+ * https://gitlab.com/gitlab-org/gitlab/-/blob/master/app/assets/stylesheets/fonts.scss
+ *
+ * Usage:
+ * html { font-family: 'GitLab Sans', sans-serif; }
+ */
+ @font-face {
+  font-family: 'GitLab Sans';
+  font-weight: 100 900;
+  font-style: normal;
+  /* stylelint-disable-next-line property-no-unknown */
+  font-named-instance: 'Regular';
+  src: url('/gitlab_ui/fonts/GitLabSans.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'GitLab Sans';
+  font-weight: 100 900;
+  font-style: italic;
+  /* stylelint-disable-next-line property-no-unknown */
+  font-named-instance: 'Regular';
+  src: url('/gitlab_ui/fonts/GitLabSans-Italic.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'GitLab Mono';
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: normal;
+  src: url('/gitlab_ui/fonts/GitLabMono.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'GitLab Mono';
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: italic;
+  src: url('/gitlab_ui/fonts/GitLabMono-Italic.woff2') format('woff2');
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--t-indigo-900);
+  margin-top: 2.5rem;
+}
+
+h1 {
+  font-weight: 600;
+  font-size: 2.5rem;
+  line-height: 1;
+}
+h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1;
+  margin-bottom: 1.5rem;
+}
+h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.273;
+  margin-bottom: 1rem;
+}
+h4 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.375;
+  margin-bottom: 0.75rem;
+}
+h5 {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+}

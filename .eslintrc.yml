@@ -1,4 +1,4 @@
----
 root: true
 extends:
   - 'plugin:@gitlab/default'
+ignorePatterns: "vite.config.js"

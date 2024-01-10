@@ -1,1 +1,27 @@
-<p>Copyright {{ now.Year }}. All rights reserved.</p>
+<div class="gl-display-flex gl-justify-content-space-between gl-border-t gl-pt-5">
+  <a href="https://gitlab.com/dashboard"><img src="/gitlab-logo.svg" alt="GitLab logo"></a>
+
+  <ul class="docs-social gl-list-style-none gl-display-flex">
+    {{- range site.Menus.social }}
+      <li>
+        <a href="{{ .URL }}" class="{{ .Name | strings.ToLower }}">
+          <span class="gl-sr-only">{{ .Name }}</span>
+        </a>
+      </li>
+    {{- end }}
+  </ul>
+</div>
+
+<ul class="docs-footer-links gl-list-style-none gl-display-flex gl-pl-0">
+  {{- range site.Menus.footer }}
+    <li class="gl-pr-5">
+      <a href="{{ .URL }}" class="gl-text-gray-600">
+        {{ .Name }}
+      </a>
+    </li>
+  {{- end }}
+</ul>
+
+<div class="docs-edit-links">
+  <a href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" src="/by-sa.svg"></a>
+</div>

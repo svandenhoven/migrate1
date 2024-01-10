@@ -1,0 +1,47 @@
+/*
+ * Pajamas colors
+ * @see https://design.gitlab.com/product-foundations/color
+ */
+:root {
+  /* Indigo theme */
+  --t-indigo-50: #f1f1ff;
+  --t-indigo-100: #dbdbf8;
+  --t-indigo-200: #c7c7f2;
+  --t-indigo-300: #a2a2e6;
+  --t-indigo-400: #8181d7;
+  --t-indigo-500: #6666c4;
+  --t-indigo-600: #5252b5;
+  --t-indigo-700: #41419f;
+  --t-indigo-800: #303083;
+  --t-indigo-900: #222261;
+  --t-indigo-950: #14143d;
+  /* Neutrals */
+  --white: #fff;
+  --gray-10: #fbfafd;
+  --gray-50: #ececef;
+  --gray-100: #dcdcde;
+  --gray-200: #bfbfc3;
+  --gray-300: #a4a3a8;
+  --gray-400: #89888d;
+  --gray-500: #737278;
+  --gray-600: #626168;
+  --gray-700: #535158;
+  --gray-800: #434248;
+  --gray-900: #333238;
+  --gray-950: #1f1e24;
+  --black: #000;
+  /* Other Pajamas colors as needed */
+  --purple-700: #5943b6;
+  --purple-900: #2f2a6b;
+  --blue-600: #1068bf;
+  /* Docs custom colors */
+  --cta-button: #cb4e18;
+}
+
+/**
+ * Layout
+ */
+:root {
+  --header-height: 3rem;
+  --footer-height: 9rem;
+}

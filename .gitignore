@@ -4,7 +4,8 @@ public/
 resources/
 
 # Vite-generated files
-themes/gitlab-docs/static/js
+themes/gitlab-docs/static/vite/
+themes/gitlab-docs/static/gitlab_ui/
 
 # Yarn-generated files
 .pnp.*

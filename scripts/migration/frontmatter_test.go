@@ -48,3 +48,40 @@ func TestUpdateTitle(t *testing.T) {
 		}
 	}
 }
+
+func TestUpdateIndexPage(t *testing.T) {
+	baseFm := FrontMatter{
+		Layout: "default",
+		Cascade: Cascade{
+			Layout: "default",
+		},
+	}
+
+	testCases := []struct {
+		fm       FrontMatter
+		wantFm   FrontMatter
+		filename string
+	}{
+		{
+			fm: baseFm,
+			wantFm: FrontMatter{
+				Layout: "home",
+				Cascade: Cascade{
+					Layout: "single",
+				},
+			},
+			filename: "../gitlab/doc/_index.md",
+		},
+		{
+			fm:       baseFm,
+			wantFm:   baseFm,
+			filename: "../other.md",
+		}}
+
+	for _, tc := range testCases {
+		gotFm := updateIndexPage(tc.fm, tc.filename)
+		if !reflect.DeepEqual(gotFm, tc.wantFm) {
+			t.Errorf("got fm %v, want %v", gotFm, tc.wantFm)
+		}
+	}
+}
