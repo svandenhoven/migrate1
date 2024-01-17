@@ -18,7 +18,7 @@ variables:
   GO_VERSION: "1.21"
   GO_VERSION_PREVIOUS: "1.20"
   GOLANGCI_LINT_VERSION: "1.55.2"
-  HUGO_VERSION: "0.121.1"
+  HUGO_VERSION: "0.121.2"
   NODE_VERSION: "20"
   SHELLCHECK_VERSION: "0.9.0"
   YAMLLINT_VERSION: "1.33.0"
@@ -27,6 +27,9 @@ variables:
   # Linux distribution versions
   ALPINE_VERSION: "3.19"
   DEBIAN_VERSION: "bookworm"
+
+  # Other versions
+  ASDF_VERSION: "0.13.1"
 
 workflow:
   rules: &workflow_rules
@@ -110,18 +113,15 @@ test:jest:
 
 # Check that asdf dependencies install correctly
 test:asdf_installation:
+  image: debian:${DEBIAN_VERSION}-slim
   stage: test
   needs: []
-  image: ubuntu:22.04
-  variables:
-    ASDF_VERSION: '0.13.1'
-  before_script:
-    - apt-get -qq update
-    - apt-get -qq install -y build-essential git curl zlib1g-dev libyaml-dev libssl-dev jq python3-pip
   script:
-    - git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v$ASDF_VERSION
+    - apt-get update && apt-get install -y --no-install-recommends curl git jq make python3-pip xz-utils
+    - git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v${ASDF_VERSION}
     - source "$HOME/.asdf/asdf.sh"
-    - make install-asdf-dependencies
+    # Set PIP_BREAK_SYSTEM_PACKAGES=1 because we mix Debian-installed Python packages and other Python packages.
+    - PIP_BREAK_SYSTEM_PACKAGES=1 make install-asdf-dependencies
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
       changes:
