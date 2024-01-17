@@ -15,11 +15,11 @@ install-nodejs-dependencies:
 	@yarn install
 
 .PHONY: test
-test: shellcheck-tests lint-go go-tests jest-tests lint-frontend lint-yaml
+test: lint-shell-scripts lint-go go-tests jest-tests lint-frontend lint-yaml
 
 .PHONY: lint-shell-scripts
-shellcheck-tests:
-	@printf "\n$(INFO)INFO: Running shellcheck tests...$(END)\n"
+lint-shell-scripts:
+	@printf "\n$(INFO)INFO: Running shell script linting...$(END)\n"
 	@shellcheck scripts/*.sh
 
 .PHONY: lint-go
