@@ -1,0 +1,3 @@
+# Directly browse CI job artifacts
+canonifyURLs: false
+uglyURLs: true
