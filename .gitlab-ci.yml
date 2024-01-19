@@ -112,7 +112,7 @@ test:jest:
   script:
     - make jest-tests
 
-# Check that asdf dependencies install correctly
+# Check that asdf/mise dependencies install correctly
 test:asdf_installation:
   image: debian:${DEBIAN_VERSION}-slim
   stage: test
