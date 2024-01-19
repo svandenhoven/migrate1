@@ -14,12 +14,22 @@ If these prerequisites aren't installed:
 - macOS users can install them by using [Homebrew](https://brew.sh), which is also useful for installing other packages.
 - Linux users can to install them by using their distribution's package manager.
 
+## Optional: Install `asdf` or `mise`
+
+This project supports both `asdf` and `mise` for installing required language runtimes and other system dependencies.
+
+For information on installing:
+
+- `asdf`, see <https://asdf-vm.com/guide/getting-started.html>.
+- `mise`, see <https://mise.jdx.dev/getting-started.html>.
+
+If you don't install either `asdf` or `mise`, you must install required language runtimes and other system dependencies yourself.
+
 ## Set up your workstation
 
 To set up your workstation for GitLab Docs:
 
-1. Complete the [core `asdf` installation instructions](https://asdf-vm.com/guide/getting-started.html).
-1. To make `asdf` available for later steps, close the terminal window you used to install `asdf` and open a new terminal window.
+1. Install either `asdf` or `mise`.
 1. Clone this project (`gitlab-docs-hugo`).
 1. In the checkout of `gitlab-docs-hugo`, run:
 
@@ -28,14 +38,14 @@ To set up your workstation for GitLab Docs:
    ```
 
 1. The website build will pull content from project directories that are
-checked out in the same location as `gitlab-docs-hugo`. You can use your
-existing cloned repositories, or you can clone them all at once by running this command:
+   checked out in the same location as `gitlab-docs-hugo`. You can use your
+   existing cloned repositories, or you can clone them all at once by running this command:
 
    ```shell
    make clone-docs-projects
    ```
 
-In either case, your resulting file structure should look like this:
+   In either case, your resulting file structure should look like this:
 
    ```markdown
    .

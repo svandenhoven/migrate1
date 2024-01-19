@@ -2,12 +2,12 @@ INFO = \033[32m
 END = \033[0m
 
 .PHONY: setup
-setup: install-asdf-dependencies install-nodejs-dependencies
+setup: install-dependencies install-nodejs-dependencies
 
-.PHONY: install-asdf-dependencies
-install-asdf-dependencies:
-	@printf "\n$(INFO)INFO: Installing and updating asdf dependencies...$(END)\n"
-	@scripts/install-asdf-dependencies.sh
+.PHONY: install-dependencies
+install-dependencies:
+	@printf "\n$(INFO)INFO: Installing and updating dependencies...$(END)\n"
+	@scripts/install-dependencies.sh
 
 .PHONY: install-nodejs-dependencies
 install-nodejs-dependencies:
