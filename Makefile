@@ -15,7 +15,12 @@ install-nodejs-dependencies:
 	@yarn install
 
 .PHONY: test
-test: lint-shell-scripts lint-go go-tests jest-tests lint-frontend lint-yaml
+test: lint-markdown lint-shell-scripts lint-go go-tests jest-tests lint-frontend lint-yaml
+
+.PHONY: lint-markdown
+lint-markdown:
+	@printf "\n$(INFO)INFO: Running Markdown linting...$(END)\n"
+	@yarn markdownlint
 
 .PHONY: lint-shell-scripts
 lint-shell-scripts:
