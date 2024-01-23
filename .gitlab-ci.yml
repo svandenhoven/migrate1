@@ -48,7 +48,7 @@ workflow:
       - GO_VERSION: ["1.20", "1.21"]
 
 .yarn:
-  image: node:${NODE_VERSION}-${DEBIAN_VERSION}
+  image: node:${NODE_VERSION}-alpine${ALPINE_VERSION}
   before_script:
     - node --version
     - corepack enable
@@ -65,7 +65,17 @@ lint:frontend:
   extends:
     - .yarn
   script:
+    - apk add make
     - make lint-frontend
+
+lint:markdown:
+  stage: lint
+  extends:
+    - .yarn
+  needs: []
+  script:
+    - apk add make
+    - make lint-markdown
 
 lint:go:
   image: golangci/golangci-lint:v${GOLANGCI_LINT_VERSION}-alpine
@@ -110,6 +120,7 @@ test:jest:
   extends:
     - .yarn
   script:
+    - apk add make
     - make jest-tests
 
 # Check that asdf/mise dependencies install correctly

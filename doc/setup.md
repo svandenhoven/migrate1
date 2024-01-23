@@ -23,7 +23,8 @@ For information on installing:
 - `asdf`, see <https://asdf-vm.com/guide/getting-started.html>.
 - `mise`, see <https://mise.jdx.dev/getting-started.html>.
 
-If you don't install either `asdf` or `mise`, you must install required language runtimes and other system dependencies yourself.
+If you don't install either `asdf` or `mise`, you must install required language runtimes and other system dependencies
+yourself.
 
 ## Set up your workstation
 
@@ -63,4 +64,5 @@ To set up your workstation for GitLab Docs:
    make view
    ```
 
-You can now browse the site at [`http://localhost:1313`](http://localhost:1313). Changes you make to markdown content or website source files should be visible immediately.
+You can now browse the site at [`http://localhost:1313`](http://localhost:1313). Changes you make to markdown content or
+website source files should be visible immediately.
