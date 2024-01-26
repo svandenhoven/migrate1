@@ -19,7 +19,7 @@ variables:
   GO_VERSION: "1.21"
   GO_VERSION_PREVIOUS: "1.20"
   GOLANGCI_LINT_VERSION: "1.55.2"
-  HUGO_VERSION: "0.121.2"
+  HUGO_VERSION: "0.122.0"
   NODE_VERSION: "20"
   SHELLCHECK_VERSION: "0.9.0"
   YAMLLINT_VERSION: "1.33.0"
@@ -133,7 +133,7 @@ test:asdf_installation:
     - git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v${ASDF_VERSION}
     - source "$HOME/.asdf/asdf.sh"
     # Set PIP_BREAK_SYSTEM_PACKAGES=1 because we mix Debian-installed Python packages and other Python packages.
-    - PIP_BREAK_SYSTEM_PACKAGES=1 make install-asdf-dependencies
+    - PIP_BREAK_SYSTEM_PACKAGES=1 make install-dependencies
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
       changes:
