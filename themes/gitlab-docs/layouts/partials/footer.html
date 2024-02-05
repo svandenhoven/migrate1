@@ -1,7 +1,7 @@
-<div class="gl-display-flex gl-justify-content-space-between gl-border-t gl-pt-5">
+<div class="gl-flex gl-justify-between gl-border-0 gl-border-t gl-border-solid gl-border-gray-100 gl-pt-5">
   <a href="https://gitlab.com/dashboard"><img src="{{ absURL "" }}/gitlab-logo.svg" alt="GitLab logo"></a>
 
-  <ul class="docs-social gl-list-style-none gl-display-flex">
+  <ul class="docs-social gl-list-none gl-flex">
     {{- range site.Menus.social }}
       <li>
         <a href="{{ .URL }}" class="{{ .Name | strings.ToLower }}">
@@ -12,7 +12,7 @@
   </ul>
 </div>
 
-<ul class="docs-footer-links gl-list-style-none gl-display-flex gl-pl-0">
+<ul class="docs-footer-links gl-list-none gl-flex gl-pl-0">
   {{- range site.Menus.footer }}
     <li class="gl-pr-5">
       <a href="{{ .URL }}" class="gl-text-gray-600">
