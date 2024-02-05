@@ -23,7 +23,7 @@ variables:
   NODE_VERSION: "20"
   SHELLCHECK_VERSION: "0.9.0"
   YAMLLINT_VERSION: "1.33.0"
-  YQ_VERSION: "4.40.5"
+  YQ_VERSION: "4"
 
   # Linux distribution versions
   ALPINE_VERSION: "3.19"
@@ -163,15 +163,14 @@ prebuild:compile_frontend:
     expire_in: 1d
 
 build:compile_site:
+  image: registry.gitlab.com/pages/hugo/hugo_extended:${HUGO_VERSION}
   stage: build
   before_script:
-    # Install yq
-    - curl --output /usr/local/bin/yq --location https://github.com/mikefarah/yq/releases/download/v${YQ_VERSION}/yq_linux_amd64
-    - chmod +x /usr/local/bin/yq
-    - yq --version
-    # Install Hugo
-    - curl --output hugo_extended_${HUGO_VERSION}_linux-amd64.deb --location https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb
-    - dpkg --install hugo_extended_${HUGO_VERSION}_linux-amd64.deb
+    # Install additional dependencies
+    - apk update && apk upgrade
+    - apk add --no-cache go=~${GO_VERSION} yq=~${YQ_VERSION} npm curl coreutils make bash
+    # Install PostCSS tools for https://gohugo.io/hugo-pipes/postcss/
+    - npm i -g postcss postcss-cli autoprefixer
     # Print Hugo environment info
     - hugo env
     # Fetch docs content
