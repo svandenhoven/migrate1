@@ -19,7 +19,7 @@ for ENTRY in $(yq eval '.products | keys | .[]' "$PRODUCTS_YAML"); do
 
     # Rename index files
     printf "Renaming index files in ${CLONE_DIR}...\n"
-    find "$DOCS_PATH" -type f -name 'index.md' -execdir mv '{}' '_index.md' \;
+    find "$DOCS_PATH" -type f -name 'index.md' -exec sh -c 'mv "$1" "${1%/*}/_index.md"' _ {} \;
 
     # Temporary: Update front matter
     printf "Updating front matter in ${CLONE_DIR}...\n"
