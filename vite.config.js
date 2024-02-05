@@ -5,7 +5,6 @@ const THEME_PATH = "themes/gitlab-docs";
 const THEME_VENDOR_DIR = `${THEME_PATH}/static/gitlab_ui`;
 
 const GITLAB_THEME_ASSETS = [
-  "@gitlab/ui/dist/utility_classes.css*",
   "@gitlab/ui/dist/index.css*",
   "@gitlab/fonts/gitlab-sans/GitLabSans*.woff2",
   "@gitlab/fonts/gitlab-mono/GitLabMono*.woff2",
