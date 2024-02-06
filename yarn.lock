@@ -724,16 +724,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@gitlab/svgs@npm:^3.79.0":
-  version: 3.79.0
-  resolution: "@gitlab/svgs@npm:3.79.0"
-  checksum: 10c0/41363656fcef88975fa09de22e6731061a8f2a6f69ba8ff7aca8a0810963d79897689b7122e7cfb70a063250387ddc8ee747d161ad0d4a441903188cf7f3a1a1
+"@gitlab/svgs@npm:^3.83.0":
+  version: 3.83.0
+  resolution: "@gitlab/svgs@npm:3.83.0"
+  checksum: 10c0/46869067c70d28ba64c850089f30edb2f49f7212098711eab872590f603f688d041752a80291365a2be66db5a1ea3f66564ddc3cb18df4f06a1d2aa65f622214
   languageName: node
   linkType: hard
 
-"@gitlab/ui@npm:^73.1.0":
-  version: 73.1.0
-  resolution: "@gitlab/ui@npm:73.1.0"
+"@gitlab/ui@npm:^74.0.0":
+  version: 74.0.0
+  resolution: "@gitlab/ui@npm:74.0.0"
   dependencies:
     "@floating-ui/dom": "npm:1.4.3"
     bootstrap-vue: "npm:2.23.1"
@@ -750,7 +750,7 @@ __metadata:
     pikaday: ^1.8.0
     tailwindcss: ^3
     vue: ^2.7.16
-  checksum: 10c0/989a39dd964b08e143b1a53f26dde7950876916c0da1edc165a92b6dea9c058f6dc31465a2b63c70a02c01455a54e00e2e84ac683712dd522ddf45e9e431a998
+  checksum: 10c0/5b630cfb9d0ead77f29ce350500299d7923af488bcb5df09a799c0e367dc99a9067b04a8ea5f18bc6ff289a468ec316b961e39e8472e25ac06d8b647404cce66
   languageName: node
   linkType: hard
 
@@ -3379,17 +3379,17 @@ __metadata:
     "@gitlab/eslint-plugin": "npm:^19.4.0"
     "@gitlab/fonts": "npm:^1.3.0"
     "@gitlab/stylelint-config": "npm:^6.1.0"
-    "@gitlab/svgs": "npm:^3.79.0"
-    "@gitlab/ui": "npm:^73.1.0"
+    "@gitlab/svgs": "npm:^3.83.0"
+    "@gitlab/ui": "npm:^74.0.0"
     autoprefixer: "npm:^10.4.17"
     eslint: "npm:^8.56.0"
     jest: "npm:^29.7.0"
     markdownlint-cli2: "npm:^0.12.1"
-    postcss: "npm:^8.4.33"
+    postcss: "npm:^8.4.34"
     postcss-cli: "npm:^11.0.0"
-    prettier: "npm:^3.2.4"
+    prettier: "npm:^3.2.5"
     rollup-plugin-copy: "npm:^3.5.0"
-    stylelint: "npm:^16.2.0"
+    stylelint: "npm:^16.2.1"
     tailwindcss: "npm:^3.4.1"
     vite: "npm:^5.0.12"
   peerDependencies:
@@ -5722,6 +5722,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"postcss@npm:^8.4.34":
+  version: 8.4.34
+  resolution: "postcss@npm:8.4.34"
+  dependencies:
+    nanoid: "npm:^3.3.7"
+    picocolors: "npm:^1.0.0"
+    source-map-js: "npm:^1.0.2"
+  checksum: 10c0/4d6f072cdfdc1ced16b4336263d830f8b4397fc47b9b382e02f6448fda9386d881aa9d27fbe0dd124f59c76f3a5da4f360919d25dfc818eca50b48f042af35a8
+  languageName: node
+  linkType: hard
+
 "prelude-ls@npm:^1.2.1":
   version: 1.2.1
   resolution: "prelude-ls@npm:1.2.1"
@@ -5729,12 +5740,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:^3.2.4":
-  version: 3.2.4
-  resolution: "prettier@npm:3.2.4"
+"prettier@npm:^3.2.5":
+  version: 3.2.5
+  resolution: "prettier@npm:3.2.5"
   bin:
     prettier: bin/prettier.cjs
-  checksum: 10c0/88dfeb78ac6096522c9a5b81f1413d875f568420d9bb6a5e5103527912519b993f2bcdcac311fcff5718d5869671d44e4f85827d3626f3a6ce32b9abc65d88e0
+  checksum: 10c0/ea327f37a7d46f2324a34ad35292af2ad4c4c3c3355da07313339d7e554320f66f65f91e856add8530157a733c6c4a897dc41b577056be5c24c40f739f5ee8c6
   languageName: node
   linkType: hard
 
@@ -6481,9 +6492,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"stylelint@npm:^16.2.0":
-  version: 16.2.0
-  resolution: "stylelint@npm:16.2.0"
+"stylelint@npm:^16.2.1":
+  version: 16.2.1
+  resolution: "stylelint@npm:16.2.1"
   dependencies:
     "@csstools/css-parser-algorithms": "npm:^2.5.0"
     "@csstools/css-tokenizer": "npm:^2.2.3"
@@ -6525,7 +6536,7 @@ __metadata:
     write-file-atomic: "npm:^5.0.1"
   bin:
     stylelint: bin/stylelint.mjs
-  checksum: 10c0/6fdf0451833c11b18c9aa502f687febd6881a912ac94f39d509b894b0f74ccb636f3dac2991c69cc82dc6190731cc2fa48e307fed477d2a0fce57067cd22b572
+  checksum: 10c0/eeaba06885e542c832e5cffc07b2d0dabdc5a72e6ad4d6cb3d01dcc260c29a712b0b935cbd40e059abd68a100e0563fbc617fc4c9bef3b14ecaf6eea651d9d9d
   languageName: node
   linkType: hard
 
