@@ -10,7 +10,6 @@ stages:
   - prebuild
   - build
   - deploy
-  - cleanup
 
 variables:
   # Versions specified here are production versions
@@ -204,35 +203,3 @@ pages:
     expire_in: 1d
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-
-review_app:
-  extends:
-    - build:compile_site
-  stage: deploy
-  script:
-    - hugo --gc --minify --environment review
-  rules:
-    - if: $CI_MERGE_REQUEST_IID
-  environment:
-    name: review/$CI_COMMIT_REF_SLUG
-    # There is no predefined CI variable that is formatted quite right
-    # neither $CI_PAGES_URL nor $CI_JOB_URL have /-/ directly after the hostname
-    url: https://gitlab-org.gitlab.io/-/technical-writing-group/gitlab-docs-hugo/-/jobs/$CI_JOB_ID/artifacts/public/index.html
-    on_stop: stop_review_app
-  variables:
-    HUGO_BASEURL: https://gitlab-org.gitlab.io/-/technical-writing-group/gitlab-docs-hugo/-/jobs/$CI_JOB_ID/artifacts/public
-
-stop_review_app:
-  image: busybox
-  stage: cleanup
-  script:
-    - echo "stop review app"
-  environment:
-    name: review/$CI_COMMIT_REF_SLUG
-    action: stop
-  rules:
-    - if: $CI_MERGE_REQUEST_IID
-      when: manual
-      allow_failure: true
-  variables:
-    GIT_STRATEGY: none
