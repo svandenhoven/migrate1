@@ -12,6 +12,8 @@ markup:
     renderer:
       # Allows for HTML rendering
       unsafe: true
+  highlight:
+    style: pygments
 
 menus:
   social:

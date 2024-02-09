@@ -11,7 +11,6 @@ a.header-logo:hover {
   border-color: rgba(255,255,255,.32) !important;
 }
 .cta-button {
-  vertical-align: text-top;
   background-color: var(--cta-button);
   color: var(--white);
   padding: 0.5rem 0.75rem;
@@ -27,7 +26,7 @@ a.header-logo:hover {
 /**
  * Docs content
  */
-article.docs-content {
+div.docs-content {
   /* Links */
   a {
     color: var(--purple-700);
@@ -109,6 +108,9 @@ article.docs-content {
   }
 
   /* Code samples */
+  .highlight {
+    background-color: var(--gray-50);
+  }
   pre {
     padding: 1rem 0.75rem;
   }
