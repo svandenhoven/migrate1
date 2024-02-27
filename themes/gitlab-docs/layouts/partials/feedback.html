@@ -4,7 +4,7 @@
   <div class="gl-flex gl-pt-3">
     <div class="feedback gl-pr-5">
       <h3>Docs</h3>
-      <p><a href="#">Edit this page</a> to fix an error or add an improvement in a merge request.</p>
+      <p>{{ partial "edit-link.html" (dict "Context" . "editText" "Edit this page" "linkType" "source" "productsYaml" .Site.Data.products) }} to fix an error or add an improvement in a merge request.</p>
       <p><a href="https://gitlab.com/gitlab-org/gitlab/-/issues/new?issuable_template=Documentation">Create an issue</a> to suggest an improvement to this page.</p>
 
       <h3>Product</h3>

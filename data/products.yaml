@@ -2,7 +2,8 @@
 # This file is used by:
 #
 # - scripts/clone_projects.go
-# - scripts/hugo-content-updates.sh
+# - scripts/content-post-process.sh
+# - themes/gitlab-docs/layouts/partials/edit-link.html
 #
 products:
   gitlab:
