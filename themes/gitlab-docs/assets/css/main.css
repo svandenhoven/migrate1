@@ -169,9 +169,14 @@ div.docs-content {
 }
 
 /* Footer */
-ul.docs-footer-links a:hover {
+ul.docs-footer-links a:hover,
+.docs-footer-links-secondary a:hover {
   text-decoration: none;
   color: var(--gray-900);
+}
+.docs-footer-links-secondary a {
+  color: var(--gray-500);
+  padding-right: 1rem;
 }
 ul.docs-social a::before {
   background-repeat: no-repeat;
