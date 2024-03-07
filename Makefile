@@ -25,7 +25,7 @@ all: clean setup test
 
 .PHONY: clean
 clean:
-  @printf "\n$(INFO)INFO: Removing ephemeral directories...$(END)\n"
+	@printf "\n$(INFO)INFO: Removing ephemeral directories...$(END)\n"
 	@rm -rfv public resources node_modules
 
 .PHONY: setup
