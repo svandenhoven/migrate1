@@ -6,6 +6,7 @@ resources/
 # Vite-generated files
 themes/gitlab-docs/static/vite/
 themes/gitlab-docs/static/gitlab_ui/
+themes/gitlab-docs/static/icons.svg
 
 # Yarn-generated files
 .pnp.*
