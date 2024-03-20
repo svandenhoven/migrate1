@@ -9,7 +9,7 @@
 
   <div class="main-content">
     <div class="docs-content gl-pb-7">
-      <h1 class="gl-mt-8 gl-mb-6">{{ .Title }}</h1>
+      <h1 class="gl-mt-8 gl-mb-6">{{ .Title | markdownify }}</h1>
       {{ .Content }}
       {{ partial "feedback.html" . }}
     </div>
