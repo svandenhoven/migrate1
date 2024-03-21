@@ -8,6 +8,9 @@ themes/gitlab-docs/static/vite/
 themes/gitlab-docs/static/gitlab_ui/
 themes/gitlab-docs/static/icons.svg
 
+# Jest cache
+tmp/
+
 # Yarn-generated files
 .pnp.*
 .yarn/*

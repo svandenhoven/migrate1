@@ -1,6 +1,5 @@
-/**
- * Site-wide functions.
- */
+import Vue from "vue";
+import DocsBanner from "./components/survey_banner.vue";
 
 import "../assets/css/tailwind.css";
 import "../assets/css/variables.css";
@@ -29,4 +28,21 @@ const addHeaderPermalinks = () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   addHeaderPermalinks();
+
+  /**
+   * Initialize Vue SFCs
+   */
+  const surveyBanner = document.querySelector('[data-vue-app="survey-banner"]');
+  (() =>
+    new Vue({
+      el: surveyBanner,
+      components: {
+        DocsBanner,
+      },
+      render(createElement) {
+        return createElement(DocsBanner, {
+          props: { text: surveyBanner.innerHTML, variant: "info" },
+        });
+      },
+    }))();
 });
