@@ -2,6 +2,12 @@
  * Site-wide functions.
  */
 
+import "../assets/css/tailwind.css";
+import "../assets/css/variables.css";
+import "../assets/css/typography.css";
+import "../assets/css/layout.css";
+import "../assets/css/main.css";
+
 /**
  * Adds a clickable permalink to each content heading
  */

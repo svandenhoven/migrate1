@@ -4,24 +4,25 @@
 
 The `gitlab-docs` theme contains the site's CSS and JS code.
 
-### JavaScript
+### JavaScript and CSS
 
-JavaScript code is bundled with Vite. To work on JS code locally, run Vite in watch mode:
+JavaScript and CSS code is bundled with Vite. To work on frontend code locally, run Vite in watch mode:
 
 ```shell
-yarn dev
+yarn run dev
 ```
 
-To live reload changes you make, run Vite in watch mode with Hugo in development mode. To run Hugo in development mode:
+To live reload changes, run Vite in watch mode, and in another terminal, run Hugo in development mode:
 
 ```shell
 make view
 ```
 
-### CSS
+### CSS usage
 
 This project uses vanilla CSS, and we aim to keep custom styling minimal in order to reduce maintenance needs and
-maintain consistency with GitLab UI. Minification is handled by Hugo.
+maintain consistency with GitLab UI. Try to use
+[utility classes](https://docs.gitlab.com/ee/development/fe_guide/style/scss.html#utility-classes) where possible.
 
 ## Add a new product
 
