@@ -11,18 +11,22 @@
     <div class="docs-content gl-pb-7">
       <h1 class="gl-mt-8 gl-mb-6">{{ .Title | markdownify }}</h1>
       {{ .Content }}
-      {{ partial "feedback.html" . }}
+      {{ if ne .Params.feedback false }}
+        {{ partial "feedback.html" . }}
+      {{ end }}
     </div>
     <footer class="gl-pb-6">
       {{ partial "footer.html" . }}
     </footer>
   </div>
 
-  <div class="toc gl-border gl-border-solid gl-border-gray-100 gl-border-dashed">
-    <p class="gl-p-5 placeholder">
-      Placeholder for <br><a href="https://gitlab.com/gitlab-org/technical-writing-group/gitlab-docs-hugo/-/issues/19">
-      table of contents</a>.
-    </p>
-  </div>
+  {{ if ne .Params.toc false }}
+    <div class="toc gl-border gl-border-solid gl-border-gray-100 gl-border-dashed">
+      <p class="gl-p-5 placeholder">
+        Placeholder for <br><a href="https://gitlab.com/gitlab-org/technical-writing-group/gitlab-docs-hugo/-/issues/19">
+        table of contents</a>.
+      </p>
+    </div>
+  {{ end }}
 </div>
 {{ end }}
