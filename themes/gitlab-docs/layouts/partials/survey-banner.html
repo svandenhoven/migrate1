@@ -1,0 +1,5 @@
+{{ if $.Site.Data.banner.show_banner }}
+    <div data-vue-app="survey-banner">
+        {{ $.Site.Data.banner.description | markdownify }}
+    </div>
+{{ end }}

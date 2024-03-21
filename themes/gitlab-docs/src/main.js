@@ -1,6 +1,5 @@
-/**
- * Site-wide functions.
- */
+import Vue from "vue";
+import DocsBanner from "./components/survey_banner.vue";
 
 /**
  * Adds a clickable permalink to each content heading
@@ -23,4 +22,21 @@ const addHeaderPermalinks = () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   addHeaderPermalinks();
+
+  /**
+   * Initialize Vue SFCs
+   */
+  const surveyBanner = document.querySelector('[data-vue-app="survey-banner"]');
+  (() =>
+    new Vue({
+      el: surveyBanner,
+      components: {
+        DocsBanner,
+      },
+      render(createElement) {
+        return createElement(DocsBanner, {
+          props: { text: surveyBanner.innerHTML, variant: "info" },
+        });
+      },
+    }))();
 });

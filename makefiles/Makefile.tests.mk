@@ -6,6 +6,6 @@ go-tests:
 .PHONY: jest-tests
 jest-tests: install-nodejs-dependencies
 	@printf "\n$(INFO)INFO: Running JavaScript tests...$(END)\n"
-	@yarn test --passWithNoTests
+	@yarn test
 
 .PHONY: all clean test
