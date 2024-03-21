@@ -4,6 +4,10 @@
 
 <link rel="icon" href="{{ absURL "" }}/favicon.svg" type="image/svg+xml">
 
+{{ if eq .Params.noindex true }}
+<meta name="robots" content="noindex, nofollow">
+{{ end }}
+
 <!-- GitLab Fonts and UI -->
 <link rel="preload" href="{{ absURL "" }}/gitlab_ui/fonts/GitLabSans.woff2" as="font" crossorigin />
 <link rel="preload" href="{{ absURL "" }}/gitlab_ui/fonts/GitLabSans-Italic.woff2" as="font" crossorigin />
