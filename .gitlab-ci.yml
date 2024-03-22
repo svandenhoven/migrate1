@@ -21,7 +21,6 @@ variables:
   HUGO_VERSION: "0.123.2"
   NODE_VERSION: "20"
   SHELLCHECK_VERSION: "0.9.0"
-  YAMLLINT_VERSION: "1.35.1"
   YQ_VERSION: "4"
 
   # Linux distribution versions
@@ -100,11 +99,11 @@ lint:shell-scripts:
     - make lint-shell-scripts
 
 lint:yaml:
-  image: python:alpine${ALPINE_VERSION}
   stage: lint
+  extends:
+    - .frontend
   needs: []
   script:
-    - pip install yamllint==${YAMLLINT_VERSION}
     - apk add make
     - make lint-yaml
 
