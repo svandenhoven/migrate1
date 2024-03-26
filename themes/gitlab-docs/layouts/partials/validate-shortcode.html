@@ -1,0 +1,10 @@
+{{- $allowedValues := .allowedValues -}}
+{{- $paramName := .paramName -}}
+{{- $paramValue := .paramValue -}}
+{{- $sourceFile := .sourceFile -}}
+{{- $lineNumber := .lineNumber -}}
+
+{{- if not (in $allowedValues $paramValue) -}}
+  {{- $errorMsg := printf "Invalid value for parameter '%s': %s. Allowed values are %s." $paramName $paramValue (delimit $allowedValues ", ") -}}
+  {{- errorf "%s (File: %s, Line: %d)" $errorMsg $sourceFile $lineNumber -}}
+{{- end -}}
