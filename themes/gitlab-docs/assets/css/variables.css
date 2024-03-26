@@ -31,9 +31,15 @@
   --gray-950: #1f1e24;
   --black: #000;
   /* Other Pajamas colors as needed */
+  --blue-50: #e9f3fc;
+  --blue-100: #cbe2f9;
+  --blue-600: #1068bf;
+  --green-50: #ecf4ee;
+  --green-100: #c3e6cd;
   --purple-700: #5943b6;
   --purple-900: #2f2a6b;
-  --blue-600: #1068bf;
+  --red-50: #fcf1ef;
+  --red-100: #fdd4cd;
   /* Docs custom colors */
   --cta-button: #cb4e18;
 }
