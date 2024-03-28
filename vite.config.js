@@ -14,6 +14,7 @@ const GITLAB_THEME_ASSETS = [
   "@gitlab/fonts/gitlab-sans/GitLabSans*.woff2",
   "@gitlab/fonts/gitlab-mono/GitLabMono*.woff2",
   "@gitlab/svgs/dist/sprite_icons/*",
+  "@gitlab/svgs/dist/icons.json",
 ];
 
 // Process all JS files in the theme src directory.
@@ -75,20 +76,32 @@ export default defineConfig({
   },
   plugins: [
     {
-      // Move icons.svg from GitLab UI out of the Vite directory.
-      // Otherwise it will 404 when viewing components with icons.
       name: "move-gitlab-ui-icons-svg",
       closeBundle: () => {
-        const sourcePath = path.join(THEME_PATH, "static/vite/icons.svg");
-        const destinationPath = path.join(THEME_PATH, "static/icons.svg");
+        const copy = [
+          // Copy icons.svg into the static directory.
+          // GitLab UI components look for it at /, not /vite/.
+          {
+            src: path.join(THEME_PATH, "static/vite/icons.svg"),
+            dest: path.join(THEME_PATH, "static/icons.svg"),
+          },
+          // Copy icons.json to the data directory. We need this
+          // for validating icons in shortcodes/icon.html.
+          {
+            src: path.join(THEME_PATH, "static/gitlab_ui/svgs/icons.json"),
+            dest: "./data/icons.json",
+          },
+        ];
 
-        if (fs.existsSync(sourcePath)) {
-          fs.rename(sourcePath, destinationPath, (err) => {
-            if (err) {
-              console.error("Error moving icons.svg:", err);
-            }
-          });
-        }
+        copy.forEach((file) => {
+          if (fs.existsSync(file.src)) {
+            fs.copyFile(file.src, file.dest, (err) => {
+              if (err) {
+                console.error("Error moving icons.svg:", err);
+              }
+            });
+          }
+        });
       },
     },
   ],
