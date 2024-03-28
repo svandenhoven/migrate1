@@ -175,7 +175,7 @@ build:compile_site:
   script:
     # Install additional dependencies
     - apk update && apk upgrade
-    - apk add --no-cache yq=~${YQ_VERSION} curl coreutils make bash
+    - apk add --no-cache yq=~${YQ_VERSION} curl coreutils make bash gcc libc-dev
     # Print Hugo environment info
     - hugo env
     # Fetch docs content

@@ -1,9 +1,4 @@
-package main
-
-/**
- * Temporary script for modifying Docs front matter.
- * See doc/post-process.md for details.
- */
+package tasks
 
 import (
 	"fmt"
@@ -35,15 +30,15 @@ type Cascade struct {
 	Layout string `yaml:"layout,omitempty"`
 }
 
-func main() {
-	if len(os.Args) < 2 {
-		log.Fatal("Usage: go run frontmatter.go file1.md [file2.md]")
+func MigrateFrontmatter(files []string) {
+	if len(files) == 0 {
+		log.Fatal("Usage: go run main.go migrate file1.md [file2.md]")
 	}
 
 	// Start worker goroutines
 	var wg sync.WaitGroup
 
-	for _, inputFile := range uniqueFilesOnly(os.Args[1:]) {
+	for _, inputFile := range uniqueFilesOnly(files) {
 		wg.Add(1)
 		go processFile(&wg, inputFile)
 	}
@@ -53,6 +48,9 @@ func main() {
 }
 
 func uniqueFilesOnly(files []string) []string {
+	if len(files) == 0 {
+		return files
+	}
 	slices.Sort(files)
 
 	return slices.Compact(files)

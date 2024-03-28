@@ -1,4 +1,4 @@
-package main
+package tasks
 
 import (
 	"fmt"
@@ -142,7 +142,7 @@ func (p Product) Clone(productName string) error {
 	return nil
 }
 
-func main() {
+func CloneProjects() {
 	// Load product info
 	productsData, err := readProductData("data/products.yaml")
 	if err != nil {

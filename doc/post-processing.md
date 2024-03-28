@@ -1,15 +1,14 @@
 # Documentation post-processing
 
-To publish the source documentation content files and maintain compatibility with `/help`, post-processing tasks occur
-using the [`content-post-process.sh`](../scripts/content-post-process.sh) script:
+During this project, content is processed after cloning to make it compatible with Hugo.
+This allows us to develop on the Hugo site with actual content while still continously
+publishing to the Nanoc site.
 
-- Rename `index.md` files to `_index.md`. For more information, see
-  [Index pages: _index.md](https://gohugo.io/content-management/organization/#index-pages-_indexmd).
+How this works:
 
-## Temporary migration tasks
+1. When we build the site, we start by running `make clone-docs-projects`
+1. `clone-docs-projects` clones source content
+1. `clone-docs-projects` then runs migration scripts that modify file names, front matter, and content
 
-Scripts in the `scripts/migration` directory run as part of a Hugo build and change content in the source documentation
-Markdown files. These scripts:
-
-- Allow building for testing and preview a Hugo-based site using documentation intended for a Nanoc-based site.
-- Will eventually be used to migrate documentation permanently to a Hugo-based site build.
+When it's time to launch the Hugo site, the migration scripts can then be used to
+update the source documentation.
