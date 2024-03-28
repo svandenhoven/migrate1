@@ -1,7 +1,7 @@
 {{- $iconData := $.Site.Data.icons -}}
 {{- $allowedIcons := $iconData.icons -}}
 {{- $name := .Get "name" -}}
-{{- $iconsSVG := "icons.svg" | relURL -}}
+{{- $iconsSVG := "icons.svg" | absURL -}}
 
 {{- partial "validate-shortcode.html" (dict "shortcodeName" "icon" "allowedValues" $allowedIcons "paramName" "name" "paramValue" $name "sourceFile" .Position.Filename "lineNumber" .Position.LineNumber) -}}
 
