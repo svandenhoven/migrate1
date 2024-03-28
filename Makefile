@@ -16,7 +16,7 @@ install-nodejs-dependencies:
 .PHONY: clone-docs-projects
 clone-docs-projects:
 	@printf "\n$(INFO)INFO: Fetching docs content sources...$(END)\n"
-	@go run scripts/clone_projects.go
+	@go run cmd/gldocs/main.go clone
 	@printf "\n$(INFO)INFO: Running content update scripts...$(END)\n"
 	@scripts/content-post-process.sh
 

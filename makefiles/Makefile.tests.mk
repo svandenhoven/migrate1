@@ -1,7 +1,7 @@
 .PHONY: go-tests
 go-tests:
 	@printf "\n$(INFO)INFO: Running Go tests...$(END)\n"
-	@go test ./scripts/...
+	@go test ./cmd/gldocs/tasks/...
 
 .PHONY: jest-tests
 jest-tests: install-nodejs-dependencies

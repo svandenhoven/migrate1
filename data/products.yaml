@@ -1,7 +1,7 @@
 ---
 # This file is used by:
 #
-# - scripts/clone_projects.go
+# - cmd/gldocs/tasks/clone_projects.go
 # - scripts/content-post-process.sh
 # - themes/gitlab-docs/layouts/partials/edit-link.html
 #
