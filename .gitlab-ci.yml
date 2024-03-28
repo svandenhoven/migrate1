@@ -165,6 +165,7 @@ prebuild:compile_frontend:
     paths:
       - themes/gitlab-docs/static/vite/
       - themes/gitlab-docs/static/gitlab_ui/
+      - themes/gitlab-docs/static/icons.svg
       - data/icons.json
     expire_in: 1d
 
