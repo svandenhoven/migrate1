@@ -89,3 +89,13 @@ You do not need to add any text for the disclaimer alert type, it is populated f
 ```text
 {{</* alert type="disclaimer" /*/>}}
 ```
+
+## Icons
+
+- [Nanoc version: Style Guide](https://docs.gitlab.com/ee/development/documentation/styleguide/#gitlab-svg-icons)
+
+This is an icon: {{< icon name="tanuki" >}}
+
+```text
+This is an icon: {{</* icon name="tanuki" */>}}
+```

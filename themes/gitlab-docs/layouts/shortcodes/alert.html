@@ -1,7 +1,7 @@
 {{- $allowedTypes := slice "note" "flag" "warning" "disclaimer" -}}
 {{- $type := .Get "type" -}}
 
-{{- partial "validate-shortcode.html" (dict "allowedValues" $allowedTypes "paramName" "type" "paramValue" $type "sourceFile" .Position.Filename "lineNumber" .Position.LineNumber) -}}
+{{- partial "validate-shortcode.html" (dict "shortcodeName" "alert" "allowedValues" $allowedTypes "paramName" "type" "paramValue" $type "sourceFile" .Position.Filename "lineNumber" .Position.LineNumber) -}}
 
 <div class="alert alert-type-{{ (.Get "type") }}">
   {{- if eq (.Get "type") "disclaimer" -}}
