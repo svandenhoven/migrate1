@@ -32,15 +32,16 @@ To set up your workstation for GitLab Docs:
 
 1. Install either `asdf` or `mise`.
 1. Clone this project (`gitlab-docs-hugo`).
-1. In the checkout of `gitlab-docs-hugo`, run:
+1. Ensure you are in the `gitlab-docs-hugo` folder. Then run:
 
    ```shell
    make setup
    ```
 
-1. The website build will pull content from project directories that are
+1. The website build pulls content from project directories that are
    checked out in the same location as `gitlab-docs-hugo`. You can use your
-   existing cloned repositories, or you can clone them all at once by running this command:
+   existing cloned repositories, or you can clone them all at once by running this command
+   from within the `gitlab-docs-hugo` folder:
 
    ```shell
    make clone-docs-projects
