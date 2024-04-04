@@ -21,9 +21,9 @@ for ENTRY in $(yq eval '.products | keys | .[]' "$PRODUCTS_YAML"); do
     printf "Renaming index files in ${CLONE_DIR}...\n"
     find "$DOCS_PATH" -type f -name 'index.md' -exec sh -c 'mv "$1" "${1%/*}/_index.md"' _ {} \;
 
-    # Run migration scripts
+    # Run all migration scripts
     printf "Updating content in ${CLONE_DIR}...\n"
-    find "$DOCS_PATH" -type f -name "*.md" -print0 | xargs -0 go run cmd/gldocs/main.go migrate
+    go run cmd/gldocs/main.go migrate "$DOCS_PATH"
 done
 
 printf "INFO: Content updates complete!\n"

@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"log"
+
 	"github.com/spf13/cobra"
 	"gitlab.com/gitlab-org/technical-writing-group/gitlab-docs-hugo/cmd/gldocs/tasks"
 )
@@ -17,5 +19,17 @@ func init() {
 }
 
 func migrateRun(cmd *cobra.Command, args []string) {
-	tasks.MigrateFrontmatter(args)
+	if len(args) < 1 {
+		log.Fatal("Usage: go run cmd/gldocs/main.go migrate [migration_name] <directory_path>")
+	}
+
+	dirPath := args[len(args)-1]
+	migrationName := "all"
+	if len(args) > 1 {
+		migrationName = args[0]
+	}
+
+	if err := tasks.Migrate(dirPath, migrationName); err != nil {
+    log.Fatal(err)
+  }
 }
