@@ -2,13 +2,9 @@ package tasks
 
 import (
 	"fmt"
-	"log"
-	"os"
 	"regexp"
 	"strings"
-	"sync"
 
-	"golang.org/x/exp/slices"
 	"gopkg.in/yaml.v3"
 )
 
@@ -31,54 +27,10 @@ type Cascade struct {
 }
 
 func MigrateFrontmatter(files []string) {
-	if len(files) == 0 {
-		log.Fatal("Usage: go run main.go migrate file1.md [file2.md]")
-	}
-
-	// Start worker goroutines
-	var wg sync.WaitGroup
-
-	for _, inputFile := range uniqueFilesOnly(files) {
-		wg.Add(1)
-		go processFile(&wg, inputFile)
-	}
-
-	// Wait for workers to finish
-	wg.Wait()
+	ProcessFiles(files, updateFrontmatter)
 }
 
-func uniqueFilesOnly(files []string) []string {
-	if len(files) == 0 {
-		return files
-	}
-	slices.Sort(files)
-
-	return slices.Compact(files)
-}
-
-func processFile(wg *sync.WaitGroup, inputFile string) {
-	defer wg.Done()
-
-	content, err := os.ReadFile(inputFile)
-	if err != nil {
-		log.Printf("Error reading file %s: %v\n", inputFile, err)
-		return
-	}
-
-	updatedContent, err := updateContent(content, inputFile)
-	if err != nil {
-		log.Printf("Error processing file %s: %v\n", inputFile, err)
-		return
-	}
-
-	// Write back to the original file
-	err = os.WriteFile(inputFile, []byte(updatedContent), 0644)
-	if err != nil {
-		log.Printf("Error writing to file %s: %v\n", inputFile, err)
-	}
-}
-
-func updateContent(content []byte, filename string) (string, error) {
+func updateFrontmatter(content []byte, filename string) (string, error) {
 	// Split the page front matter and body
 	regex := regexp.MustCompile(`(?s)^---\n(.+?)\n---\n(.+)$`)
 	matches := regex.FindSubmatch(content)
