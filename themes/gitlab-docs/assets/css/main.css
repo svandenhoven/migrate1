@@ -1,3 +1,9 @@
+@import '../../../../node_modules/tocbot/dist/tocbot.css';
+@import "tailwind";
+@import "variables";
+@import "typography";
+@import "layout";
+
 .placeholder {
   font-size: 0.75rem;
   font-style: italic;
@@ -21,6 +27,53 @@ a.header-logo:hover {
 .cta-button:hover {
   text-decoration: none;
   color: var(--white);
+}
+
+/* Table of contents */
+.js-toc {
+  padding-top: var(--toc-y-offset);
+  position: fixed;
+}
+.js-toc.is-position-fixed {
+  padding-top: calc(var(--toc-y-offset) + var(--header-height));
+}
+.js-toc.is-position-fixed>.toc-list {
+  padding: 0 0 var(--toc-y-offset);
+}
+*:lang(en-US) {
+  .js-toc>.toc-list::before {
+    content: "On this page";
+    font-weight: 600;
+    font-size: 1rem;
+  }
+  .js-toc>.toc-list > li:first-child {
+    margin-top: 0.75rem;
+  }
+}
+.js-toc>.toc-list {
+  overflow-y: auto;
+  height: calc(100vh - var(--toc-y-offset));
+  padding: 0 0 calc(var(--toc-y-offset));
+}
+.toc-list {
+  line-height: 1.2;
+  list-style-type: none;
+  padding-right: 0.5rem;
+}
+.toc-link::before {
+  background-color: var(--white);
+  height: calc(100% - var(--toc-item-spacing));
+}
+a.toc-link {
+ padding: 0 0 var(--toc-item-spacing) 0.75rem;
+ display: inline-block;
+ position: relative;
+}
+.is-active-link {
+  font-weight: 600;
+}
+.is-active-link::before {
+  background-color: var(--purple-900);
 }
 
 /**
@@ -166,6 +219,7 @@ div.docs-content {
     border: 1px solid var(--gray-100);
     border-radius: 0.5rem;
     padding: 0.25rem;
+    max-width: 100%;
   }
 }
 
