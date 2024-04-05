@@ -9,9 +9,6 @@ main {
 
 /* Default page layout */
 .template-single {
-  display: grid;
-  grid-template-columns: 14rem 50rem 12rem;
-  grid-gap: 2rem;
   height: 100vh;
 }
 .global-nav {
@@ -22,7 +19,7 @@ main {
   padding-bottom: var(--footer-height);
   grid-column: 2;
 }
-.toc {
+.sidebar-right {
   grid-column: 3;
 }
 footer {
@@ -31,6 +28,7 @@ footer {
   width: 100%;
   height: var(--footer-height);
 }
+
 /* Scroll permalinks past the navbar */
 h2,
 h3,
@@ -38,25 +36,63 @@ h4,
 h5,
 h6,
 :target {
-  scroll-margin-top: calc(var(--header-height) + 1rem);
+  scroll-margin-top: var(--header-offset);
 }
 
-/* Responsive styles for small screens */
-@media (max-width: 1199px) {
+/*
+ * Responsive grid
+ * See https://gitlab.com/gitlab-org/gitlab-ui/-/blob/main/src/utils/breakpoints.js
+ * for recommended breakpoint values.
+*/
+.template-single {
+  display: grid;
+  grid-gap: 2.75rem;
+  grid-template-columns: var(--column-left-xxl-width) var(--column-center-xxl-width) var(--column-right-xxl-width);
+}
+.js-toc>.toc-list {
+  width: var(--column-right-xxl-width);
+}
+
+/* Small */
+@media (max-width: 767px) {
   .template-single {
     display: block;
     padding: 0 2rem;
   }
   .global-nav,
-  .toc {
+  .sidebar-right {
     display: none;
   }
 }
-@media (max-width: 1349px) {
+
+/* Medium */
+@media (min-width: 768px) and (max-width: 991px) {
   .template-single {
-    grid-template-columns: 4rem 48rem 10rem;
+    grid-template-columns: var(--column-left-md-width) var(--column-center-md-width) var(--column-right-md-width);
   }
+  .sidebar-right,
   .global-nav .placeholder {
     display: none;
+  }
+}
+
+/* Large */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .template-single {
+    grid-template-columns: var(--column-left-lg-width) var(--column-center-lg-width) var(--column-right-lg-width);
+  }
+  .sidebar-right,
+  .global-nav .placeholder {
+    display: none;
+  }
+}
+
+/* XL */
+@media (min-width: 1200px) and (max-width: 1399px) {
+  .template-single {
+    grid-template-columns: var(--column-left-xl-width) var(--column-center-xl-width) var(--column-right-xl-width);
+  }
+  .js-toc>.toc-list {
+    width: var(--column-right-xl-width);
   }
 }

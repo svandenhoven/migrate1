@@ -1,10 +1,6 @@
 import Vue from "vue";
+import tocbot from "tocbot";
 import DocsBanner from "./components/survey_banner.vue";
-
-import "../assets/css/tailwind.css";
-import "../assets/css/variables.css";
-import "../assets/css/typography.css";
-import "../assets/css/layout.css";
 import "../assets/css/main.css";
 
 /**
@@ -28,6 +24,23 @@ const addHeaderPermalinks = () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   addHeaderPermalinks();
+
+  /**
+   * Set up the table of contents
+   * @see https://tscanlin.github.io/tocbot/
+   */
+  tocbot.init({
+    tocSelector: ".js-toc",
+    positionFixedSelector: ".js-toc",
+    contentSelector: ".docs-content",
+    headingSelector: "h2, h3, h4",
+    ignoreSelector: ".help-feedback h2, .help-feedback h3",
+    collapseDepth: 3,
+    // These should match our header-offset CSS variable.
+    // header-offset = 4rem = 64px
+    headingsOffset: 64,
+    scrollSmoothOffset: -64,
+  });
 
   /**
    * Initialize Vue SFCs

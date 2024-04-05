@@ -22,12 +22,9 @@
   </div>
 
   {{ if ne .Params.toc false }}
-    <div class="toc gl-border gl-border-solid gl-border-gray-100 gl-border-dashed">
-      <p class="gl-p-5 placeholder">
-        Placeholder for <br><a href="https://gitlab.com/gitlab-org/technical-writing-group/gitlab-docs-hugo/-/issues/19">
-        table of contents</a>.
-      </p>
-    </div>
+    <aside class="sidebar-right">
+      <div class="js-toc gl-text-base"></div>
+    </aside>
   {{ end }}
 </div>
 {{ end }}

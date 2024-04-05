@@ -5296,10 +5296,12 @@ __metadata:
     pikaday: "npm:^1.8.2"
     postcss: "npm:^8.4.38"
     postcss-cli: "npm:^11.0.0"
+    postcss-import: "npm:^16.1.0"
     prettier: "npm:^3.2.5"
     rollup-plugin-copy: "npm:^3.5.0"
     stylelint: "npm:^16.3.1"
     tailwindcss: "npm:^3.4.3"
+    tocbot: "npm:^4.25.0"
     vite: "npm:^5.2.6"
     vue: "npm:2.7.16"
     vue-template-compiler: "npm:^2.7.16"
@@ -7925,6 +7927,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"postcss-import@npm:^16.1.0":
+  version: 16.1.0
+  resolution: "postcss-import@npm:16.1.0"
+  dependencies:
+    postcss-value-parser: "npm:^4.0.0"
+    read-cache: "npm:^1.0.0"
+    resolve: "npm:^1.1.7"
+  peerDependencies:
+    postcss: ^8.0.0
+  checksum: 10c0/60e6499354079a3f46242b861412a40c54be7ab99f4ad55096a07ffe5e57fcc01c2c626b5d1fbc7a18cd23adc82b320c205059d0c7ab09e91baba8dc45c88e29
+  languageName: node
+  linkType: hard
+
 "postcss-js@npm:^4.0.1":
   version: 4.0.1
   resolution: "postcss-js@npm:4.0.1"
@@ -9325,6 +9340,13 @@ __metadata:
   dependencies:
     is-number: "npm:^7.0.0"
   checksum: 10c0/487988b0a19c654ff3e1961b87f471702e708fa8a8dd02a298ef16da7206692e8552a0250e8b3e8759270f62e9d8314616f6da274734d3b558b1fc7b7724e892
+  languageName: node
+  linkType: hard
+
+"tocbot@npm:^4.25.0":
+  version: 4.25.0
+  resolution: "tocbot@npm:4.25.0"
+  checksum: 10c0/b6ca2ca5a3549e7c4007843e0b41cb113656006a59f5aa2328bcccdc8b780f25b642c1d0d64e02255c97a3ba5072ae5085a403cd2b560fb3ee30bd59924fe273
   languageName: node
   linkType: hard
 
