@@ -32,7 +32,7 @@ clean:
 setup: install-dependencies install-nodejs-dependencies
 
 .PHONY: test
-test: lint-markdown lint-shell-scripts lint-go lint-frontend lint-yaml go-tests jest-tests
+test: lint-markdown lint-shell-scripts lint-go lint-frontend lint-yaml go-tests jest-tests markdown-link-tests
 
 .PHONY: view
 view:

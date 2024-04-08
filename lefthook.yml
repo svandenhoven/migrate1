@@ -18,3 +18,5 @@ pre-push:
       run: make go-tests
     jest-tests:
       run: make jest-tests
+    markdown-link-tests:
+      run: make markdown-link-tests

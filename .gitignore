@@ -23,3 +23,6 @@ tmp/
 !.yarn/sdks
 !.yarn/versions
 node_modules
+
+# Homebrew-generated file
+Brewfile.lock.json
