@@ -20,6 +20,7 @@
   "devDependencies": {
     "@babel/core": "^7.24.3",
     "@babel/preset-env": "^7.24.3",
+    "@evilmartians/lefthook": "^1.6.8",
     "@gitlab/eslint-plugin": "^19.5.0",
     "@gitlab/stylelint-config": "^6.1.0",
     "@rollup/plugin-node-resolve": "^15.2.3",
