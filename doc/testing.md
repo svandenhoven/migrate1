@@ -11,14 +11,15 @@ configured in the project's [`.gitlab-ci.yml`](../.gitlab-ci.yml) file.
 
 These code tests are included in the project:
 
-| Test target   | Tool(s)                     | Make target          | Purpose                                    |
-|:--------------|:----------------------------|:---------------------|:-------------------------------------------|
-| Frontend      | Stylelint, ESLint, Prettier | `lint-frontend`      | Frontend code quality                      |
-| Markdown      | markdownlint                | `lint-markdown`      | Documentation formatting and syntax checks |
-| Shell scripts | ShellCheck                  | `lint-shell-scripts` | Syntax checks                              |
-| YAML          | yamllint                    | `lint-yaml`          | Syntax checks                              |
-| Vue           | Jest                        | `jest-tests`         | Unit tests                                 |
-| Go            | Go testing, Testify         | `go-tests`           | Unit tests                                 |
+| Test target    | Tool(s)                     | Make target           | Purpose |
+|:---------------|:----------------------------|:----------------------|:--------|
+| Frontend       | Stylelint, ESLint, Prettier | `lint-frontend`       | Frontend code quality |
+| Markdown       | markdownlint                | `lint-markdown`       | Documentation formatting and syntax checks |
+| Shell scripts  | ShellCheck                  | `lint-shell-scripts`  | Syntax checks |
+| YAML           | yamllint                    | `lint-yaml`           | Syntax checks |
+| Vue            | Jest                        | `jest-tests`          | Unit tests |
+| Go             | Go testing, Testify         | `go-tests`            | Unit tests |
+| Markdown links | lychee                      | `markdown-link-tests` | Internal links in Markdown files |
 
 ### Run code tests locally
 
