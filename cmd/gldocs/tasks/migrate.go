@@ -10,6 +10,7 @@ type MigrationFunc func(files []string)
 var migrations = map[string]MigrationFunc{
 	"frontmatter": MigrateFrontmatter,
 	"icons":       MigrateIcons,
+	"alerts":      MigrateAlerts,
 }
 
 func Migrate(dirPath string, migrationName string) error {
