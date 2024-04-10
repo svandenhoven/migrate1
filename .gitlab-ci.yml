@@ -140,7 +140,7 @@ test:markdown-links:
     - lychee --offline --include-fragments README.md **/*.md
 
 # Check that asdf/mise dependencies install correctly
-test:asdf_installation:
+test:asdf-installation:
   image: debian:${DEBIAN_VERSION}-slim
   stage: test
   needs: []
@@ -154,6 +154,18 @@ test:asdf_installation:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
       changes:
         - .tool-versions
+
+# Check docs content for Kramdown syntax
+# This can be removed after we've completed the migration to Hugo
+test:kramdown-audit:
+  image: hugomods/hugo:exts-${HUGO_VERSION}
+  stage: test
+  needs: []
+  allow_failure: true
+  script:
+    - apk update && apk upgrade
+    - apk add --no-cache yq=~${YQ_VERSION} curl coreutils make bash gcc libc-dev
+    - make kramdown-audit
 
 ################################################################################
 # Build jobs

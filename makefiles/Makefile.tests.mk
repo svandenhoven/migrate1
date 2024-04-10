@@ -14,4 +14,9 @@ markdown-link-tests:
 	@printf "\n$(INFO)INFO: Running Markdown link tests...$(END)\n"
 	@lychee --offline --include-fragments README.md **/*.md
 
+.PHONY: kramdown-audit
+kramdown-audit: clone-docs-projects
+	@printf "${INFO}Auditing for Kramdown markup...${END}\n"
+	@scripts/kramdown-audit.sh
+
 .PHONY: all clean test
