@@ -17,6 +17,8 @@ const GITLAB_THEME_ASSETS = [
   "@gitlab/svgs/dist/icons.json",
 ];
 
+const isWatchMode = process.argv.includes("--watch");
+
 // Process all JS files in the theme src directory.
 // See https://rollupjs.org/configuration-options/#input
 const inputs = globSync(`${THEME_PATH}/src/*.js`).reduce((entries, file) => {
@@ -56,6 +58,8 @@ export default defineConfig({
               dest: `${THEME_GITLAB_UI_DIR}/${packageName}`,
             };
           }),
+          // Skip copy if we're in watch mode
+          overwrite: isWatchMode ? false : true,
         }),
         vue2(),
         resolve(),
@@ -93,15 +97,20 @@ export default defineConfig({
           },
         ];
 
-        copy.forEach((file) => {
-          if (fs.existsSync(file.src)) {
-            fs.copyFile(file.src, file.dest, (err) => {
+        for (const { src, dest } of copy) {
+          // Skip copy if we're in watch mode
+          if (isWatchMode && fs.existsSync(dest)) {
+            continue;
+          }
+
+          if (fs.existsSync(src)) {
+            fs.copyFile(src, dest, (err) => {
               if (err) {
                 console.error("Error moving icons.svg:", err);
               }
             });
           }
-        });
+        }
       },
     },
   ],
