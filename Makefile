@@ -26,7 +26,7 @@ all: clean setup test
 .PHONY: clean
 clean:
 	@printf "\n$(INFO)INFO: Removing ephemeral directories...$(END)\n"
-	@rm -rfv public resources node_modules
+	@rm -rfv public resources static/vite static/gitlab_ui
 
 .PHONY: setup
 setup: install-dependencies install-nodejs-dependencies
