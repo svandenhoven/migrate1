@@ -1,0 +1,67 @@
+###############################################
+#                  Security                   #
+###############################################
+
+#
+# Security scanner defaults are overridden below.
+#
+include:
+  - template: Jobs/Dependency-Scanning.gitlab-ci.yml
+  - template: Security/SAST.gitlab-ci.yml
+  - template: Security/Secret-Detection.gitlab-ci.yml
+
+#
+# Override Security scanning defaults to ensure specific scanners work in this pipeline
+#
+.security-scanning-overrides:
+  stage: security
+  dependencies: []
+  needs: []
+  artifacts:
+    expire_in: 1 month
+
+.security-rules:
+  rules:
+    - if: '$DOCS_PROJECT_PIPELINE_TYPE == "Hourly site deployment pipeline"'
+    - if: '$DOCS_PROJECT_PIPELINE_TYPE =~ /^MR pipeline.*/'
+    - if: '$DOCS_PROJECT_PIPELINE_TYPE == "Default branch pipeline"'
+    - if: '$DOCS_PROJECT_PIPELINE_TYPE == "Stable branch pipeline"'
+
+#
+# Dependency scanning job overrides
+#
+gemnasium-dependency_scanning:
+  extends:
+    - .ds-analyzer
+    - .cyclonedx-reports
+    - .security-scanning-overrides
+  rules:
+    - if: $DEPENDENCY_SCANNING_DISABLED == 'true' || $DEPENDENCY_SCANNING_DISABLED == '1'
+      when: never
+    - if: $DS_EXCLUDED_ANALYZERS =~ /gemnasium([^-]|$)/
+      when: never
+    - !reference [".security-rules", "rules"]
+
+#
+# SAST job overrides
+#
+semgrep-sast:
+  extends:
+    - .sast-analyzer
+    - .security-scanning-overrides
+  rules:
+    - if: $SAST_DISABLED == 'true' || $SAST_DISABLED == '1' || $SAST_EXCLUDED_ANALYZERS =~ /semgrep/
+      when: never
+    - !reference [".security-rules", "rules"]
+
+#
+# Secret detection job overrides
+#
+secret_detection:
+  extends:
+    - .secret-analyzer
+    - .security-scanning-overrides
+  rules:
+    - if: $SECRET_DETECTION_DISABLED == 'true' || $SECRET_DETECTION_DISABLED == '1'
+      when: never
+    - !reference [".security-rules", "rules"]

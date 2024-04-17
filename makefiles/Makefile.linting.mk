@@ -23,6 +23,6 @@ lint-frontend: install-nodejs-dependencies
 .PHONY: lint-yaml
 lint-yaml:
 	@printf "\n$(INFO)INFO: Running YAML tests...$(END)\n"
-	@yarn yamllint "**/*.(yaml|yml)" --ignore=public
+	@yarn yamllint "**/*.(yaml|yml)" --ignore=public --ignore=.gitlab/ci
 
 .PHONY: all clean test
