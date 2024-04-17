@@ -1,4 +1,7 @@
 ---
+include:
+  - local: .gitlab/ci/*.gitlab-ci.yml
+
 default:
   image: golang:${GO_VERSION}-${DEBIAN_VERSION}
   tags:
@@ -6,6 +9,7 @@ default:
 
 stages:
   - lint
+  - security
   - test
   - prebuild
   - build
@@ -32,13 +36,45 @@ variables:
   ASDF_VERSION: "0.13.1"
 
 workflow:
-  rules: &workflow_rules
-    # For merge requests, create a pipeline
-    - if: '$CI_MERGE_REQUEST_IID'
-    # For 'main' branch, create a pipeline, including on schedules, pushes, and, merges)
-    - if: '$CI_COMMIT_BRANCH == "main"'
-    # For tags, create a pipeline
-    - if: '$CI_COMMIT_TAG'
+  name: '$DOCS_PROJECT_PIPELINE_TYPE'
+  rules:
+    # Prevent branch pipelines if an MR is open on the branch.
+    - if: $CI_COMMIT_BRANCH && $CI_PIPELINE_SOURCE == "push" && $CI_OPEN_MERGE_REQUESTS
+      when: never
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_COMMIT_REF_NAME =~ /gps/'
+      variables:
+        DOCS_PROJECT_PIPELINE_TYPE: "MR pipeline (Google): branch $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME"
+        SEARCH_BACKEND: 'google'
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      variables:
+        DOCS_PROJECT_PIPELINE_TYPE: "MR pipeline: branch $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME"
+        SEARCH_BACKEND: 'lunr'
+    - if: '$CI_PIPELINE_SOURCE == "schedule" && $PIPELINE_SCHEDULE_TYPE == "delete_environments"'
+      variables:
+        DOCS_PROJECT_PIPELINE_TYPE: "Monthly stopped environments cleanup pipeline"
+    - if: '$CI_PIPELINE_SOURCE == "schedule" && $PIPELINE_SCHEDULE_TYPE == "chores"'
+      variables:
+        DOCS_PROJECT_PIPELINE_TYPE: "Cleanup chores pipeline"
+    - if: '$CI_PIPELINE_SOURCE == "schedule" && $PIPELINE_SCHEDULE_TYPE == "docker"'
+      variables:
+        DOCS_PROJECT_PIPELINE_TYPE: "Build docker images pipeline"
+    - if: '$CI_PIPELINE_SOURCE == "schedule" && $PIPELINE_SCHEDULE_TYPE == "hourly_deploy"'
+      variables:
+        DOCS_PROJECT_PIPELINE_TYPE: "Hourly site deployment pipeline"
+    - if: '$CI_PIPELINE_SOURCE == "trigger"'
+      variables:
+        DOCS_PROJECT_PIPELINE_TYPE: "Upstream review app pipeline"
+        SEARCH_BACKEND: 'lunr'
+    # Allow branch pipelines for the default branch and stable branches named XX.X
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+      variables:
+        DOCS_PROJECT_PIPELINE_TYPE: "Default branch pipeline"
+    - if: '$CI_COMMIT_BRANCH =~ /^\d{1,2}\.\d{1,2}$/'
+      variables:
+        DOCS_PROJECT_PIPELINE_TYPE: "Stable branch pipeline"
+    - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME =~ /^\d{1,2}\.\d{1,2}$/'
+      variables:
+        DOCS_PROJECT_PIPELINE_TYPE: "Stable branch pipeline (backport)"
 
 .go-matrix-job:
   parallel:
