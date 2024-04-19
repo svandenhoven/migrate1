@@ -42,7 +42,9 @@ func FindMarkdownFiles(dirPath string) ([]string, error) {
 			return err
 		}
 		if !info.IsDir() && strings.HasSuffix(info.Name(), ".md") {
-			files = append(files, path)
+			if !isIgnoredPath(path) {
+				files = append(files, path)
+			}
 		}
 		return nil
 	})
@@ -59,4 +61,13 @@ func uniqueFilesOnly(files []string) []string {
 	slices.Sort(files)
 
 	return slices.Compact(files)
+}
+
+func isIgnoredPath(path string) bool {
+	for _, ignorePath := range IgnorePaths {
+		if strings.HasPrefix(path, ignorePath) {
+			return true
+		}
+	}
+	return false
 }

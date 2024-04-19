@@ -48,7 +48,8 @@ module:
   mounts:
   - source: content
     target: content
-  - source: ../gitlab/doc
+  - excludeFiles: 'drawers/*'
+    source: ../gitlab/doc
     target: content
   - source: ../omnibus-gitlab/doc
     target: content/omnibus
@@ -56,5 +57,6 @@ module:
     target: content/runner
   - source: ../charts-gitlab/doc
     target: content/charts
-  - source: ../gitlab-operator/doc
+  - excludeFiles: adr/*
+    source: ../gitlab-operator/doc
     target: content/operator

@@ -72,3 +72,10 @@ any product documentation already added to the site):
       - `source`: The relative path to the new content source. This will be the `clone_dir` you used in `products.yaml`,
         plus the directory name for where the documentation files are located (`docs_dir` in the previous step).
       - `target`: This should always be `content`.
+
+## Exclude a directory
+
+To exclude a directory so the contents aren't published to the docs site, add the path
+as an `excludeFiles` setting in the Hugo [config file](../config/_default/hugo.yaml).
+For more information, see the Hugo
+[module config documentation](https://gohugo.io/hugo-modules/configuration/#module-configuration-mounts).

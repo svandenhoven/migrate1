@@ -12,3 +12,10 @@ How this works:
 
 When it's time to launch the Hugo site, the migration scripts can then be used to
 update the source documentation.
+
+## Exclude files
+
+Some files are not published to the website and thus should not be processed.
+
+To exclude a file or directory, add its path to the `IgnoreFiles` slice in
+[`migrate.go`](../cmd/gldocs/tasks/migrate.go).

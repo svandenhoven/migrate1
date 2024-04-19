@@ -4,6 +4,13 @@ import (
 	"fmt"
 )
 
+// These pages are not published with the site but exist in docs directories.
+// No need to process or warn about these.
+var IgnorePaths = []string{
+	"../gitlab-operator/doc/adr",
+	"../gitlab/drawers",
+}
+
 type MigrationFunc func(files []string)
 
 // Register each migration here
