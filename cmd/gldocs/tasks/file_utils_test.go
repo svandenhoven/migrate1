@@ -43,3 +43,20 @@ func TestFindMarkdownFiles(t *testing.T) {
 		require.Equal(t, expectedFiles[i], file)
 	}
 }
+
+func TestIsIgnoredPath(t *testing.T) {
+	testCases := []struct {
+		path     string
+		expected bool
+	}{
+		{"../gitlab-operator/doc/adr/file.md", true},
+		{"../gitlab/drawers/file.md", true},
+		{"../gitlab/file.md", false},
+		{"../other/file.md", false},
+	}
+
+	for _, tc := range testCases {
+		result := isIgnoredPath(tc.path)
+		require.Equal(t, result, tc.expected)
+	}
+}
