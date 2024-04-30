@@ -52,21 +52,14 @@
   --footer-height: 9rem;
   --header-offset: calc(var(--header-height) + 1rem);
 
-  --column-left-xxl-width: 14rem;
-  --column-center-xxl-width: 48rem;
-  --column-right-xxl-width: 16rem;
+  --column-center-min: 22rem;
+  --column-center-max: 50rem;
 
-  --column-left-xl-width: 14rem;
-  --column-center-xl-width: 40rem;
-  --column-right-xl-width: 14rem;
+  --column-left-wide-width: 18rem;
+  --column-right-wide-width: 16rem;
 
-  --column-left-lg-width: 4rem;
-  --column-center-lg-width: 38rem;
-  --column-right-lg-width: auto;
-
-  --column-left-md-width: 4rem;
-  --column-center-md-width: 38rem;
-  --column-right-md-width: auto;
+  --column-left-md-width: 0;
+  --column-right-md-width: 0;
 
   --toc-y-offset: 3.75rem;
   --toc-item-spacing: 0.5rem;

@@ -31,14 +31,16 @@ a.header-logo:hover {
 
 /* Table of contents */
 .js-toc {
-  padding-top: var(--toc-y-offset);
   position: fixed;
 }
-.js-toc.is-position-fixed {
-  padding-top: calc(var(--toc-y-offset) + var(--header-height));
+.js-toc>.toc-list {
+  overflow-y: auto;
+  height: calc(100vh - var(--toc-y-offset));
+  padding: var(--toc-y-offset) 1rem calc(var(--toc-y-offset)) 0;
 }
 .js-toc.is-position-fixed>.toc-list {
-  padding: 0 0 var(--toc-y-offset);
+  height: 100vh;
+  padding: calc(var(--toc-y-offset) + var(--header-height)) 1rem var(--toc-y-offset) 0;
 }
 *:lang(en-US) {
   .js-toc>.toc-list::before {
@@ -50,15 +52,10 @@ a.header-logo:hover {
     margin-top: 0.75rem;
   }
 }
-.js-toc>.toc-list {
-  overflow-y: auto;
-  height: calc(100vh - var(--toc-y-offset));
-  padding: 0 0 calc(var(--toc-y-offset));
-}
 .toc-list {
   line-height: 1.2;
   list-style-type: none;
-  padding-right: 0.5rem;
+  padding-right: 1rem;
 }
 .toc-link::before {
   background-color: var(--white);

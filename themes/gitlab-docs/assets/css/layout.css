@@ -1,4 +1,4 @@
-nav {
+.navbar {
   height: var(--header-height);
   width: 100%;
 }
@@ -11,16 +11,17 @@ main {
 .template-single {
   height: 100vh;
 }
-.global-nav {
-  grid-column: 1;
+.global-nav-wrapper {
+  grid-area: sidebar;
 }
 .main-content {
   position: relative;
   padding-bottom: var(--footer-height);
-  grid-column: 2;
+  grid-area: main;
+  margin-right: 2rem;
 }
 .sidebar-right {
-  grid-column: 3;
+  grid-area: toc;
 }
 footer {
   position: absolute;
@@ -46,11 +47,18 @@ h6,
 */
 .template-single {
   display: grid;
-  grid-gap: 2.75rem;
-  grid-template-columns: var(--column-left-xxl-width) var(--column-center-xxl-width) var(--column-right-xxl-width);
+  grid-template-areas: "sidebar . main toc .";
+  grid-template-columns: var(--column-left-wide-width) 1fr minmax(var(--column-center-min), var(--column-center-max)) var(--column-right-wide-width) 1fr;
+  column-gap: 0.75rem;
+}
+.global-nav-wrapper > div {
+  width: var(--column-left-wide-width);
 }
 .js-toc>.toc-list {
-  width: var(--column-right-xxl-width);
+  width: var(--column-right-wide-width);
+}
+.template-single-sidebar-collapsed {
+  grid-template-columns: var(--sidebar-collapsed-width) 1fr minmax(var(--column-center-min), var(--column-center-max)) var(--column-right-wide-width) 1fr;
 }
 
 /* Small */
@@ -59,40 +67,19 @@ h6,
     display: block;
     padding: 0 2rem;
   }
-  .global-nav,
+  .global-nav-wrapper,
   .sidebar-right {
     display: none;
   }
 }
 
 /* Medium */
-@media (min-width: 768px) and (max-width: 991px) {
+@media (min-width: 768px) and (max-width: 992px) {
   .template-single {
-    grid-template-columns: var(--column-left-md-width) var(--column-center-md-width) var(--column-right-md-width);
+    grid-template-columns: var(--column-left-md-width) 1fr minmax(var(--column-center-min), var(--column-center-max)) var(--column-right-md-width) 1fr;
   }
   .sidebar-right,
-  .global-nav .placeholder {
+  .global-nav-wrapper {
     display: none;
-  }
-}
-
-/* Large */
-@media (min-width: 992px) and (max-width: 1199px) {
-  .template-single {
-    grid-template-columns: var(--column-left-lg-width) var(--column-center-lg-width) var(--column-right-lg-width);
-  }
-  .sidebar-right,
-  .global-nav .placeholder {
-    display: none;
-  }
-}
-
-/* XL */
-@media (min-width: 1200px) and (max-width: 1399px) {
-  .template-single {
-    grid-template-columns: var(--column-left-xl-width) var(--column-center-xl-width) var(--column-right-xl-width);
-  }
-  .js-toc>.toc-list {
-    width: var(--column-right-xl-width);
   }
 }
