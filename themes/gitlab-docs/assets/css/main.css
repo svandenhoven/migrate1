@@ -191,7 +191,7 @@ div.docs-content {
   }
   .alert-type-note {
     border-color: var(--gray-100);
-    background-color: var(--gray-50);
+    background-color: var(--gray-10);
     background-image: url("../gitlab_ui/svgs/information-o.svg");
   }
   .alert-type-warning {
