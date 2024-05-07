@@ -26,3 +26,9 @@ node_modules
 
 # Homebrew-generated file
 Brewfile.lock.json
+
+# Migration artifacts
+# We will track these in Git after the Hugo site launches,
+# but for now, ignore them since they are created at
+# build time.
+data/navigation.yaml
