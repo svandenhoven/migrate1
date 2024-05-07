@@ -5,6 +5,7 @@ go-tests:
 
 .PHONY: jest-tests
 jest-tests: install-nodejs-dependencies
+	@yarn create-navigation-stub
 	@printf "\n$(INFO)INFO: Running JavaScript tests...$(END)\n"
 	@yarn test
 

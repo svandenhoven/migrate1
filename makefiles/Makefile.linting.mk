@@ -15,6 +15,7 @@ lint-go:
 
 .PHONY: lint-frontend
 lint-frontend: install-nodejs-dependencies
+	@yarn create-navigation-stub
 	@printf "\n$(INFO)INFO: Running frontend linters...$(END)\n"
 	@yarn eslint
 	@yarn prettier

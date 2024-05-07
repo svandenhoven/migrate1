@@ -25,3 +25,19 @@ Some files are not published to the website and thus should not be processed.
 
 To exclude a file or directory, add its path to the `IgnoreFiles` slice in
 [`migrate.go`](../cmd/gldocs/tasks/migrate.go).
+
+## Data files on CI
+
+Because we refresh YAML data files as part of the content clone process (`make clone-docs-projects`),
+these are not available for frontend jobs running on CI during the migration project.
+
+If you need to reference a YAML data file from a frontend file:
+
+- See the `create-navigation-stub` Yarn script as an example for creating a stub data
+file. This approach is good for tests that provide their own mock dat, or lint checks.
+- The `prebuild:fetch_data` CI job is used to fetch actual data prior to running the
+frontend build.
+
+These can be removed when the Hugo site launches. At that time we will be committing these
+data files into the Git repository for this project and no longer needing to fetch them
+from a separate source.
