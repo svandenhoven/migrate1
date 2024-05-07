@@ -1,12 +1,15 @@
 package tasks
 
 import (
+	"io"
 	"log"
+	"net/http"
 	"os"
 	"path/filepath"
 	"strings"
 	"sync"
 
+	"gitlab.com/gitlab-org/technical-writing-group/gitlab-docs-hugo/internal/workerpool"
 	"golang.org/x/exp/slices"
 )
 
@@ -70,4 +73,57 @@ func isIgnoredPath(path string) bool {
 		}
 	}
 	return false
+}
+
+// Utility methods for downloading remote files
+type FileSource struct {
+	URL         string
+	Destination string
+}
+
+func FetchRemoteDataFiles(files []FileSource) {
+	maxWorkers := 3
+	jobsCh := make(chan FileSource)
+	resultsCh := make(chan *workerpool.JobResult)
+
+	enqueueJobsFn := func(jobsCh chan FileSource) {
+		for _, source := range files {
+			jobsCh <- source
+		}
+		close(jobsCh)
+	}
+
+	executeWorkFn := func(job FileSource) *workerpool.JobResult {
+		return &workerpool.JobResult{Error: DownloadFile(job.URL, job.Destination)}
+	}
+
+	workerpool.EnqueueJobs[FileSource](maxWorkers, jobsCh, resultsCh, enqueueJobsFn, executeWorkFn)
+
+	// Wait for all jobs to complete
+	for i := 0; i < len(files); i++ {
+		r := <-resultsCh
+		if r.Error != nil {
+			log.Printf("Error downloading file: %v\n", r.Error)
+		}
+	}
+}
+
+func DownloadFile(url, filepath string) error {
+	// Fetch the remote file
+	resp, err := http.Get(url)
+	if err != nil {
+		return err
+	}
+	defer resp.Body.Close()
+
+	// Create the local file
+	out, err := os.Create(filepath)
+	if err != nil {
+		return err
+	}
+	defer out.Close()
+
+	// Write the body to the local file
+	_, err = io.Copy(out, resp.Body)
+	return err
 }

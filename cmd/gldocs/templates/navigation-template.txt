@@ -1,0 +1,19 @@
+# Global navigation file for GitLab Docs
+#
+# For each entry:
+#
+# - Do not start the URL with "/".
+# - URLs must be relative to root. For example, a page at https://docs.gitlab.com/runner/install/osx
+#   has the entry `runner/install/osx`.
+# - If you're referring to a section within a page, include only the anchor. 
+#   For example, url: `page/#some-anchor`
+#
+# For more information, see:
+# - Docs Site architecture: https://docs.gitlab.com/ee/development/documentation/site_architecture/
+# - Global Navigation: https://docs.gitlab.com/ee/development/documentation/site_architecture/global_nav.html
+#
+# Top-level titles:
+#
+# Top-level titles (e.g, "Install") are also used as options for filtering search results.
+# If you add, edit, or remove a top-level title, you will need to also update
+# the filters in search_filters.vue. You may want to get a frontend engineer to assist with this.
