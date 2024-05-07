@@ -209,13 +209,26 @@ test:kramdown-audit:
 # Build jobs
 ################################################################################
 
+# During the migration, we need to fetch YAML data files before building the frontend.
+# See doc/post-processing.md for details.
+prebuild:fetch_data:
+  stage: prebuild
+  script:
+    - go run cmd/gldocs/main.go fetch
+  artifacts:
+    paths:
+      - data/navigation.yaml
+    expire_in: 1d
+
 prebuild:compile_frontend:
   stage: prebuild
-  needs: []
   extends:
     - .frontend
   script:
     - yarn build
+  needs:
+    - job: prebuild:fetch_data
+      artifacts: true
   cache:
     key:
       files:
