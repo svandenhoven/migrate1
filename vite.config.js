@@ -51,15 +51,21 @@ export default defineConfig({
       external: externalAssets,
       plugins: [
         copy({
-          targets: GITLAB_THEME_ASSETS.map((file) => {
-            const { 1: packageName } = file.split("/");
-            return {
-              src: `./node_modules/${file}`,
-              dest: `${THEME_GITLAB_UI_DIR}/${packageName}`,
-            };
-          }),
-          // Skip copy if we're in watch mode
-          overwrite: isWatchMode ? false : true,
+          targets: [
+            ...GITLAB_THEME_ASSETS.map((file) => {
+              const { 1: packageName } = file.split("/");
+              return {
+                src: `./node_modules/${file}`,
+                dest: `${THEME_GITLAB_UI_DIR}/${packageName}`,
+              };
+            }),
+            {
+              src: "./node_modules/mermaid/dist/mermaid.min.js",
+              dest: `${THEME_PATH}/static/vite`,
+            },
+          ],
+          hook: "writeBundle",
+          copyOnce: true,
         }),
         vue2(),
         resolve(),

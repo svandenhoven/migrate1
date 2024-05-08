@@ -207,6 +207,16 @@ div.docs-content {
     background-image: url("../gitlab_ui/svgs/review-warning.svg");
   }
 
+  /* Diagrams */
+  .mermaid {
+    overflow: auto;
+    position: relative;
+    z-index: 1;
+  }
+  .mermaid:not([data-processed='true']) {
+    display: none;
+  }  
+
   /* Other elements */
   li {
     margin-bottom: 0.5rem;
