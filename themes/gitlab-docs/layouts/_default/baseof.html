@@ -11,5 +11,14 @@
     {{ block "main" . }}{{ end }}
   </main>
   <script type="module" src="{{ absURL "" }}/vite/main.js"></script>
+
+  {{ if .Store.Get "hasMermaid" }}
+    <script src="{{ absURL "" }}/vite/mermaid.min.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        mermaid.initialize({ startOnLoad: true, theme: 'neutral' });
+      });
+    </script>
+  {{ end }}
 </body>
 </html>
