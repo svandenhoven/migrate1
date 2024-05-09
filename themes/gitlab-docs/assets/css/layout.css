@@ -18,7 +18,7 @@ main {
   position: relative;
   padding-bottom: var(--footer-height);
   grid-area: main;
-  margin-right: 2rem;
+  margin-right: 0.75rem;
 }
 .sidebar-right {
   grid-area: toc;
@@ -50,15 +50,10 @@ h6,
   grid-template-areas: "sidebar . main toc .";
   grid-template-columns: var(--column-left-wide-width) 1fr minmax(var(--column-center-min), var(--column-center-max)) var(--column-right-wide-width) 1fr;
   column-gap: 0.75rem;
-}
-.global-nav-wrapper > div {
-  width: var(--column-left-wide-width);
+  transition: grid-template-columns 0.2s ease;
 }
 .js-toc>.toc-list {
   width: var(--column-right-wide-width);
-}
-.template-single-sidebar-collapsed {
-  grid-template-columns: var(--sidebar-collapsed-width) 1fr minmax(var(--column-center-min), var(--column-center-max)) var(--column-right-wide-width) 1fr;
 }
 
 /* Small */
@@ -82,4 +77,23 @@ h6,
   .global-nav-wrapper {
     display: none;
   }
+}
+
+/* Collapsible left sidebar */
+.global-nav-wrapper {
+  transition: width 0.2s ease;
+  overflow: hidden;
+}
+.global-nav-wrapper > div {
+  width: var(--column-left-wide-width);
+  transition: opacity 0.1s ease;
+}
+.template-single-sidebar-collapsed {
+  grid-template-columns: var(--sidebar-collapsed-width) 1fr minmax(var(--column-center-min), var(--column-center-max)) var(--column-right-wide-width) 1fr;
+}
+.sidebar-collapsed {
+  width: var(--sidebar-collapsed-width);
+}
+.sidebar-collapsed > div.global-nav {
+  opacity: 0;
 }

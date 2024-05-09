@@ -1,6 +1,7 @@
 import { defineConfig } from "vite";
 import { globSync } from "glob";
 import copy from "rollup-plugin-copy";
+import yaml from "@rollup/plugin-yaml";
 import vue2 from "@vitejs/plugin-vue2";
 import resolve from "@rollup/plugin-node-resolve";
 import fs from "fs";
@@ -67,6 +68,7 @@ export default defineConfig({
           hook: "writeBundle",
           copyOnce: true,
         }),
+        yaml(),
         vue2(),
         resolve(),
       ],

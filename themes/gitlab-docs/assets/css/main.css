@@ -29,18 +29,115 @@ a.header-logo:hover {
   color: var(--white);
 }
 
+/* Global navigation */
+.global-nav {
+  top: var(--header-height);
+  bottom: var(--sidebar-button-height);
+  font-size: 0.8125rem; /* 13px */
+}
+.sidebar-link {
+  line-height: 1;
+}
+.sidebar-link:focus-visible {
+  outline-offset: -1px;
+}
+.sidebar-link.level-1 {
+  font-weight: 600;
+  padding-left: 1rem;
+}
+.sidebar-link.level-2 {
+  padding-left: calc(var(--sidebar-indent) * 2);
+}
+.sidebar-link.level-3 {
+  padding-left: calc(var(--sidebar-indent) * 3);
+}
+.sidebar-link.level-4 {
+  padding-left: calc(var(--sidebar-indent) * 4);
+}
+.sidebar-link.level-5 {
+  padding-left: calc(var(--sidebar-indent) * 5);
+}
+.sidebar-link.level-6 {
+  padding-left: calc(var(--sidebar-indent) * 6);
+}
+div:has(> .sidebar-link):hover {
+  border-radius: 0.25rem;
+  background-color: var(--gray-50);
+}
+.sidebar-link-active-item {
+  background-color: var(--gray-50);
+  position: relative;
+}
+.sidebar-link-active-item::before {
+  background-color: var(--purple-900);
+  border-radius: 4px;
+  content: "";
+  display: block;
+  position: absolute;
+  inset: 3px 0 3px 3px;
+  width: 3px;
+}
+/* Section toggle */
+.submenu-toggle.gl-button.btn-default,
+.submenu-toggle.gl-button.btn-default:active,
+.submenu-toggle.gl-button.btn-default:focus {
+  background-color: transparent;
+}
+.submenu-toggle.gl-button.btn-default:focus-visible {
+  outline: auto 1px;
+}
+.submenu {
+  overflow: hidden;
+}
+.submenu-enter-active,
+.submenu-leave-active {
+  transition: max-height 0.3s ease-out;
+  max-height: 100vh;
+}
+.submenu-enter,
+.submenu-leave-to {
+  max-height: 0;
+}
+/* Sidebar collapse */
+.sidebar-toggle {
+  height: var(--sidebar-button-height);
+}
+.sidebar-collapsed {
+  border-right: 1px solid var(--gray-100);
+}
+.sidebar-collapsed,
+.sidebar-collapsed .sidebar-toggle {
+  width: var(--sidebar-collapsed-width);
+}
+.sidebar-collapsed .sidebar-toggle > div {
+  justify-content: center;
+}
+.sidebar-collapsed .sidebar-toggle > div,
+.sidebar-collapsed .sidebar-toggle svg {
+  margin-left: 0;
+}
+.sidebar-toggle .gl-button.btn-default,
+.sidebar-toggle .gl-button.btn-default:active {
+  background-color: transparent;
+}
+.sidebar-toggle-collapsed.gl-button .gl-button-icon {
+  margin-right: 0;
+}
+
 /* Table of contents */
 .js-toc {
   position: fixed;
 }
 .js-toc>.toc-list {
   overflow-y: auto;
-  height: calc(100vh - var(--toc-y-offset));
+  height: calc(100vh - var(--header-height));
   padding: var(--toc-y-offset) 1rem calc(var(--toc-y-offset)) 0;
 }
+.js-toc.is-position-fixed {
+  top: var(--header-height);
+}
 .js-toc.is-position-fixed>.toc-list {
-  height: 100vh;
-  padding: calc(var(--toc-y-offset) + var(--header-height)) 1rem var(--toc-y-offset) 0;
+  padding: var(--toc-y-offset) 1rem var(--toc-y-offset) 0;
 }
 *:lang(en-US) {
   .js-toc>.toc-list::before {

@@ -1,6 +1,7 @@
 import Vue from "vue";
 import tocbot from "tocbot";
-import DocsBanner from "./components/survey_banner.vue";
+import SurveyBanner from "./components/survey_banner.vue";
+import SidebarMenu from "./components/sidebar_menu.vue";
 import "../assets/css/main.css";
 
 /**
@@ -42,20 +43,34 @@ document.addEventListener("DOMContentLoaded", () => {
     scrollSmoothOffset: -64,
   });
 
-  /**
-   * Initialize Vue SFCs
-   */
-  const surveyBanner = document.querySelector('[data-vue-app="survey-banner"]');
+  /* Initialize Vue components */
+  // Survey banner
+  const bannerContainer = document.querySelector(
+    '[data-vue-app="survey-banner"]',
+  );
   (() =>
     new Vue({
-      el: surveyBanner,
+      el: bannerContainer,
       components: {
-        DocsBanner,
+        SurveyBanner,
       },
       render(createElement) {
-        return createElement(DocsBanner, {
-          props: { text: surveyBanner.innerHTML, variant: "info" },
+        return createElement(SurveyBanner, {
+          props: { text: bannerContainer.innerHTML, variant: "info" },
         });
+      },
+    }))();
+
+  // Sidebar menu
+  const menuContainer = document.querySelector('[data-vue-app="sidebar-menu"]');
+  (() =>
+    new Vue({
+      el: menuContainer,
+      components: {
+        SidebarMenu,
+      },
+      render(createElement) {
+        return createElement(SidebarMenu);
       },
     }))();
 });
