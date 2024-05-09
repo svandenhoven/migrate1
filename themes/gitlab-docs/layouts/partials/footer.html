@@ -23,7 +23,7 @@
 </ul>
 
 <div class="docs-footer-links-secondary gl-flex">
-  <nav class="docs-edit-links">
+  <nav class="docs-edit-links" aria-label="Footer">
     {{ partial "edit-link.html" (dict "Context" . "editText" "View page source" "linkType" "source" "productsYaml" .Site.Data.products) }}
     {{ partial "edit-link.html" (dict "Context" . "editText" "Edit in Web IDE" "linkType" "ide" "productsYaml" .Site.Data.products) }}
   </nav>

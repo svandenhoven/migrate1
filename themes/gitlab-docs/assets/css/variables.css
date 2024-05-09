@@ -55,7 +55,7 @@
   --column-center-min: 22rem;
   --column-center-max: 50rem;
 
-  --column-left-wide-width: 18rem;
+  --column-left-wide-width: 17rem;
   --column-right-wide-width: 16rem;
 
   --column-left-md-width: 0;
@@ -63,4 +63,8 @@
 
   --toc-y-offset: 3.75rem;
   --toc-item-spacing: 0.5rem;
+
+  --sidebar-collapsed-width: 3.25rem;
+  --sidebar-indent: 0.75rem;
+  --sidebar-button-height: 2.5rem;
 }
