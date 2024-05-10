@@ -24,15 +24,6 @@ const inputs = globSync(`${THEME_PATH}/src/*.js`).reduce((entries, file) => {
   return { ...entries, [name]: file };
 }, {});
 
-// Define static assets we reference from CSS as external.
-// These are copied into the project outside of Vite's CSS compilation step.
-const replaceBasePath = (file) => file.replace(`${THEME_PATH}/static`, "..");
-const externalAssets = globSync([
-  `${THEME_PATH}/static/fa-icons/*.svg`,
-  `${THEME_GITLAB_UI_DIR}/fonts/*.woff2`,
-  `${THEME_GITLAB_UI_DIR}/svgs/*.svg`,
-]).map(replaceBasePath);
-
 // Vite configuration
 export default defineConfig({
   publicDir: false,
@@ -46,7 +37,6 @@ export default defineConfig({
         entryFileNames: "[name]",
         assetFileNames: `[name].[ext]`,
       },
-      external: externalAssets,
       plugins: [
         copy({
           targets: [
@@ -60,6 +50,10 @@ export default defineConfig({
             {
               src: "./node_modules/mermaid/dist/mermaid.min.js",
               dest: `${THEME_PATH}/static/vite`,
+            },
+            {
+              src: "./node_modules/@gitlab/svgs/dist/icons.svg",
+              dest: `${THEME_PATH}/static`,
             },
             // Copy icons.json to the data directory so we can
             // use it to validate the icons shortcode.
