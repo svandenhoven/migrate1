@@ -70,7 +70,13 @@ document.addEventListener("DOMContentLoaded", () => {
         SidebarMenu,
       },
       render(createElement) {
-        return createElement(SidebarMenu);
+        return createElement(SidebarMenu, {
+          props: {
+            baseUrl: document
+              .querySelector('meta[name="gitlab-docs-base-url"]')
+              ?.getAttribute("content"),
+          },
+        });
       },
     }))();
 });

@@ -4,7 +4,6 @@ import copy from "rollup-plugin-copy";
 import yaml from "@rollup/plugin-yaml";
 import vue2 from "@vitejs/plugin-vue2";
 import resolve from "@rollup/plugin-node-resolve";
-import fs from "fs";
 import path from "path";
 
 const THEME_PATH = "themes/gitlab-docs";
@@ -17,8 +16,6 @@ const GITLAB_THEME_ASSETS = [
   "@gitlab/svgs/dist/sprite_icons/*",
   "@gitlab/svgs/dist/icons.json",
 ];
-
-const isWatchMode = process.argv.includes("--watch");
 
 // Process all JS files in the theme src directory.
 // See https://rollupjs.org/configuration-options/#input
@@ -64,6 +61,12 @@ export default defineConfig({
               src: "./node_modules/mermaid/dist/mermaid.min.js",
               dest: `${THEME_PATH}/static/vite`,
             },
+            // Copy icons.json to the data directory so we can
+            // use it to validate the icons shortcode.
+            {
+              src: "./node_modules/@gitlab/svgs/dist/icons.json",
+              dest: "./data",
+            },
           ],
           hook: "writeBundle",
           copyOnce: true,
@@ -86,40 +89,4 @@ export default defineConfig({
       },
     },
   },
-  plugins: [
-    {
-      name: "move-gitlab-ui-icons-svg",
-      closeBundle: () => {
-        const copy = [
-          // Copy icons.svg into the static directory.
-          // GitLab UI components look for it at /, not /vite/.
-          {
-            src: path.join(THEME_PATH, "static/vite/icons.svg"),
-            dest: path.join(THEME_PATH, "static/icons.svg"),
-          },
-          // Copy icons.json to the data directory. We need this
-          // for validating icons in shortcodes/icon.html.
-          {
-            src: path.join(THEME_PATH, "static/gitlab_ui/svgs/icons.json"),
-            dest: "./data/icons.json",
-          },
-        ];
-
-        for (const { src, dest } of copy) {
-          // Skip copy if we're in watch mode
-          if (isWatchMode && fs.existsSync(dest)) {
-            continue;
-          }
-
-          if (fs.existsSync(src)) {
-            fs.copyFile(src, dest, (err) => {
-              if (err) {
-                console.error("Error moving icons.svg:", err);
-              }
-            });
-          }
-        }
-      },
-    },
-  ],
 });
