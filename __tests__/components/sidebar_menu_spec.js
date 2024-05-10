@@ -15,8 +15,14 @@ describe("component: SidebarMenu", () => {
   let wrapper;
   let mockData;
 
+  const baseUrl = "https://docs.gitlab.com/";
+
   beforeEach(() => {
-    wrapper = mount(SidebarMenu);
+    wrapper = mount(SidebarMenu, {
+      propsData: {
+        baseUrl,
+      },
+    });
     mockData = require("../__mocks__/navigation_mock").default;
 
     // Mock the scrollIntoView method
@@ -57,7 +63,11 @@ describe("component: SidebarMenu", () => {
 
     // Remount the component to trigger the created hook with the mocked pathname
     await wrapper.vm.$nextTick();
-    wrapper = mount(SidebarMenu);
+    wrapper = mount(SidebarMenu, {
+      propsData: {
+        baseUrl,
+      },
+    });
 
     // Find the menu items with the active trail class
     const activeTrailItems = wrapper.findAll("a.sidebar-link-active-trail");
@@ -78,7 +88,7 @@ describe("component: SidebarMenu", () => {
     const relativeUrlItem = wrapper.vm.menuItems.find(
       (item) => item.url === "user/",
     );
-    expect(relativeUrlItem.prefixedUrl).toBe("/user/");
+    expect(relativeUrlItem.prefixedUrl).toBe(`${baseUrl}user/`);
   });
 
   it("uses the correct URL prefix for external links", () => {
@@ -86,5 +96,20 @@ describe("component: SidebarMenu", () => {
       (item) => item.url === "https://design.gitlab.com",
     );
     expect(externalUrlItem.prefixedUrl).toBe("https://design.gitlab.com");
+  });
+
+  it("uses the correct URL prefix for relative links when the site is in a subdirectory", () => {
+    const subdirBaseUrl = "https://docs.gitlab.com/17.0";
+
+    wrapper = mount(SidebarMenu, {
+      propsData: {
+        baseUrl: subdirBaseUrl,
+      },
+    });
+
+    const relativeUrlItem = wrapper.vm.menuItems.find(
+      (item) => item.url === "user/",
+    );
+    expect(relativeUrlItem.prefixedUrl).toBe(`${subdirBaseUrl}user/`);
   });
 });

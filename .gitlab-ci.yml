@@ -225,7 +225,7 @@ prebuild:compile_frontend:
   extends:
     - .frontend
   script:
-    - yarn build
+    - yarn build-prod
   needs:
     - job: prebuild:fetch_data
       artifacts: true

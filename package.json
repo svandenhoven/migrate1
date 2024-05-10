@@ -4,6 +4,8 @@
   "scripts": {
     "build": "vite build",
     "dev": "vite build --watch",
+    "build-prod": "vite build --base=/technical-writing-group/gitlab-docs-hugo/",
+    "dev-prod": "vite build --base=/technical-writing-group/gitlab-docs-hugo/ --watch",
     "eslint": "eslint --max-warnings 0 --ext .js,.vue .",
     "markdownlint": "markdownlint-cli2 '**/*.md'",
     "prettier": "prettier --check '**/*.{js,vue}'",

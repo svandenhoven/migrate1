@@ -26,7 +26,7 @@ all: clean setup test
 .PHONY: clean
 clean:
 	@printf "\n$(INFO)INFO: Removing ephemeral directories...$(END)\n"
-	@rm -rfv public resources static/vite static/gitlab_ui
+	@rm -rfv public resources data/icons.json static/vite static/gitlab_ui
 
 .PHONY: setup
 setup: install-dependencies install-nodejs-dependencies
@@ -38,3 +38,8 @@ test: lint-markdown lint-shell-scripts lint-go lint-frontend lint-yaml go-tests 
 view:
 	@yarn build
 	@hugo serve
+
+.PHONY: view-prod
+view-prod:
+	@yarn build-prod
+	@hugo serve -e production

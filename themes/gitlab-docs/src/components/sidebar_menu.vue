@@ -8,6 +8,12 @@ export default {
     GlButton,
     MenuItem,
   },
+  props: {
+    baseUrl: {
+      type: String,
+      required: true,
+    },
+  },
   data() {
     return {
       menuItems: [],
@@ -15,10 +21,7 @@ export default {
     };
   },
   created() {
-    const { menu } = this.processMenuData(
-      menuDataRaw,
-      window.location.pathname,
-    );
+    const { menu } = this.processMenuData(menuDataRaw);
     this.menuItems = Object.freeze(menu);
   },
   methods: {
@@ -35,25 +38,31 @@ export default {
         );
       }
     },
-    isActiveItem(item, currentPath) {
-      return currentPath === `/${item.url}` || currentPath === `/${item.url}/`;
+    isActiveItem(item) {
+      const currentPath = window.location.pathname;
+      const relativeCurrentPath = currentPath.replace(this.baseUrl, "");
+
+      return (
+        relativeCurrentPath.endsWith(`/${item.url}`) ||
+        relativeCurrentPath.endsWith(`/${item.url}/`)
+      );
     },
-    processMenuData(currMenu, currentPath) {
+    processMenuData(currMenu) {
       let isActiveTrail = false;
 
       // Add attributes to link items
       const menu = currMenu.map((item) => {
         const { url, submenu } = item;
 
-        // Add a leading slash to relative URLs
+        // Add the appropriate base URL to internal links
         const prefixedUrl = url.toLowerCase().startsWith("http")
           ? url
-          : `/${url}`;
+          : `${this.baseUrl}${url}`;
 
         let itemActiveTrail = false;
         let isActive = false;
 
-        if (this.isActiveItem(item, currentPath)) {
+        if (this.isActiveItem(item)) {
           itemActiveTrail = true;
           isActive = true;
         }
@@ -62,7 +71,7 @@ export default {
         let processedSubmenu = submenu;
         if (Array.isArray(submenu)) {
           const { menu: submenuItems, isActiveTrail: submenuTrail } =
-            this.processMenuData(submenu, currentPath);
+            this.processMenuData(submenu);
           processedSubmenu = submenuItems;
           itemActiveTrail = itemActiveTrail || submenuTrail;
         }
