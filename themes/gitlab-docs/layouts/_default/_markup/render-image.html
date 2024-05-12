@@ -1,0 +1,21 @@
+<!-- Adapted from Hugo's built-in image render hook -->
+<!-- See https://discourse.gohugo.io/t/image-relative-url-at-markdown-format/49348/4 -->
+
+{{- $u := urls.Parse .Destination -}}
+{{- $src := $u.String -}}
+
+{{- if not $u.IsAbs -}}
+{{- with or (.PageInner.Resources.Get $u.Path) (.PageInner.Parent.Resources.Get $u.Path) (resources.Get $u.Path) -}}
+    {{ $abs := absURL "" }}
+    {{- $src = printf "%s%s" $abs .RelPermalink -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $attributes := merge .Attributes (dict "alt" .Text "src" $src "title" (.Title | transform.HTMLEscape)) -}}
+<img
+  {{- range $k, $v := $attributes -}}
+    {{- if $v -}}
+      {{- printf " %s=%q" $k $v | safeHTMLAttr -}}
+    {{- end -}}
+  {{- end -}}>
+{{- /**/ -}}
