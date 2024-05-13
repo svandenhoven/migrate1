@@ -6,8 +6,7 @@
 
 {{- if not $u.IsAbs -}}
 {{- with or (.PageInner.Resources.Get $u.Path) (.PageInner.Parent.Resources.Get $u.Path) (resources.Get $u.Path) -}}
-    {{ $abs := absURL "" }}
-    {{- $src = printf "%s%s" $abs .RelPermalink -}}
+    {{- $src = .Permalink -}}
   {{- end -}}
 {{- end -}}
 
