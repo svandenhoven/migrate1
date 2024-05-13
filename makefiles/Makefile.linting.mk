@@ -11,7 +11,7 @@ lint-shell-scripts:
 .PHONY: lint-go
 lint-go:
 	@printf "\n$(INFO)INFO: Running Go linting...$(END)\n"
-	@golangci-lint run
+	@golangci-lint run --skip-dirs="node_modules"
 
 .PHONY: lint-frontend
 lint-frontend: install-nodejs-dependencies

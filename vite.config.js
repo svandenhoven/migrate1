@@ -37,6 +37,27 @@ export default defineConfig({
         entryFileNames: "[name]",
         assetFileNames: `[name].[ext]`,
       },
+      // Define static assets we reference from CSS as external.
+      // Otherwise Vite flags these as unable to resolve
+      external: [
+        // Theme icons
+        "../fa-icons/x-twitter.svg",
+        "../fa-icons/facebook.svg",
+        "../fa-icons/linkedin.svg",
+        "../fa-icons/youtube.svg",
+        // Fonts
+        "../gitlab_ui/fonts/GitLabSans.woff2",
+        "../gitlab_ui/fonts/GitLabMono.woff2",
+        "../gitlab_ui/fonts/GitLabSans-Italic.woff2",
+        "../gitlab_ui/fonts/GitLabMono-Italic.woff2",
+        // GitLab SVG icons
+        "../gitlab_ui/svgs/external-link.svg",
+        "../gitlab_ui/svgs/link.svg",
+        "../gitlab_ui/svgs/information-o.svg",
+        "../gitlab_ui/svgs/warning.svg",
+        "../gitlab_ui/svgs/flag.svg",
+        "../gitlab_ui/svgs/review-warning.svg",
+      ],
       plugins: [
         copy({
           targets: [
@@ -62,7 +83,6 @@ export default defineConfig({
               dest: "./data",
             },
           ],
-          hook: "writeBundle",
           copyOnce: true,
         }),
         yaml(),
