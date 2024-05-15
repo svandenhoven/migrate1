@@ -1,6 +1,6 @@
 {
   "name": "gitlab-docs-hugo",
-  "packageManager": "yarn@4.2.1",
+  "packageManager": "yarn@4.2.2",
   "scripts": {
     "build": "vite build",
     "dev": "vite build --watch",
