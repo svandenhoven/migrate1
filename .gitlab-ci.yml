@@ -19,21 +19,23 @@ variables:
   # Versions specified here are production versions
   # See also .tool-versions file for development versions
   # See also GO_VERSION declared in .go-matrix-job
+  COREPACK_VERSION: "0.28.1"
   GO_VERSION: "1.22"
   GO_VERSION_PREVIOUS: "1.21"
-  GOLANGCI_LINT_VERSION: "1.56.2"
-  HUGO_VERSION: "0.125.5"
-  LYCHEE_VERSION: "0.14.3"
+  GOLANGCI_LINT_VERSION: "1.58.1"
+  HUGO_VERSION: "0.126.1"
+  # Lychee Docker image tags use SHAs
+  LYCHEE_VERSION: "0a54079"
   NODE_VERSION: "20"
-  SHELLCHECK_VERSION: "0.9.0"
-  YQ_VERSION: "4.42.1"
+  SHELLCHECK_VERSION: "0.10.0"
+  YQ_VERSION: "4.44.1"
 
   # Linux distribution versions
   ALPINE_VERSION: "3.19"
   DEBIAN_VERSION: "bookworm"
 
   # Other versions
-  ASDF_VERSION: "0.13.1"
+  ASDF_VERSION: "0.14.0"
 
 workflow:
   name: '$DOCS_PROJECT_PIPELINE_TYPE'
@@ -87,7 +89,7 @@ workflow:
     - node --version
     # https://github.com/nodejs/corepack?tab=readme-ov-file#manual-installs
     - npm uninstall -g yarn pnpm
-    - npm install -g corepack@0.24.1
+    - npm install -g corepack@${COREPACK_VERSION}
     - corepack enable
     - yarn --version
     - yarn install --immutable
@@ -167,12 +169,13 @@ test:jest:
 
 test:markdown-links:
   image:
-    name: lycheeverse/lychee:${LYCHEE_VERSION}-alpine
+    name: lycheeverse/lychee:sha-${LYCHEE_VERSION}-alpine
     entrypoint: [""]
   stage: test
   needs: []
   script:
     # See also markdown-link-tests in makefiles/Makefile.tests.mk
+    - lychee --version
     - lychee --offline --include-fragments README.md **/*.md
 
 # Check that asdf/mise dependencies install correctly

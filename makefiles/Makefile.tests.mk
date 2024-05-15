@@ -13,6 +13,7 @@ jest-tests: install-nodejs-dependencies
 .PHONY: markdown-link-tests
 markdown-link-tests:
 	@printf "\n$(INFO)INFO: Running Markdown link tests...$(END)\n"
+	@lychee --version
 	@lychee --offline --include-fragments README.md **/*.md
 
 .PHONY: kramdown-audit
