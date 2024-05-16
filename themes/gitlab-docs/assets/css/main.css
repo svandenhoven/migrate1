@@ -28,6 +28,27 @@ a.header-logo:hover {
   text-decoration: none;
   color: var(--white);
 }
+.skip-link {
+  transition: opacity 0.2s linear;
+
+  &:focus {
+    background-color: var(--blue-600);
+    color: var(--white);
+    border: 2px solid var(--white);
+    border-radius: 4px;
+    clip: auto;
+    height: auto;
+    opacity: 1;
+    overflow: visible;
+    padding: .5rem 1rem;
+    position: fixed;
+    left: 2px;
+    text-align: center;
+    white-space: normal;
+    width: 15rem;
+    z-index: 500;
+  }
+}
 
 /* Global navigation */
 .global-nav {
