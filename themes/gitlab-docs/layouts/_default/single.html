@@ -5,7 +5,7 @@
   <div class="main-content">
     <div class="docs-content gl-pb-7">
       {{ partial "survey-banner.html" . }}
-      <h1 class="gl-mt-8 gl-mb-6">{{ .Title | markdownify }}</h1>
+      <h1 class="gl-mt-5 lg:gl-mt-8 gl-mb-6">{{ .Title | markdownify }}</h1>
       {{ .Content }}
       {{ if ne .Params.feedback false }}
         {{ partial "feedback.html" . }}

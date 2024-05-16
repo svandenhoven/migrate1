@@ -18,6 +18,11 @@ describe("component: SidebarMenu", () => {
   const baseUrl = "https://docs.gitlab.com/";
 
   beforeEach(() => {
+    // Create a mock container element
+    const container = document.createElement("div");
+    container.classList.add("template-single");
+    document.body.appendChild(container);
+
     wrapper = mount(SidebarMenu, {
       propsData: {
         baseUrl,
@@ -111,5 +116,35 @@ describe("component: SidebarMenu", () => {
       (item) => item.url === "user/",
     );
     expect(relativeUrlItem.prefixedUrl).toBe(`${subdirBaseUrl}user/`);
+  });
+
+  it("toggles the overlay state when the hamburger button is clicked", async () => {
+    const hamburgerButton = wrapper.find('[data-testid="hamburger-icon"]');
+    expect(wrapper.vm.isOverlayOpen).toBe(false);
+
+    await hamburgerButton.trigger("click");
+    expect(wrapper.vm.isOverlayOpen).toBe(true);
+    expect(wrapper.find(".global-nav-wrapper").classes()).not.toContain(
+      "sidebar-collapsed",
+    );
+
+    await wrapper.find(".modal-backdrop").trigger("click");
+    expect(wrapper.vm.isOverlayOpen).toBe(false);
+  });
+
+  it("closes the overlay when the window is resized larger than the mobile breakpoint", async () => {
+    // Set the initial window width below the mobile breakpoint
+    window.innerWidth = 768;
+
+    // Open the overlay
+    wrapper.vm.toggleOverlay("open");
+    expect(wrapper.vm.isOverlayOpen).toBe(true);
+
+    // Resize the window larger than the mobile breakpoint
+    window.innerWidth = 1024;
+    window.dispatchEvent(new Event("resize"));
+    await wrapper.vm.$nextTick();
+
+    expect(wrapper.vm.isOverlayOpen).toBe(false);
   });
 });

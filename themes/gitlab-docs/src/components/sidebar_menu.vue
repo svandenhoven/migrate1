@@ -3,6 +3,8 @@ import { GlButton } from "@gitlab/ui";
 import menuDataRaw from "../../../../data/navigation.yaml";
 import MenuItem from "./sidebar_menu_item.vue";
 
+const NAV_BREAKPOINT = 992;
+
 export default {
   components: {
     GlButton,
@@ -18,24 +20,45 @@ export default {
     return {
       menuItems: [],
       isCollapsed: false,
+      isOverlayOpen: false,
     };
   },
   created() {
     const { menu } = this.processMenuData(menuDataRaw);
     this.menuItems = Object.freeze(menu);
   },
+  mounted() {
+    window.addEventListener("resize", this.handleResize);
+    this.initWidth = window.innerWidth;
+  },
+  beforeDestroy() {
+    window.removeEventListener("resize", this.handleResize);
+  },
   methods: {
-    toggleCollapse() {
-      this.isCollapsed = !this.isCollapsed;
-
-      // Set a class on the page wrapper.
-      // This allows us to modify the grid dimensions
+    toggleCollapse(action) {
       const container = document.querySelector(".template-single");
-      if (container) {
-        container.classList.toggle(
-          "template-single-sidebar-collapsed",
-          this.isCollapsed,
-        );
+
+      if (action === "open" || action === "close") {
+        this.isCollapsed = action === "close";
+      } else {
+        this.isCollapsed = !this.isCollapsed;
+      }
+
+      container.classList.toggle(
+        "template-single-sidebar-collapsed",
+        this.isCollapsed,
+      );
+    },
+    toggleOverlay(action) {
+      this.isOverlayOpen = action === "open";
+      if (this.isOverlayOpen) {
+        this.toggleCollapse("open");
+      }
+    },
+    handleResize() {
+      // Close the overlay if we've resized the window larger than the mobile breakpoint
+      if (this.isOverlayOpen && window.innerWidth >= NAV_BREAKPOINT) {
+        this.toggleOverlay("close");
       }
     },
     isActiveItem(item) {
@@ -94,36 +117,54 @@ export default {
 </script>
 
 <template>
-  <aside
-    class="global-nav-wrapper gl-leading-5"
-    :class="{ 'sidebar-collapsed': isCollapsed }"
-  >
-    <div class="global-nav gl-fixed gl-overflow-y-scroll gl-px-2">
-      <nav class="gl-my-3" aria-label="Main">
-        <menu-item
-          v-for="(item, index) in menuItems"
-          :key="index"
-          :item="item"
-          :level="1"
-        />
-      </nav>
-    </div>
+  <div class="sidebar-container">
+    <transition name="fade">
+      <div
+        v-if="isOverlayOpen"
+        class="lg:gl-hidden gl-display-block gl-z-50 modal-backdrop"
+        @click="toggleOverlay('close')"
+      ></div>
+    </transition>
+    <gl-button
+      icon="hamburger"
+      class="lg:gl-hidden gl-mt-7"
+      @click="toggleOverlay('open')"
+    />
 
-    <div
-      class="sidebar-toggle gl-bottom-0 gl-fixed gl-cursor-pointer hover:gl-bg-gray-50"
-      @click="toggleCollapse"
+    <aside
+      class="global-nav-wrapper gl-leading-5"
+      :class="{
+        'sidebar-collapsed': isCollapsed,
+        'sidebar-overlay-open !gl-block': isOverlayOpen,
+      }"
     >
-      <div class="gl-h-full gl-flex gl-items-center gl-ml-3">
-        <gl-button
-          :icon="
-            isCollapsed ? 'chevron-double-lg-right' : 'chevron-double-lg-left'
-          "
-          class="!gl-shadow-none !gl-p-0"
-          :class="isCollapsed ? 'sidebar-toggle-collapsed' : 'gl-mr-2'"
-        >
-          <template v-if="!isCollapsed">Collapse sidebar</template>
-        </gl-button>
+      <div class="global-nav gl-fixed gl-overflow-y-scroll gl-px-2">
+        <nav class="gl-my-3" aria-label="Main">
+          <menu-item
+            v-for="(item, index) in menuItems"
+            :key="index"
+            :item="item"
+            :level="1"
+          />
+        </nav>
       </div>
-    </div>
-  </aside>
+
+      <div
+        class="sidebar-toggle gl-bottom-0 gl-fixed gl-cursor-pointer hover:gl-bg-gray-50"
+        v-on="{ click: isOverlayOpen ? toggleOverlay : toggleCollapse }"
+      >
+        <div class="gl-h-full gl-flex gl-items-center gl-ml-3">
+          <gl-button
+            :icon="
+              isCollapsed ? 'chevron-double-lg-right' : 'chevron-double-lg-left'
+            "
+            class="!gl-shadow-none !gl-p-0"
+            :class="{ 'sidebar-toggle-collapsed': isCollapsed }"
+          >
+            <span v-if="!isCollapsed" class="gl-ml-2">Collapse sidebar</span>
+          </gl-button>
+        </div>
+      </div>
+    </aside>
+  </div>
 </template>
