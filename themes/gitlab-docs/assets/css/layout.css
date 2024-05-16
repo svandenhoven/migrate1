@@ -11,7 +11,7 @@ main {
 .template-single {
   height: 100vh;
 }
-.global-nav-wrapper {
+.sidebar-container {
   grid-area: sidebar;
 }
 .main-content {
@@ -57,24 +57,13 @@ h6,
 }
 
 /* Small */
-@media (max-width: 767px) {
+@media (max-width: 992px) {
   .template-single {
     display: block;
     padding: 0 2rem;
   }
   .global-nav-wrapper,
   .sidebar-right {
-    display: none;
-  }
-}
-
-/* Medium */
-@media (min-width: 768px) and (max-width: 992px) {
-  .template-single {
-    grid-template-columns: var(--column-left-md-width) 1fr minmax(var(--column-center-min), var(--column-center-max)) var(--column-right-md-width) 1fr;
-  }
-  .sidebar-right,
-  .global-nav-wrapper {
     display: none;
   }
 }
