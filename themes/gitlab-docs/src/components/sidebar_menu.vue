@@ -122,6 +122,7 @@ export default {
       <div
         v-if="isOverlayOpen"
         class="lg:gl-hidden gl-display-block gl-z-50 modal-backdrop"
+        aria-hidden="true"
         @click="toggleOverlay('close')"
       ></div>
     </transition>
