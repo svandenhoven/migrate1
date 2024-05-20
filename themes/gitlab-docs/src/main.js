@@ -23,8 +23,26 @@ const addHeaderPermalinks = () => {
     });
 };
 
+/**
+ * Expandable version history notes
+ */
+const versionHistoryExpanders = () => {
+  document.querySelectorAll(".version-history button").forEach((button) => {
+    button.addEventListener("click", (event) => {
+      const historyList = event.currentTarget
+        .closest(".version-history")
+        .querySelector(".history-list");
+      const isExpanded = historyList.classList.toggle("gl-hidden");
+      // Update ARIA attributes
+      event.currentTarget.setAttribute("aria-expanded", !isExpanded);
+      historyList.setAttribute("aria-hidden", isExpanded);
+    });
+  });
+};
+
 document.addEventListener("DOMContentLoaded", () => {
   addHeaderPermalinks();
+  versionHistoryExpanders();
 
   /**
    * Set up the table of contents
@@ -43,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
     scrollSmoothOffset: -64,
   });
 
-  /* Initialize Vue components */
+  // Initialize Vue components
   // Survey banner
   const bannerContainer = document.querySelector(
     '[data-vue-app="survey-banner"]',

@@ -16,7 +16,7 @@ when we launch the new site.
 
 ## Alert boxes
 
-- [Nanoc version: Style Guide](https://docs.gitlab.com/ee/development/documentation/styleguide/#alert-boxes)
+[Nanoc version: Alert boxes](https://docs.gitlab.com/ee/development/documentation/styleguide/#alert-boxes)
 
 ### Note
 
@@ -90,9 +90,91 @@ You do not need to add any text for the disclaimer alert type, it is populated f
 {{</* alert type="disclaimer" /*/>}}
 ```
 
+## Availability details
+
+{{< details >}}
+
+- Tier: Premium, Ultimate with [GitLab Duo Pro](https://docs.gitlab.com/ee/subscriptions/subscription-add-ons.html)
+- Offering: GitLab.com, Self-managed, GitLab Dedicated
+- Status: Experiment
+- Hotdogs: Yes
+- Some other thing: Absolutely not
+
+{{< /details >}}
+
+```text
+{{</* details */>}}
+
+- Tier: Premium, Ultimate with [GitLab Duo Pro](https://docs.gitlab.com/ee/subscriptions/subscription-add-ons.html)
+- Offering: GitLab.com, Self-managed, GitLab Dedicated
+- Status: Experiment
+- Hotdogs: Yes
+- Some other thing: Absolutely not
+
+{{</* /details */>}}
+```
+
+[Nanoc version: Product availability](https://docs.gitlab.com/ee/development/documentation/styleguide/availability_details.html)
+
+## Version history
+
+{{< history >}}
+
+- Introduced in [GitLab 17.0](https://about.gitlab.com/releases/2024/05/16/gitlab-17-0-released/)
+- Deprecated in GitLab 17.1
+
+{{< /history >}}
+
+```text
+{{</* history */>}}
+
+- Introduced in [GitLab 17.0](https://about.gitlab.com/releases/2024/05/16/gitlab-17-0-released/)
+- Deprecated in GitLab 17.1
+
+{{</* /history */>}}
+```
+
+[Nanoc version: Version history](https://docs.gitlab.com/ee/development/documentation/versions.html)
+
+### Availability details with version history
+
+{{< details >}}
+
+- Tier: some tiers
+- Offering: some offerings
+- Status: Experiment
+- Hotdogs: Yes
+
+{{< /details >}}
+
+{{< history >}}
+
+- Introduced in xyz
+- Deprecated in abc
+
+{{< /history >}}
+
+```text
+{{</* details */>}}
+
+- Tier: some tiers
+- Offering: some offerings
+- Status: Experiment
+- Hotdogs: Yes
+
+{{</* /details */>}}
+
+{{</* history */>}}
+
+- Introduced in xyz
+- Deprecated in abc
+
+{{</* /history */>}}
+```
+
 ## Icons
 
-- [Nanoc version: Style Guide](https://docs.gitlab.com/ee/development/documentation/styleguide/#gitlab-svg-icons)
+[Nanoc version: Icons](https://docs.gitlab.com/ee/development/documentation/styleguide/#gitlab-svg-icons)
 
 This is an icon: {{< icon name="tanuki" >}}
 

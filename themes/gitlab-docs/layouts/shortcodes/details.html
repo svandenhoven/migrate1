@@ -1,0 +1,20 @@
+<div class="availability gl-text-base gl-pl-4 gl-mb-5">
+  {{- $content := .Inner -}}
+  <ul class="gl-list-none gl-p-0 gl-m-0">
+    {{- $lines := split $content "\n" -}}
+    {{- range $lines -}}
+      {{- $cleanedLine := replaceRE "^- " "" (trim . " ") -}}
+      {{- if $cleanedLine -}}
+        <!-- Bold any words that appear before the first colon -->
+        {{- $parts := split $cleanedLine ":" -}}
+        {{- if ge (len $parts) 2 -}}
+          {{- $key := index $parts 0 -}}
+          {{- $value := delimit (after 1 $parts) ":" -}}
+          <li><span class="gl-font-bold">{{- $key -}}</span>: {{ $value | markdownify -}}</li>
+        {{- else -}}
+          <li>{{- $cleanedLine | markdownify -}}</li>
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  </ul>
+</div>
