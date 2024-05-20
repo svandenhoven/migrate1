@@ -361,7 +361,29 @@ div.docs-content {
   }
   .mermaid:not([data-processed='true']) {
     display: none;
-  }  
+  }
+
+  /* Availability and history details */
+  .availability,
+  .version-history {
+    border-left: 2px solid var(--availability-border);
+    line-height: 1.65;
+  }
+  .availability li,
+  .history-list li {
+    margin-bottom: 0;
+  }
+  .availability + .version-history {
+    margin-top: -1rem;
+  }
+  .version-history button {
+    background: url("../gitlab_ui/svgs/ellipsis_h.svg") 50% / 12px no-repeat;
+    width: 1.25rem;
+  }
+  .history-list ul {
+    margin: 0;
+    padding: 0 0 0 1.25rem;
+  }
 
   /* Other elements */
   li {

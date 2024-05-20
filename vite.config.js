@@ -57,6 +57,7 @@ export default defineConfig({
         "../gitlab_ui/svgs/warning.svg",
         "../gitlab_ui/svgs/flag.svg",
         "../gitlab_ui/svgs/review-warning.svg",
+        "../gitlab_ui/svgs/ellipsis_h.svg",
       ],
       plugins: [
         copy({
