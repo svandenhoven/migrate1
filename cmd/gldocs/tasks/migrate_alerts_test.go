@@ -95,12 +95,72 @@ DISCLAIMER:
 This is some text that should be in a different type of alert box.
 `,
 		},
+		{
+			name: "Availability details",
+			input: `
+DETAILS:
+**Tier:** Free, Premium, Ultimate
+**Offering:** GitLab.com, Self-managed, GitLab Dedicated
+**Status:** Experiment
+
+`,
+			expected: `
+{{< details >}}
+
+- Tier: Free, Premium, Ultimate
+- Offering: GitLab.com, Self-managed, GitLab Dedicated
+- Status: Experiment
+
+{{< /details >}}
+
+`,
+		},
 	}
 
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
 			output, _ := updateAlerts([]byte(tc.input), "")
 			require.Equal(t, tc.expected, output)
+		})
+	}
+}
+
+func TestCheckParts(t *testing.T) {
+	testCases := []struct {
+		name        string
+		input       []string
+		expectedErr bool
+	}{
+		{
+			name:        "Valid parts",
+			input:       []string{"NOTE:\nThis is a note.\n\n", "  ", "This is a note.\n"},
+			expectedErr: false,
+		},
+		{
+			name:        "Missing indentation and content",
+			input:       []string{"NOTE:\n\n"},
+			expectedErr: true,
+		},
+		{
+			name:        "Missing content",
+			input:       []string{"NOTE:\nThis is a note.\n\n", "  "},
+			expectedErr: true,
+		},
+		{
+			name:        "Empty parts",
+			input:       []string{},
+			expectedErr: true,
+		},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			err := checkParts(tc.input)
+			if tc.expectedErr {
+				require.Error(t, err)
+			} else {
+				require.NoError(t, err)
+			}
 		})
 	}
 }
