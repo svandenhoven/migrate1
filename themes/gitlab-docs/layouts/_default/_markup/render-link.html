@@ -1,7 +1,7 @@
 <!-- Adapted from https://github.com/bep/portable-hugo-links -->
 {{ $link := .Destination }}
 {{ $isRemote := strings.HasPrefix $link "http" }}
-{{ $isValidRelLink := strings.FindRE `^(?:[a-zA-Z0-9#/]|\/|\.{1,}).*` $link }}
+{{ $isValidRelLink := strings.FindRE `^(?:[a-zA-Z0-9#_/]|\/|\.{1,}).*` $link }}
 
 {{- if and (not $isRemote) ($isValidRelLink) -}}
   {{ $url := urls.Parse .Destination }}
