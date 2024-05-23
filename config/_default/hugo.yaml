@@ -17,6 +17,22 @@ markup:
   highlight:
     style: pygments
 
+privacy:
+  # Disable built-in YouTube embeds
+  # We need to embed with regular HTML in order to support /help.
+  youtube:
+    disable: true
+  # Disable unused services
+  # See https://gohugo.io/methods/site/config/#privacy
+  vimeo:
+    disable: true
+  instagram:
+    disable: true
+  twitter:
+    disable: true
+  disqus:
+    disable: true
+
 menus:
   social:
   - name: Twitter

@@ -82,6 +82,9 @@ a.header-logo:hover {
 .sidebar-link.level-6 {
   padding-left: calc(var(--sidebar-indent) * 6);
 }
+.sidebar-link.level-7 {
+  padding-left: calc(var(--sidebar-indent) * 7);
+}
 div:has(> .sidebar-link):hover {
   border-radius: 0.25rem;
   background-color: var(--gray-50);
@@ -383,6 +386,31 @@ div.docs-content {
   .history-list ul {
     margin: 0;
     padding: 0 0 0 1.25rem;
+  }
+
+  /* YouTube */
+  .fa-youtube-play {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background-color: var(--youtube-logo);
+    mask-image: url("../fa-icons/youtube.svg");
+    vertical-align: text-top;
+  }
+  .video-fallback {
+    display: none;
+  }
+  .video-container {
+    position: relative;
+    margin: 1.25rem 0;
+    aspect-ratio: 16 / 9;
+    max-width: 80%;
+
+    iframe,
+    video {
+      width: 100%;
+      height: 100%;
+    }
   }
 
   /* Other elements */
