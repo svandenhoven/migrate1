@@ -85,4 +85,5 @@ h6,
 }
 .sidebar-collapsed > div.global-nav {
   opacity: 0;
+  width: 0;
 }
