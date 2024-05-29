@@ -104,6 +104,23 @@ Some text here.
 Some other text down here.
 `,
 		},
+		{
+			name: "History in a codeblock",
+			input: `
+` + "```markdown" + `
+> - Introduced in abc
+
+Some text after the version history.
+` + "```" + `
+`,
+			expected: `
+` + "```markdown" + `
+> - Introduced in abc
+
+Some text after the version history.
+` + "```" + `
+`,
+		},
 	}
 
 	for _, tc := range testCases {
