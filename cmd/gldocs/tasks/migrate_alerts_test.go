@@ -115,6 +115,21 @@ DETAILS:
 
 `,
 		},
+		{
+			name: "Alert in a codeblock",
+			input: `
+` + "```markdown" + `
+NOTE:
+This is a note inside a codeblock.
+` + "```" + `
+`,
+			expected: `
+` + "```markdown" + `
+NOTE:
+This is a note inside a codeblock.
+` + "```" + `
+`,
+		},
 	}
 
 	for _, tc := range testCases {

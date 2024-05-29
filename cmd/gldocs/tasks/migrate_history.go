@@ -12,10 +12,12 @@ func MigrateHistory(files []string) {
 
 // Match blockquotes that contain list items and specific keywords
 // See https://docs.gitlab.com/ee/development/documentation/versions.html#add-a-history-item
-var blockquoteListRegex = regexp.MustCompile(`(?mi)^>\s*([-*])\s*(.*(introduced|added|enabled|deprecated|changed|moved|recommended|removed|renamed).*)$`)
+var blockquoteListRegex = regexp.MustCompile(`(?mi)^>\s*([-*])\s*(.*(introduced|added|enabled|deprecated|changed|moved|recommended|removed|renamed|improved).*)$`)
 
 func updateHistory(content []byte, filename string) (string, error) {
-	lines := strings.Split(string(content), "\n")
+	str, codeBlocks := ExtractCodeBlocks(string(content))
+
+	lines := strings.Split(string(str), "\n")
 	var result string
 
 	for i := 0; i < len(lines); i++ {
@@ -45,5 +47,8 @@ func updateHistory(content []byte, filename string) (string, error) {
 		}
 	}
 
-	return result, nil
+	// Reinsert the code blocks
+	str = ReinsertCodeBlocks(result, codeBlocks)
+
+	return str, nil
 }

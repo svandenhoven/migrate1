@@ -20,7 +20,7 @@ func MigrateAlerts(files []string) {
 }
 
 func updateAlerts(content []byte, filename string) (string, error) {
-	str := string(content)
+	str, codeBlocks := ExtractCodeBlocks(string(content))
 	invalidDisclaimers := false
 
 	// Define the patterns and their corresponding replacements
@@ -62,6 +62,9 @@ func updateAlerts(content []byte, filename string) (string, error) {
 			return result
 		})
 	}
+
+	// Reinsert the code blocks
+	str = ReinsertCodeBlocks(str, codeBlocks)
 
 	if invalidDisclaimers {
 		return str, fmt.Errorf("Disclaimer alert(s) found with invalid inner content")
