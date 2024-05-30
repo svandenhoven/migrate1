@@ -1,0 +1,35 @@
+{{/*
+  Determine the version of the Docs site.
+
+  If this build does not have a CI_COMMIT_REF_NAME variable
+  containing a branch for a stable release, we want to build
+  the site as the pre-release or latest version. 
+  
+  To find the pre-release version, we need to fetch versions.json
+  from the gitlab-docs project.
+
+  @return string
+    The Docs site version
+*/}}
+
+{{- $branch := getenv "CI_COMMIT_REF_NAME" -}}
+{{- if and (ne $branch "") (eq (partial "functions/is-stable-version" (dict "version" $branch)) "true") -}}
+  {{- print $branch -}}
+{{- else -}}
+  {{- $nextVersion := "" -}}
+  {{- $data := dict -}}
+  {{- $url := "https://gitlab.com/gitlab-org/gitlab-docs/-/raw/main/content/versions.json" -}}
+
+  {{- with resources.GetRemote $url -}}
+    {{- with .Err -}}
+      {{- warnf "%s" . -}}
+    {{- else -}}
+      {{- $data = . | transform.Unmarshal -}}
+      {{- with index $data 0 -}}
+        {{- print .next -}}  
+      {{- end -}}
+    {{- end -}}
+  {{- else -}}
+    {{- warnf "Unable to get remote resource %q" $url -}}
+  {{- end -}}
+{{- end -}}
