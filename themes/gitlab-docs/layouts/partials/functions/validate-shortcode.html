@@ -1,0 +1,32 @@
+{{/*
+  Validates a shortcode with parameters
+
+  @param dict
+    $shortcodeName string
+      The name of the shortcode the error is generated from
+    $allowedValues slice
+      Valid parameter values
+    $paramName string
+      Name of the parameter we're validating
+    $paramValue string
+      Actual value the author used, which has triggered the error
+    $sourceFile string
+      Filename of where the error is located
+    $lineNumber string
+      Line number of where the error is located
+
+  @returns errorf
+    Fatal error on build, with an actionable error message
+*/}}
+
+{{- $shortcodeName := .shortcodeName -}}
+{{- $allowedValues := .allowedValues -}}
+{{- $paramName := .paramName -}}
+{{- $paramValue := .paramValue -}}
+{{- $sourceFile := .sourceFile -}}
+{{- $lineNumber := .lineNumber -}}
+
+{{- if not (in $allowedValues $paramValue) -}}
+  {{- $errorMsg := printf "Invalid value for %s parameter '%s': %s. Allowed values are %s." $shortcodeName $paramName $paramValue (delimit $allowedValues ", ") -}}
+  {{- errorf "%s (File: %s, Line: %d)" $errorMsg $sourceFile $lineNumber -}}
+{{- end -}}

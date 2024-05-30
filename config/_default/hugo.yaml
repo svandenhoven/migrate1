@@ -33,6 +33,14 @@ privacy:
   disqus:
     disable: true
 
+security:
+  funcs:
+    # Specify allowed environment variables
+    # See https://gohugo.io/functions/os/getenv/#security
+    getenv:
+    - ^HUGO_
+    - ^CI_
+
 menus:
   social:
   - name: Twitter

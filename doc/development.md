@@ -2,7 +2,42 @@
 
 ## Theme development
 
-The `gitlab-docs` theme contains the site's CSS and JS code.
+The `gitlab-docs` theme contains the site's CSS and JavaScript code, as well as Hugo templates,
+which include shortcodes and partials.
+
+### Hugo templates
+
+Refer to [Hugo's documentation](https://gohugo.io/templates/) for template best practices.
+
+#### Shortcodes
+
+We have a few unique requirements for shortcodes in this project:
+
+- Shortcode content will not render in the in-product docs (`/help`). If adding a new shortcode, you need to
+  consider how it will render in `/help`, where it will appear as the plaintext shortcode and not the rendered
+  version of it.
+- Shortcodes must include error handling that returns an actionable message when they contain invalid content.
+  See [`validate-shortcode.html`](../themes/gitlab-docs/layouts/partials/functions/validate-shortcode.html) and
+  [`alert.html`](../themes/gitlab-docs/layouts/shortcodes/alert.html) as an example.
+
+#### Custom theme functions
+
+In Hugo, the way to provide reusable functions for use in templates is by writing them as a template partial.
+This poses some limitations:
+
+- We can't easily write tests for these functions.
+- The functions can only return a string, or throw an error.
+  - If you'd normally return a boolean, use "true" or "false" as your return values. See
+  [`stable-version.html`](../themes/gitlab-docs/layouts/partials/functions/is-stable-version.html) as an example.
+- You cannot use most standard Go functions. Review [Hugo's documentation](https://gohugo.io/functions/) for available functions.
+
+When adding a new function:
+
+- Place the template file in the `themes/gitlab-docs/layouts/partials/functions` directory.
+- Add a comment block at the top that explains what the function does, what parameters it accepts,
+  and what it returns. See
+  [`site-version.html`](../themes/gitlab-docs/layouts/partials/functions/site-version.html) as an example.
+- If the function returns a "boolean", prefix the filename is `is-` (e.g, `is-stable-version.html`).
 
 ### JavaScript and CSS
 
