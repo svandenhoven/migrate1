@@ -1,15 +1,10 @@
 {{ if .Context.File }}
   {{ if .Context.File.Section }}
-    {{ $section := .Context.File.Section }}
+    {{ $section := partial "functions/page-source-project" . }}
 
     <!-- Load Git info from products.yaml based on the page Section -->
-    {{ $productData := index .productsYaml "products" }}
-    {{ $sectionData := index $productData $section }}
-    {{ if not $sectionData }}
-      <!-- If the page Section does not match a key in products.yaml, it's a page from the "gitlab" project -->
-      {{ $sectionData = index $productData "gitlab" }}
-      {{ $section = "gitlab" }}
-    {{ end }}
+    {{ $productData := index .Context.Site.Data.products "products" }}
+    {{ $sectionData := index $productData (string $section) }}
 
     {{ if $sectionData }}
       {{ $page_path := .Context.File.Path }}
