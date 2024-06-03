@@ -1,0 +1,30 @@
+{{/*
+  Find the legacy path to this page
+
+  The versions dropdown allows users to view older
+  versions of pages. Because our URLs are changing
+  as part of the Hugo launch, legacy URLs will not
+  match the new production URLs.
+
+  To work around this, we find the legacy path here
+  and use it to populate a metatag, which the versions
+  menu can reference when generating links.
+
+  @return string
+    Path for this page on the legacy Nanoc site
+*/}}
+
+{{- if $.File -}}
+  {{- if $.File.Section -}}
+    {{- $section := partial "functions/page-source-project" . -}}
+
+    {{- $prefix := "" -}}
+    {{- if eq $section "gitlab" -}}
+      {{- $prefix = "/ee" -}}
+    {{- end }}
+
+    {{- $path := replace (replace $.File.Path "_index" "index" 1) ".md" ".html" 1 -}}
+
+    {{- printf "%s/%s" $prefix $path -}}
+  {{- end -}}
+{{- end -}}
