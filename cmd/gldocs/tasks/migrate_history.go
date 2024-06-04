@@ -12,7 +12,8 @@ func MigrateHistory(files []string) {
 
 // Match blockquotes that contain list items and specific keywords
 // See https://docs.gitlab.com/ee/development/documentation/versions.html#add-a-history-item
-var blockquoteListRegex = regexp.MustCompile(`(?mi)^>\s*([-*])\s*(.*(introduced|added|enabled|deprecated|changed|moved|recommended|removed|renamed|improved).*)$`)
+var firstLineRegex = regexp.MustCompile(`(?mi)^>\s*([-*])\s*(.*(introduced|added|enabled|deprecated|changed|moved|recommended|removed|renamed|improved).*)$`)
+var subsequentLineRegex = regexp.MustCompile(`(?mi)^>\s*([-*])\s*(.*)$`)
 
 func updateHistory(content []byte, filename string) (string, error) {
 	str, codeBlocks := ExtractCodeBlocks(string(content))
@@ -21,14 +22,14 @@ func updateHistory(content []byte, filename string) (string, error) {
 	var result string
 
 	for i := 0; i < len(lines); i++ {
-		match := blockquoteListRegex.FindStringSubmatch(lines[i])
+		match := firstLineRegex.FindStringSubmatch(lines[i])
 		if match != nil {
 			result += "{{< history >}}\n\n"
 			result += fmt.Sprintf("%s %s", match[1], match[2])
 
 			// Find consecutive matches; these are grouped within a single history shortcode
 			for j := i + 1; j < len(lines); j++ {
-				nextMatch := blockquoteListRegex.FindStringSubmatch(lines[j])
+				nextMatch := subsequentLineRegex.FindStringSubmatch(lines[j])
 				if nextMatch != nil {
 					result += "\n"
 					result += fmt.Sprintf("%s %s", nextMatch[1], nextMatch[2])
