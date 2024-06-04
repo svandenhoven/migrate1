@@ -41,6 +41,7 @@ Some text after the version history.
 > - Introduced in abc
 > - Deprecated in xyz
 > - [Removed](https://example.com) in abcdef
+> - Generally available in GitLab 16.7.
 `,
 			expected: `
 ## Another heading
@@ -50,6 +51,7 @@ Some text after the version history.
 - Introduced in abc
 - Deprecated in xyz
 - [Removed](https://example.com) in abcdef
+- Generally available in GitLab 16.7.
 
 {{< /history >}}
 `,
