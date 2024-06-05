@@ -62,11 +62,10 @@ export default {
     },
     isActiveItem(item) {
       const currentPath = window.location.pathname;
-      const relativeCurrentPath = currentPath.replace(this.baseUrl, "");
 
       return (
-        relativeCurrentPath.endsWith(`/${item.url}`) ||
-        relativeCurrentPath.endsWith(`/${item.url}/`)
+        currentPath.endsWith(`/${item.url}`) ||
+        currentPath.endsWith(`/${item.url}/`)
       );
     },
     processMenuData(currMenu) {
