@@ -4190,6 +4190,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"compare-versions@npm:^6.1.0":
+  version: 6.1.0
+  resolution: "compare-versions@npm:6.1.0"
+  checksum: 10c0/5378edc8a53ac98ed907da463e1d6c26f1ed2664006d6a0d54bbdf7f046a36c43e244740854fc0edfc1e09253b9a0b7c98d1282dfee9f6f1a87199599f611218
+  languageName: node
+  linkType: hard
+
 "concat-map@npm:0.0.1":
   version: 0.0.1
   resolution: "concat-map@npm:0.0.1"
@@ -5871,6 +5878,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"flush-promises@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "flush-promises@npm:1.0.2"
+  checksum: 10c0/d183449e54562f6262ebfcf2bf2e850d43c22561cafe600d1238d65c69bd32f355bcc3468546b1d51d3e77b678e686ff92cd15c774663581df58ca793690838a
+  languageName: node
+  linkType: hard
+
 "for-each@npm:^0.3.3":
   version: 0.3.3
   resolution: "for-each@npm:0.3.3"
@@ -6084,10 +6098,12 @@ __metadata:
     autoprefixer: "npm:^10.4.19"
     babel-core: "npm:^6.26.3"
     babel-jest: "npm:^29.7.0"
+    compare-versions: "npm:^6.1.0"
     dompurify: "npm:^3.1.5"
     emoji-regex: "npm:^10.3.0"
     eslint: "npm:^8.57.0"
     eslint-plugin-jest: "npm:^28.5.0"
+    flush-promises: "npm:^1.0.2"
     glob: "npm:^10.4.1"
     jest: "npm:^29.7.0"
     jest-environment-jsdom: "npm:^29.7.0"
