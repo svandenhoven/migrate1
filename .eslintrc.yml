@@ -9,3 +9,11 @@ env:
   jest/globals: true
 plugins:
   - jest
+rules:
+  # Disallow console.log while allowing other console methods.
+  no-console:
+    - error
+    - allow:
+        - info
+        - warn
+        - error

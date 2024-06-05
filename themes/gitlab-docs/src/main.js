@@ -2,6 +2,7 @@ import Vue from "vue";
 import tocbot from "tocbot";
 import SurveyBanner from "./components/survey_banner.vue";
 import SidebarMenu from "./components/sidebar_menu.vue";
+import VersionsMenu from "./components/versions_menu.vue";
 import "../assets/css/main.css";
 
 /**
@@ -95,6 +96,21 @@ document.addEventListener("DOMContentLoaded", () => {
               ?.getAttribute("content"),
           },
         });
+      },
+    }))();
+
+  // Versions menu
+  const versionsContainer = document.querySelector(
+    '[data-vue-app="versions-menu"]',
+  );
+  (() =>
+    new Vue({
+      el: versionsContainer,
+      components: {
+        VersionsMenu,
+      },
+      render(createElement) {
+        return createElement(VersionsMenu);
       },
     }))();
 });

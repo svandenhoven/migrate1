@@ -49,6 +49,26 @@ a.header-logo:hover {
     z-index: 500;
   }
 }
+/* Versions menu */
+.gl-disclosure-dropdown .gl-button.gl-button.btn-default {
+  background-color: var(--t-indigo-500);
+  box-shadow: none;
+}
+.gl-disclosure-dropdown .gl-button.gl-button.btn-default,
+.gl-disclosure-dropdown .gl-button.gl-button.btn-default .gl-icon {
+  color: var(--white);
+}
+/* Fill in styles that are not in Tailwind yet */
+/* https://gitlab.com/gitlab-org/technical-writing-group/gitlab-docs-hugo/-/merge_requests/87/diffs#note_1935946247 */
+.gl-new-dropdown-contents > li:not(:first-child) {
+  margin-top: .25rem;
+  padding-top: .25rem;
+  border-top: 1px solid var(--gray-200);
+}
+.gl-display-block,
+.gl-display-block\! { /* stylelint-disable-line selector-class-pattern */
+  display: block !important;
+}
 
 /* Global navigation */
 .global-nav {
