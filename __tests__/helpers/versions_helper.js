@@ -1,11 +1,15 @@
 /**
- * Creates a mock browser window object with a given path.
- * @param {String} pathname
+ * Creates a mock browser window object with a given path and/or href.
+ *
+ * @param {Object} options
+ *   Can include "href" or "pathname" properties
  */
-export const setWindowPath = (pathname) => {
+export const setWindowLocation = (options = {}) => {
+  const { pathname, href } = options;
   const location = {
     ...window.location,
-    pathname,
+    ...(pathname && { pathname }),
+    ...(href && { href }),
   };
   Object.defineProperty(window, "location", {
     writable: true,
@@ -14,12 +18,14 @@ export const setWindowPath = (pathname) => {
 };
 
 /**
- * Creates a mock gitlab-docs-version metatag.
- * @param {String} pathname
+ * Creates a mock metatag.
+ *
+ * @param {String} tagName
+ * @param {String} tagContent
  */
-export const setVersionMetatag = (version) => {
+export const setMetatag = (tagName, tagContent) => {
   const meta = document.createElement("meta");
-  meta.setAttribute("name", "gitlab-docs-version");
-  meta.setAttribute("content", version);
+  meta.setAttribute("name", tagName);
+  meta.setAttribute("content", tagContent);
   document.head.appendChild(meta);
 };

@@ -2,7 +2,7 @@
 import { GlDisclosureDropdown, GlDisclosureDropdownGroup } from "@gitlab/ui";
 import { compareVersions } from "compare-versions";
 import { getVersions, getArchivesVersions } from "../services/versions";
-import { isProduction } from "../helpers/environment";
+import { isProduction, relativeCurrentPath } from "../helpers/environment";
 import { HUGO_LAUNCH_VERSION } from "../helpers/constants";
 
 export default {
@@ -88,7 +88,7 @@ export default {
   methods: {
     // Returns the path to the current page for a given version
     versionedPagePath(versionNumber) {
-      let path = window.location.pathname;
+      let path = relativeCurrentPath();
 
       // Temporary handling for pre-Hugo paths
       // We can drop this when the menu no longer includes Nanoc versions of pages
@@ -106,10 +106,10 @@ export default {
           .split("/")
           .filter((n) => n)
           .slice(1) // Drop the active version prefix
-          .join("/")}`;
+          .join("/")}/`;
       }
 
-      if (versionNumber && versionNumber !== this.activeVersion) {
+      if (versionNumber && versionNumber !== this.versions.next) {
         path = `/${versionNumber}${path}`;
       }
 

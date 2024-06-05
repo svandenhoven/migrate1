@@ -2,7 +2,29 @@
  * Utilities for determining site environment.
  */
 
+/**
+ * Check if we're on a production domain
+ *
+ * We can drop gitlab-org.gitlab.io once we move back to
+ * the gitlab-docs project.
+ *
+ * @returns Boolean
+ */
 export function isProduction() {
-  const prodHosts = ["docs.gitlab.com", "localhost"];
+  const prodHosts = ["docs.gitlab.com", "localhost", "gitlab-org.gitlab.io"];
   return prodHosts.includes(window.location.hostname);
+}
+
+/**
+ * Get the URL path for the active page,
+ * relative to the base URL
+ *
+ * @returns String
+ */
+export function relativeCurrentPath() {
+  const baseUrl = document
+    .querySelector('meta[name="gitlab-docs-base-url"]')
+    ?.getAttribute("content");
+
+  return `/${window.location.href.replace(baseUrl, "")}`;
 }
