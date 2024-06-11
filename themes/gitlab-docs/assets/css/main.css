@@ -257,7 +257,7 @@ div.docs-content {
     border-bottom: 1px solid var(--purple-900);
     text-decoration: none;
   }
-  a[href^="http"]:not([href*="gitlab.com"]):not([href*="docs.gitlab-review.app"])::after {
+  a[href^="http"]:not([href*="gitlab.com"]):not([href*="docs.gitlab-review.app"]):not(.plantuml)::after {
     content: url("../gitlab_ui/svgs/external-link.svg");
     margin-left: 0.25rem;
     display: inline-block;

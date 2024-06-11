@@ -20,5 +20,9 @@
       });
     </script>
   {{ end }}
+
+  {{ if .Store.Get "hasPlantuml" }}
+    <script src="{{ absURL "" }}/vite/plantuml.js"></script>
+  {{ end }}
 </body>
 </html>
