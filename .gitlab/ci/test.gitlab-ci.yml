@@ -1,0 +1,61 @@
+################################################################################
+# Test stage jobs
+################################################################################
+
+test:go:
+  stage: test
+  needs: []
+  extends:
+    - .go-matrix-job
+  script:
+    - make go-tests
+
+test:jest:
+  stage: test
+  needs: []
+  extends:
+    - .frontend
+  script:
+    - apk add make
+    - make jest-tests
+
+test:markdown-links:
+  image:
+    name: lycheeverse/lychee:sha-${LYCHEE_VERSION}-alpine
+    entrypoint: [""]
+  stage: test
+  needs: []
+  script:
+    # See also markdown-link-tests in makefiles/Makefile.tests.mk
+    - lychee --version
+    - lychee --offline --include-fragments README.md **/*.md
+
+# Check that asdf/mise dependencies install correctly
+test:asdf-installation:
+  image: debian:${DEBIAN_VERSION}-slim
+  stage: test
+  needs: []
+  script:
+    - apt-get update && apt-get install -y --no-install-recommends curl git jq make python3-pip xz-utils
+    - git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v${ASDF_VERSION}
+    - source "$HOME/.asdf/asdf.sh"
+    # Set PIP_BREAK_SYSTEM_PACKAGES=1 because we mix Debian-installed Python packages and other Python packages.
+    - PIP_BREAK_SYSTEM_PACKAGES=1 make install-dependencies
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      changes:
+        - .tool-versions
+
+# Check docs content for Kramdown syntax
+# This can be removed after we've completed the migration to Hugo
+test:kramdown-audit:
+  image: hugomods/hugo:exts-${HUGO_VERSION}
+  stage: test
+  needs: []
+  allow_failure: true
+  script:
+    - apk update && apk upgrade
+    - apk add --no-cache curl coreutils make bash gcc libc-dev
+    - wget https://github.com/mikefarah/yq/releases/download/v${YQ_VERSION}/yq_linux_amd64 -O /usr/local/bin/yq
+    - chmod +x /usr/local/bin/yq
+    - make kramdown-audit

@@ -1,0 +1,46 @@
+################################################################################
+# Lint stage jobs
+################################################################################
+
+lint:frontend:
+  stage: lint
+  needs: []
+  extends:
+    - .frontend
+  script:
+    - apk add make
+    - make lint-frontend
+
+lint:markdown:
+  stage: lint
+  extends:
+    - .frontend
+  needs: []
+  script:
+    - apk add make
+    - make lint-markdown
+
+lint:go:
+  image: golangci/golangci-lint:v${GOLANGCI_LINT_VERSION}-alpine
+  stage: lint
+  needs: []
+  script:
+    - apk add make
+    - make lint-go
+
+lint:shell-scripts:
+  image: koalaman/shellcheck-alpine:v${SHELLCHECK_VERSION}
+  stage: lint
+  needs: []
+  script:
+    - apk add make
+    - make lint-shell-scripts
+
+lint:yaml:
+  stage: lint
+  extends:
+    - .frontend
+  needs: []
+  script:
+    - apk add make
+    - make lint-yaml
