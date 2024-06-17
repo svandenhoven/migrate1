@@ -31,6 +31,7 @@ yourself.
 To set up your workstation for GitLab Docs:
 
 1. Install either `asdf` or `mise`.
+1. Set up VS code editor using the [following settings](https://docs.gitlab.com/ee/development/fe_guide/tooling.html#vs-code-settings).
 1. Clone this project (`gitlab-docs-hugo`).
 1. Ensure you are in the `gitlab-docs-hugo` folder. Then run:
 
