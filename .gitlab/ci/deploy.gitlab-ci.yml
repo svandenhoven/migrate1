@@ -1,0 +1,16 @@
+################################################################################
+# deploy stage jobs
+################################################################################
+
+pages:
+  stage: deploy
+  script:
+    - echo "Pages accessible through ${CI_PAGES_URL}"
+  dependencies:
+    - build:compile_site
+  artifacts:
+    paths:
+      - public
+    expire_in: 1d
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
