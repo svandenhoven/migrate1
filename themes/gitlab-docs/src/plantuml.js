@@ -60,23 +60,48 @@ function convertBase64ToPlantUML(string) {
   return res;
 }
 
+// Render a warning banner for image render issues
+function renderErrorBanner(element, parent) {
+  const textDiv = document.createElement("div");
+  textDiv.textContent = "This diagram could not be rendered.";
+  const iconDiv = document.createElement("div");
+  iconDiv.classList.add("docs-error-icon");
+  textDiv.appendChild(iconDiv);
+  textDiv.classList.add("docs-error-box");
+  parent.replaceChild(textDiv, element);
+}
+
 const plantUmlElements = document.querySelectorAll(".language-plantuml");
 plantUmlElements.forEach(async (element) => {
   const parent = element.parentNode;
-  const s = decodeURIComponent(encodeURIComponent(element.textContent));
-  const imgElement = document.createElement("img");
-  const imgData = convertBase64ToPlantUML(await deflateCustom(s));
-  const imgSrc = `https://plantuml.gitlab-static.net/png/${imgData}`;
-  imgElement.setAttribute("src", imgSrc);
+  try {
+    const s = decodeURIComponent(encodeURIComponent(element.textContent));
+    const imgElement = document.createElement("img");
+    const imgData = convertBase64ToPlantUML(await deflateCustom(s));
 
-  // Create a link element
-  const linkElement = document.createElement("a");
-  linkElement.setAttribute("href", imgSrc);
-  linkElement.setAttribute("class", "plantuml");
-  linkElement.setAttribute("target", "_blank");
+    const imgSrc = `https://plantuml.gitlab-static.net/png/${imgData}`;
+    imgElement.setAttribute("src", imgSrc);
 
-  // Wrap the image element inside the link element
-  linkElement.appendChild(imgElement);
+    // Image load failed
+    imgElement.onerror = function onError() {
+      imgElement.style.display = "none";
+      renderErrorBanner(element, parent);
+      imgElement.onerror = null;
+    };
 
-  parent.replaceChild(linkElement, element);
+    // Image load successful
+    imgElement.onload = function onLoad() {
+      const linkElement = document.createElement("a");
+      linkElement.setAttribute("href", imgSrc);
+      linkElement.setAttribute("class", "plantuml");
+      linkElement.setAttribute("target", "_blank");
+
+      // Wrap the image element inside the link element
+      linkElement.appendChild(imgElement);
+      parent.replaceChild(linkElement, element);
+    };
+  } catch (e) {
+    // Catch decode URI error
+    renderErrorBanner(element, parent);
+  }
 });

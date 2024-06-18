@@ -376,6 +376,24 @@ div.docs-content {
     background-image: url("../gitlab_ui/svgs/review-warning.svg");
   }
 
+  /* Docs errors */
+  .docs-error-box {
+    padding: 1rem;
+    background: 1rem 1.25rem no-repeat;
+    background-color: var(--red-50);
+  }
+
+  /* Credit: https://medium.com/@no.steiner/change-svg-icons-color-with-css-only-ba6a4912e6ba */
+  .docs-error-icon {
+    width: 16px;
+    height: 16px;
+    margin: 4px 15px 0 0;
+    mask: url("../gitlab_ui/svgs/error.svg") no-repeat 50% 50%;
+    mask-size: cover;
+    background-color: var(--error-icon);
+    float: left;
+  }
+
   /* Diagrams */
   .mermaid {
     overflow: auto;
