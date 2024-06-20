@@ -1,5 +1,6 @@
 import Vue from "vue";
 import tocbot from "tocbot";
+import { expandCollapse } from "./utilities/collapse";
 import SurveyBanner from "./components/survey_banner.vue";
 import SidebarMenu from "./components/sidebar_menu.vue";
 import VersionsMenu from "./components/versions_menu.vue";
@@ -24,26 +25,9 @@ const addHeaderPermalinks = () => {
     });
 };
 
-/**
- * Expandable version history notes
- */
-const versionHistoryExpanders = () => {
-  document.querySelectorAll(".version-history button").forEach((button) => {
-    button.addEventListener("click", (event) => {
-      const historyList = event.currentTarget
-        .closest(".version-history")
-        .querySelector(".history-list");
-      const isExpanded = historyList.classList.toggle("gl-hidden");
-      // Update ARIA attributes
-      event.currentTarget.setAttribute("aria-expanded", !isExpanded);
-      historyList.setAttribute("aria-hidden", isExpanded);
-    });
-  });
-};
-
 document.addEventListener("DOMContentLoaded", () => {
+  expandCollapse();
   addHeaderPermalinks();
-  versionHistoryExpanders();
 
   /**
    * Set up the table of contents

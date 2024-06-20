@@ -50,12 +50,27 @@ a.header-logo:hover {
   }
 }
 /* Versions menu */
+.navbar-toggle {
+  width: 16px;
+  height: 16px;
+  background-color: var(--white);
+  mask-image: url("../gitlab_ui/svgs/ellipsis_h.svg");
+}
 .gl-disclosure-dropdown .gl-button.gl-button.btn-default {
   background-color: var(--t-indigo-500);
   box-shadow: none;
+  width: 100%;
+  justify-content: left;
+
+  @media (min-width: 992px) {
+    width: auto;
+    justify-content: center;
+  }
 }
 .gl-disclosure-dropdown .gl-button.gl-button.btn-default,
-.gl-disclosure-dropdown .gl-button.gl-button.btn-default .gl-icon {
+.gl-disclosure-dropdown .gl-button.gl-button.btn-default .gl-icon,
+.gl-disclosure-dropdown .gl-button.gl-button.btn-default:active:focus .gl-icon,
+.gl-disclosure-dropdown .gl-button.gl-button.btn-default .gl-icon:active {
   color: var(--white);
 }
 /* Fill in styles that are not in Tailwind yet */
@@ -69,6 +84,7 @@ a.header-logo:hover {
 .gl-display-block\! { /* stylelint-disable-line selector-class-pattern */
   display: block !important;
 }
+
 
 /* Global navigation */
 .global-nav {
@@ -172,7 +188,7 @@ div:has(> .sidebar-link):hover {
 }
 /* Sidebar overlay (small width) */
 .sidebar-overlay-open {
-  z-index: 999;
+  z-index: 40;
   position: fixed;
   margin-left: -2rem;
 
@@ -521,4 +537,22 @@ ul.docs-social a::before {
 }
 .youtube::before {
   background-image: url("../fa-icons/youtube.svg");
+}
+
+/* Bootstrap-style collapsible sections */
+.collapse {
+  display: block;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .5s cubic-bezier(0, 1, 0, 1);
+}
+.collapse.show {
+  max-height: 99em;
+  transition: max-height .5s ease-in-out;
+}
+.mobile-header.collapse {
+  @media (min-width: 992px) {
+    max-height: initial;
+    display: block;
+  }
 }

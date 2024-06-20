@@ -1,6 +1,23 @@
+/* Header navbar */
 .navbar {
   height: var(--header-height);
   width: 100%;
+
+  @media (max-width: 991px) {
+    align-items: normal;
+  }
+}
+.navbar:has(.collapse.show) {
+  @media (max-width: 991px) {
+    height: var(--header-mobile-open-height);
+  }
+}
+body.collapsible-mobile-header-open {
+  @media (max-width: 991px) {
+    main {
+      padding-top: calc(var(--header-mobile-open-height));
+    }
+  }
 }
 
 main {

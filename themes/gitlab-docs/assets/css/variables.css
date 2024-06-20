@@ -52,6 +52,7 @@
  */
 :root {
   --header-height: 3rem;
+  --header-mobile-open-height: 11rem;
   --footer-height: 9rem;
   --header-offset: calc(var(--header-height) + 1rem);
 

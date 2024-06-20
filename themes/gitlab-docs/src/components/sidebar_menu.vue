@@ -119,7 +119,7 @@ export default {
     <transition name="fade">
       <div
         v-if="isOverlayOpen"
-        class="lg:gl-hidden gl-display-block gl-z-50 modal-backdrop"
+        class="lg:gl-hidden gl-display-block gl-z-30 modal-backdrop"
         aria-hidden="true"
         @click="toggleOverlay('close')"
       ></div>
@@ -127,6 +127,7 @@ export default {
     <gl-button
       icon="hamburger"
       class="lg:gl-hidden gl-mt-7"
+      aria-label="Toggle sidebar"
       @click="toggleOverlay('open')"
     />
 
