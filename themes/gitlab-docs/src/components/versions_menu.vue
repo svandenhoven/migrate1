@@ -128,7 +128,7 @@ export default {
 <template>
   <gl-disclosure-dropdown
     :toggle-text="`v${activeVersion}`"
-    class="md:gl-mr-4 md:gl-ml-3"
+    class="gl-my-4 lg:gl-my-0 lg:gl-mr-4 lg:gl-ml-3"
     data-testid="versions-menu"
   >
     <gl-disclosure-dropdown-group

@@ -1,13 +1,15 @@
 <a href="#skipTarget" class="gl-sr-only skip-link">Skip to main content</a>
 
-<a class="header-logo gitlab-display-flex" href="{{ absURL "" }}">
+<a class="header-logo gitlab-display-flex gl-pt-4 lg:gl-pt-0" href="{{ absURL "" }}">
   <img src="{{ absURL "" }}/gitlab-logo-header.svg" alt="GitLab documentation home" class="logo">
   <span class="border-light gl-ml-2 gl-pl-3 gl-py-1 gl-border-0 gl-border-l gl-border-solid gl-border-gray-100 gl-vertical-align-middle gl-text-white">Docs</span>
 </a>
 
-<div class="gl-hidden md:gl-block gl-text-base">
-  <div class="gl-flex gl-flex-row gl-items-center gl-mb-0">
-    <a class="!gl-text-white gl-mr-5" href="https://about.gitlab.com/releases/categories/releases/" target="_blank">What's new?</a>
+<button class="lg:gl-hidden gl-mt-5 gl-border-0	navbar-toggle" aria-label="Toggle navbar" data-toggle="collapse" data-target=".mobile-header"></button>
+
+<div class="gl-w-full lg:gl-w-auto lg:gl-block gl-text-base mobile-header collapse">
+  <div class="gl-flex gl-flex-col lg:gl-flex-row lg:gl-items-center gl-mb-0">
+    <a class="!gl-text-white gl-mr-5 gl-w-fit" href="https://about.gitlab.com/releases/categories/releases/" target="_blank">What's new?</a>
 
     {{ if and (ne .RelPermalink "/archives/") (ne .RelPermalink "/search/") }}
       <div data-vue-app="versions-menu"></div>
@@ -19,7 +21,7 @@
           {{ $freeTrialUrl = "https://about.gitlab.com/free-trial/?hosted=self-managed" }}
         {{ end }}
       {{ end }}
-      <a class="cta-button" href="{{ $freeTrialUrl }}" target="_blank" rel="noopener noreferrer" role="button">
+      <a class="cta-button gl-mb-3 lg:gl-mb-0" href="{{ $freeTrialUrl }}" target="_blank" rel="noopener noreferrer" role="button">
         Get free trial
       </a>
   </div>
