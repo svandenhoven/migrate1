@@ -16,7 +16,8 @@ We have a few unique requirements for shortcodes in this project:
 - Shortcode content will not render in the in-product docs (`/help`). If adding a new shortcode, you need to
   consider how it will render in `/help`, where it will appear as the plaintext shortcode and not the rendered
   version of it.
-- Shortcodes must include error handling that returns an actionable message when they contain invalid content.
+- Shortcodes that accept parameters must include error handling that returns an actionable message when
+they contain invalid content.
   See [`validate-shortcode.html`](../themes/gitlab-docs/layouts/partials/functions/validate-shortcode.html) and
   [`alert.html`](../themes/gitlab-docs/layouts/shortcodes/alert.html) as an example.
 
@@ -28,7 +29,7 @@ This poses some limitations:
 - We can't easily write tests for these functions.
 - The functions can only return a string, or throw an error.
   - If you'd normally return a boolean, use "true" or "false" as your return values. See
-  [`stable-version.html`](../themes/gitlab-docs/layouts/partials/functions/is-stable-version.html) as an example.
+  [`is-stable-version.html`](../themes/gitlab-docs/layouts/partials/functions/is-stable-version.html) as an example.
 - You cannot use most standard Go functions. Review [Hugo's documentation](https://gohugo.io/functions/) for available functions.
 
 When adding a new function:
