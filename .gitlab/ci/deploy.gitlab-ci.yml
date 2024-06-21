@@ -8,8 +8,6 @@ pages:
   stage: deploy
   script:
     - echo "Pages accessible through ${CI_PAGES_URL}"
-  needs:
-    - build:compile_site
   artifacts:
     paths:
       - public
