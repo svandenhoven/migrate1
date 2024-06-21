@@ -1,6 +1,6 @@
 # GitLab Docs site
 
-The GitLab Docs site contains documentation from the following projects:
+The GitLab Docs site comprises documentation from the following projects:
 
 - [GitLab](https://gitlab.com/gitlab-org/gitlab)
 - [Omnibus GitLab](https://gitlab.com/gitlab-org/omnibus-gitlab)

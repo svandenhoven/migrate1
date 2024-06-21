@@ -22,8 +22,10 @@ include:
 
 .security-rules:
   rules:
+    - if: '$DOCS_PROJECT_PIPELINE_TYPE == "Hourly site deployment pipeline"'
     - if: '$DOCS_PROJECT_PIPELINE_TYPE =~ /^MR pipeline.*/'
     - if: '$DOCS_PROJECT_PIPELINE_TYPE == "Default branch pipeline"'
+    - if: '$DOCS_PROJECT_PIPELINE_TYPE == "Stable branch pipeline"'
 
 #
 # Dependency scanning job overrides
