@@ -7,6 +7,7 @@ lint:frontend:
   needs: []
   extends:
     - .frontend
+    - .rules_dev_and_prod
   script:
     - apk add make
     - make lint-frontend
@@ -15,22 +16,27 @@ lint:markdown:
   stage: lint
   extends:
     - .frontend
+    - .rules_dev_and_prod
   needs: []
   script:
     - apk add make
     - make lint-markdown
 
 lint:go:
-  image: golangci/golangci-lint:v${GOLANGCI_LINT_VERSION}-alpine
   stage: lint
+  image: golangci/golangci-lint:v${GOLANGCI_LINT_VERSION}-alpine
+  extends:
+    - .rules_dev_and_prod
   needs: []
   script:
     - apk add make
     - make lint-go
 
 lint:shell-scripts:
-  image: koalaman/shellcheck-alpine:v${SHELLCHECK_VERSION}
   stage: lint
+  image: koalaman/shellcheck-alpine:v${SHELLCHECK_VERSION}
+  extends:
+    - .rules_dev_and_prod
   needs: []
   script:
     - apk add make
@@ -40,6 +46,7 @@ lint:yaml:
   stage: lint
   extends:
     - .frontend
+    - .rules_dev_and_prod
   needs: []
   script:
     - apk add make

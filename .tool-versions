@@ -1,5 +1,5 @@
 # Versions specified here are development versions
-# See also .gitlab-ci.yml file for production versions
+# See .gitlab-ci.yml for production versions
 golang 1.22.3 1.21.10
 golangci-lint 1.58.1
 hugo extended_0.126.3

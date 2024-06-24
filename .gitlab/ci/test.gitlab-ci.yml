@@ -6,7 +6,11 @@ test:go:
   stage: test
   needs: []
   extends:
-    - .go-matrix-job
+    - .rules_dev_and_prod
+  parallel:
+    matrix:
+      # Should match GO_VERSION_PREVIOUS and GO_VERSION variables declared in `.gitlab-ci.yml`
+      - GO_VERSION: ["1.21", "1.22"]
   script:
     - make go-tests
 
@@ -15,25 +19,30 @@ test:jest:
   needs: []
   extends:
     - .frontend
+    - .rules_dev_and_prod
   script:
     - apk add make
     - make jest-tests
 
 test:markdown-links:
+  stage: test
+  extends:
+    - .rules_docs
   image:
     name: lycheeverse/lychee:sha-${LYCHEE_VERSION}-alpine
     entrypoint: [""]
-  stage: test
   needs: []
   script:
     # See also markdown-link-tests in makefiles/Makefile.tests.mk
     - lychee --version
-    - lychee --offline --include-fragments README.md **/*.md
+    - lychee --offline --include-fragments README.md doc/
 
 # Check that asdf/mise dependencies install correctly
 test:asdf-installation:
-  image: debian:${DEBIAN_VERSION}-slim
   stage: test
+  extends:
+    - .rules_asdf
+  image: debian:${DEBIAN_VERSION}-slim
   needs: []
   script:
     - apt-get update && apt-get install -y --no-install-recommends curl git jq make python3-pip xz-utils
@@ -41,16 +50,14 @@ test:asdf-installation:
     - source "$HOME/.asdf/asdf.sh"
     # Set PIP_BREAK_SYSTEM_PACKAGES=1 because we mix Debian-installed Python packages and other Python packages.
     - PIP_BREAK_SYSTEM_PACKAGES=1 make install-dependencies
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
-      changes:
-        - .tool-versions
 
 # Check docs content for Kramdown syntax
 # This can be removed after we've completed the migration to Hugo
 test:kramdown-audit:
-  image: hugomods/hugo:exts-${HUGO_VERSION}
   stage: test
+  extends:
+    - .rules_dev
+  image: hugomods/hugo:exts-${HUGO_VERSION}
   needs: []
   allow_failure: true
   script:
