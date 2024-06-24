@@ -6,6 +6,8 @@
 # See doc/post-processing.md for details.
 prebuild:fetch_data:
   stage: prebuild
+  extends:
+    - .rules_dev_and_prod
   script:
     - go run cmd/gldocs/main.go fetch
   artifacts:
@@ -17,11 +19,11 @@ prebuild:compile_frontend:
   stage: prebuild
   extends:
     - .frontend
+    - .rules_dev_and_prod
   script:
     - yarn build-prod
   needs:
     - job: prebuild:fetch_data
-      artifacts: true
   cache:
     key:
       files:
@@ -41,6 +43,7 @@ build:compile_site:
   stage: build
   extends:
     - .yarn_install
+    - .rules_dev_and_prod
   script:
     # Install additional dependencies
     - apk update && apk upgrade
@@ -53,13 +56,12 @@ build:compile_site:
     - make clone-docs-projects
     # Compile the site
     - hugo --gc --minify
-  after_script:
     # Compress files with gzip
     - find public -type f -regex '.*\.\(css\|html\|js\|txt\|xml\)$' -exec gzip -f -k {} \;
     # Print the final size of the public directory
     - SIZE_AFTER_COMPRESS=$(du -sh public/ | awk '{print $1}')
     - echo -e "Size after adding compressed versions ..... $SIZE_AFTER_COMPRESS"
-  dependencies:
+  needs:
     - prebuild:compile_frontend
   artifacts:
     paths:
