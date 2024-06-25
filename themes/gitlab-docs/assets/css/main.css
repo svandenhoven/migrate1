@@ -349,6 +349,16 @@ div.docs-content {
   pre {
     padding: 1rem 0.75rem;
   }
+
+  /* Code sample for archives page only */
+  .archives-list pre.highlight {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--gray);
+  }
+
   *:not(pre)>code {
     background-color: var(--gray-50);
     color: var(--gray-900);
