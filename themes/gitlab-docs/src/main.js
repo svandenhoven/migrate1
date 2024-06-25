@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
     positionFixedSelector: ".js-toc",
     contentSelector: ".docs-content",
     headingSelector: "h2, h3, h4",
-    ignoreSelector: ".help-feedback h2, .help-feedback h3",
+    ignoreSelector: ".help-feedback h2, .help-feedback h3, .archives-list h3",
     collapseDepth: 3,
     // These should match our header-offset CSS variable.
     // header-offset = 4rem = 64px
