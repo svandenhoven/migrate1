@@ -86,6 +86,7 @@ export default defineConfig({
             },
           ],
           copyOnce: true,
+          hook: "writeBundle",
         }),
         yaml(),
         vue2(),
