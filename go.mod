@@ -3,9 +3,9 @@ module gitlab.com/gitlab-org/technical-writing-group/gitlab-docs-hugo
 go 1.21
 
 require (
-	github.com/spf13/cobra v1.8.0
+	github.com/spf13/cobra v1.8.1
 	github.com/stretchr/testify v1.9.0
-	golang.org/x/exp v0.0.0-20231219180239-dc181d75b848
+	golang.org/x/exp v0.0.0-20240613232115-7f521ea00fb8
 	gopkg.in/yaml.v3 v3.0.1
 )
 

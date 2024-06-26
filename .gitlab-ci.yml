@@ -18,7 +18,7 @@ variables:
   GO_VERSION: "1.22"
   GO_VERSION_PREVIOUS: "1.21"
   GOLANGCI_LINT_VERSION: "1.58.1"
-  HUGO_VERSION: "0.126.3"
+  HUGO_VERSION: "0.128.0"
   # Lychee Docker image tags use SHAs
   LYCHEE_VERSION: "0a54079"
   NODE_VERSION: "20"
