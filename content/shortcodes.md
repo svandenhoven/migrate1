@@ -181,3 +181,51 @@ This is an icon: {{< icon name="tanuki" >}}
 ```text
 This is an icon: {{</* icon name="tanuki" */>}}
 ```
+
+## Tabs
+
+[Nanoc version: Tabs](https://docs.gitlab.com/ee/development/documentation/styleguide/#tabs)
+
+{{< tabs >}}
+
+{{< tab title="Tab one" >}}
+
+This is content in the first tab.
+
+- This is a list
+- It's inside a tab
+
+{{< tab title="Tab two" >}}
+
+We can also render other shortcodes inside the tabs, like this alert box:
+
+{{< alert type="note" >}}
+
+Look at this box!
+
+{{< /alert >}}
+
+{{< /tabs >}}
+
+```text
+{{</* tabs */>}}
+
+{{</* tab title="Tab one" */>}}
+
+This is content in the first tab.
+
+- This is a list
+- It's inside a tab
+
+{{</* tab title="Tab two" */>}}
+
+We can render other shortcodes inside the tabs, like this alert box:
+
+{{</* alert type="note" */>}}
+
+Look at this box!
+
+{{</* /alert */>}}
+
+{{</* /tabs */>}}
+```

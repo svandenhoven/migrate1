@@ -477,6 +477,51 @@ div.docs-content {
     }
   }
 
+  /* Tabbed content */
+  .gl-tabs .gl-tabs-nav {
+    margin-bottom: 0;
+  }
+  a.gl-tab-nav-item,
+  a.gl-tab-nav-item:hover {
+    border: 0;
+    color: inherit;
+    font-size: 1rem;
+  }
+  .gl-tab-nav-item-active:active,
+  .gl-tab-nav-item-active:focus,
+  .gl-tab-nav-item-active:focus:active {
+    box-shadow: inset 0 -2px 0 0 var(--t-indigo-500), 0 0 0 1px var(--white);
+  }
+  .gl-tab-nav-item-active:focus-visible {
+    box-shadow: 0 0 0 1px var(--white), 0 0 0 3px var(--blue-400);
+  }
+  .gl-tabs-nav li.nav-item {
+    margin: 0;
+  }
+  .gl-tab-content {
+    padding-top: 1rem;
+    line-height: 1.5em;
+    font-size: 1rem;
+    p,
+    ul,
+    ol,
+    code,
+    pre {
+      margin-top: 0;
+    }
+  
+    .tab-pane p {
+      margin-bottom: 1.5em;
+    }
+  
+    ol {
+      list-style-type: decimal;
+      ol {
+        list-style-type: lower-alpha;
+      }
+    }
+  }  
+
   /* Other elements */
   li {
     margin-bottom: 0.5rem;

@@ -1,8 +1,10 @@
 import Vue from "vue";
 import tocbot from "tocbot";
 import { expandCollapse } from "./utilities/collapse";
-import SurveyBanner from "./components/survey_banner.vue";
+import { getNextUntil } from "./utilities/dom";
 import SidebarMenu from "./components/sidebar_menu.vue";
+import SurveyBanner from "./components/survey_banner.vue";
+import TabbedContent from "./components/tabbed_content.vue";
 import VersionsMenu from "./components/versions_menu.vue";
 import "../assets/css/main.css";
 
@@ -97,4 +99,34 @@ document.addEventListener("DOMContentLoaded", () => {
         return createElement(VersionsMenu);
       },
     }))();
+
+  // Tabs
+  const tabsetSelector = '[data-vue-app="docs-tabs"]';
+  document.querySelectorAll(tabsetSelector).forEach((tabset) => {
+    const tabTitles = [];
+    const tabContents = [];
+
+    tabset.querySelectorAll(".tab-title").forEach((tab) => {
+      tabTitles.push(tab.innerText);
+      tabContents.push(getNextUntil(tab, ".tab-title"));
+    });
+
+    const tabsContainer = document.querySelector(tabsetSelector);
+    (() =>
+      new Vue({
+        el: tabsContainer,
+        components: {
+          TabbedContent,
+        },
+        render(createElement) {
+          return createElement(TabbedContent, {
+            props: {
+              tabTitles,
+              tabContents,
+              responsive: false,
+            },
+          });
+        },
+      }))();
+  });
 });
