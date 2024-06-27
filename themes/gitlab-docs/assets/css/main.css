@@ -493,6 +493,17 @@ div.docs-content {
 /* Help & Feedback */
 .help-feedback {
   background-color: var(--t-indigo-50);
+  width: 100%;
+  border: 0;
+  text-align: left;
+
+  /* Help and Feedback button */
+  button {
+    border: 0;
+    background: none;
+    width: 100%;
+    text-align: left;
+  }
 
   h2 {
     font-size: 1.067rem;
@@ -512,10 +523,41 @@ div.docs-content {
     margin-bottom: 0;
   }
 
+  .help-feedback-container {
+    button[aria-expanded="true"] .help-feedback-toggle{
+      transform: rotate(-180deg);
+      transition: 0.35s ease-in-out;
+    }
+
+    button[aria-expanded="false"] .help-feedback-toggle{
+      transition: 0.35s ease-in-out;
+    }
+  }
+
+  .help-feedback-toggle {
+    width: 16px;
+    height: 16px;
+    mask: url("../gitlab_ui/svgs/chevron-lg-down.svg") no-repeat 50% 50%;
+    mask-size: cover;
+    background-color: var(--t-indigo-500);
+    float: right;
+  }
+
+  .help-feedback-question-icon {
+    width: 16px;
+    height: 16px;
+    margin: 4px 15px 0 0;
+    mask: url("../gitlab_ui/svgs/question.svg") no-repeat 50% 50%;
+    mask-size: cover;
+    background-color: var(--t-indigo-500);
+    float: left;
+  }
+
   .gl-button:hover {
     border-bottom: 0;
   }
 }
+
 
 /* Footer */
 ul.docs-footer-links a:hover,
@@ -560,6 +602,12 @@ ul.docs-social a::before {
   max-height: 99em;
   transition: max-height .5s ease-in-out;
 }
+/* Needed for smooth collapse/expand - Feedback collapse/expand feature only */
+/* If display: none like default - the slow transition does not happen */
+.help-feedback .collapse:not(.show) {
+  display: block;
+}
+
 .mobile-header.collapse {
   @media (min-width: 992px) {
     max-height: initial;
