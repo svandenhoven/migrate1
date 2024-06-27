@@ -1,0 +1,7 @@
+<div class="tab-title">
+  {{ with .Get "title" }}
+    {{ . }}
+  {{ else }}
+    {{ errorf "The %q shortcode requires a 'title' value. See %s" .Name .Position }}
+  {{ end }}
+</div>
