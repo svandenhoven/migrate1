@@ -15,6 +15,10 @@
 
 <!-- Tailwind utilities and custom CSS -->
 <link rel="stylesheet" href="{{ absURL "" }}/vite/main.css">
+{{ if .IsHome }}
+    <link rel="stylesheet" href="{{ absURL "" }}/vite/home.css">
+    <link rel="stylesheet" href="{{ absURL "" }}/vite/home.js">
+{{ end }}
 
 <!-- Custom tags -->
 <meta name="gitlab-docs-base-url" content="{{ absURL "" }}">

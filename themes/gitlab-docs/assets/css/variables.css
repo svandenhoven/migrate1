@@ -38,6 +38,8 @@
   --blue-600: #1068bf;
   --green-50: #ecf4ee;
   --green-100: #c3e6cd;
+  --purple-100: #e1d8f9;
+  --purple-500: #7b58cf;
   --purple-700: #5943b6;
   --purple-900: #2f2a6b;
   --red-50: #fcf1ef;
@@ -47,6 +49,8 @@
   --availability-border: #fca326;
   --youtube-logo: #F00;
   --error-icon: #c91c00;
+  /* Landing page colors */
+  --get-support-card-hover-shadow: rgba(36, 34, 66, 0.25);
 }
 
 /**
