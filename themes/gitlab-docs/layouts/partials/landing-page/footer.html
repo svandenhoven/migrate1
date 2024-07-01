@@ -1,0 +1,14 @@
+<section aria-labelledby="footer" class="footer-section lg:gl-flex">
+    <div class="container lg:gl-text-center">
+        <a href="https://about.gitlab.com/company/">About GitLab</a>
+        {{ partial "edit-link.html" (dict "Context" . "editText" "View page source" "linkType" "source") }}
+        {{ partial "edit-link.html" (dict "Context" . "editText" "Edit in Web IDE" "linkType" "ide") }}
+        <a href="https://about.gitlab.com/privacy/">Privacy Statement</a>
+        <!-- TODO: OneTrust Cookies Settings button: Enable this button only in production -->
+        <!-- <button id="ot-sdk-btn" class="ot-sdk-show-settings">Cookie Settings</button> -->
+        <a href="https://about.gitlab.com/community/contribute/">Please contribute</a>
+        <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="license noopener noreferrer" class="xl:gl-ml-5 gl-mt-5 xl:gl-mt-0">
+        <img src="{{ "by-sa.svg" | relURL }}" alt="Creative Commons License"/>
+        </a>
+    </div>
+</section>
