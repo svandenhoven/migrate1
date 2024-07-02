@@ -6100,6 +6100,7 @@ __metadata:
     jest: "npm:^29.7.0"
     jest-environment-jsdom: "npm:^29.7.0"
     jsdom: "npm:^24.1.0"
+    lodash: "npm:^4.17.21"
     markdownlint-cli2: "npm:^0.13.0"
     mermaid: "npm:^10.9.1"
     pikaday: "npm:^1.8.2"
@@ -6111,6 +6112,7 @@ __metadata:
     stylelint: "npm:^16.6.1"
     tailwindcss: "npm:^3.4.4"
     tocbot: "npm:^4.28.2"
+    v-click-outside: "npm:^3.2.0"
     vite: "npm:^5.3.1"
     vue: "npm:2.7.16"
     vue-template-compiler: "npm:^2.7.16"
@@ -11107,6 +11109,13 @@ __metadata:
   bin:
     uvu: bin.js
   checksum: 10c0/ad32eb5f7d94bdeb71f80d073003f0138e24f61ed68cecc8e15d2f30838f44c9670577bb1775c8fac894bf93d1bc1583d470a9195e49bfa6efa14cc6f4942bff
+  languageName: node
+  linkType: hard
+
+"v-click-outside@npm:^3.2.0":
+  version: 3.2.0
+  resolution: "v-click-outside@npm:3.2.0"
+  checksum: 10c0/f4c361b5f76dc7b717d87cde2a75b64528ea19d6f1ec6eb3832df69c8e3676d7e449357d1187296e2c3b02d864e5d759bfe78b4da86ad11bfcf73bdd5ad08783
   languageName: node
   linkType: hard
 

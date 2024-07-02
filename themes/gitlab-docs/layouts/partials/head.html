@@ -24,3 +24,9 @@
 <meta name="gitlab-docs-base-url" content="{{ absURL "" }}">
 <meta name="gitlab-docs-version" content="{{ partial "functions/site-version" . }}">
 <meta name="gitlab-docs-legacy-path" content="{{ partial "functions/legacy-path" . }}">
+
+{{ if or (eq (getenv "SEARCH_BACKEND") "google") (eq (getenv "SEARCH_BACKEND") "") }}
+  <script>const GOOGLE_SEARCH_KEY = '{{ getenv "GOOGLE_SEARCH_KEY" }}';</script>
+  <script type="module" src="{{ absURL "" }}/vite/google_search.js"></script>
+  <script type="module" src="{{ absURL "" }}/vite/history.js"></script>
+{{ end }}

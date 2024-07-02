@@ -19,7 +19,7 @@ const GITLAB_THEME_ASSETS = [
 
 // Process all JS files in the theme src directory.
 // See https://rollupjs.org/configuration-options/#input
-const inputs = globSync(`${THEME_PATH}/src/*.js`).reduce((entries, file) => {
+const inputs = globSync(`${THEME_PATH}/src/**/*.js`).reduce((entries, file) => {
   const name = path.basename(file);
   return { ...entries, [name]: file };
 }, {});

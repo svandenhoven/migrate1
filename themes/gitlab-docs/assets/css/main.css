@@ -509,18 +509,18 @@ div.docs-content {
     pre {
       margin-top: 0;
     }
-  
+
     .tab-pane p {
       margin-bottom: 1.5em;
     }
-  
+
     ol {
       list-style-type: decimal;
       ol {
         list-style-type: lower-alpha;
       }
     }
-  }  
+  }
 
   /* Other elements */
   li {
@@ -647,15 +647,81 @@ ul.docs-social a::before {
   max-height: 99em;
   transition: max-height .5s ease-in-out;
 }
-/* Needed for smooth collapse/expand - Feedback collapse/expand feature only */
-/* If display: none like default - the slow transition does not happen */
-.help-feedback .collapse:not(.show) {
-  display: block;
-}
-
 .mobile-header.collapse {
   @media (min-width: 992px) {
     max-height: initial;
     display: block;
   }
+}
+/* Needed for smooth collapse/expand */
+.help-feedback .collapse:not(.show) {
+  display: block;
+}
+
+/* Search */
+.navbar {
+  .search-form,
+  .gs-wrapper,
+  .gs-results {
+    width: var(--search-sm-width);
+    @media (min-width: 768px) {
+      width: var(--search-md-width);
+    }
+    @media (min-width: 992px) {
+      width: var(--search-lg-width);
+    }
+  }
+  .gs-results {
+    margin-top: 1px;
+  }
+  .search-form .input-group-append {
+    background-color: inherit;
+  }
+}
+.gl-search-box-by-type-input-borderless,
+.gl-search-box-by-type-input-borderless.gl-form-input {
+  padding: 0.5rem 1.75rem 0.5rem 2rem;
+  border-radius: 0.125rem;
+}
+.gl-search-box-by-type-input-borderless.gl-form-input:not(.form-control-plaintext):focus,
+.gl-search-box-by-type-input-borderless:not(.form-control-plaintext):focus {
+  box-shadow: inset 0 0 0 2px var(--blue-400);
+}
+.gl-form-input.gl-search-box-by-click-input {
+  height: auto;
+}
+.gs-wrapper kbd {
+  display: none;
+  @media (min-width: 768px) {
+    display: inline;
+    top: 0.25rem;
+    right: 0.3rem;
+    font-size: 0.75rem;
+  }
+}
+.gs-results a:hover,
+.gs-results a:focus {
+  text-decoration: none;
+  background-color: var(--gray-50);
+  color: var(--gray-700);
+  outline: none;
+}
+.gl-search-box-by-click {
+  width: var(--search-lg-width);
+}
+
+/* Search overlay */
+body.home .modal-backdrop {
+  display: none;
+}
+.modal-backdrop {
+  top: var(--header-height);
+}
+
+/* Search results page */
+html.search-results {
+  overflow-y: scroll;
+}
+p.result-snippet {
+  font-size: 0.875rem;
 }

@@ -1,5 +1,5 @@
 import { JSDOM } from "jsdom";
-import { expandCollapse } from "../../themes/gitlab-docs/src/utilities/collapse";
+import { expandCollapse } from "../../themes/gitlab-docs/src/features/collapse";
 
 describe("expandCollapse", () => {
   let dom;

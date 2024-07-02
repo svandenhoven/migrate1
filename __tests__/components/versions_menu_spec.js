@@ -6,9 +6,9 @@ import { mount } from "@vue/test-utils";
 import flushPromises from "flush-promises";
 import VersionsMenu from "../../themes/gitlab-docs/src/components/versions_menu.vue";
 import * as versions from "../../themes/gitlab-docs/src/services/versions";
-import * as environment from "../../themes/gitlab-docs/src/helpers/environment";
+import * as environment from "../../themes/gitlab-docs/src/utils/environment";
 import { mockVersions, mockArchiveVersions } from "../__mocks__/versions_mock";
-import { setWindowLocation, setMetatag } from "../helpers/versions_helper";
+import { setWindowLocation, setMetatag } from "../helpers/jest_helpers";
 
 describe("component: VersionsMenu", () => {
   const productionUrl = "https://docs.gitlab.com";
