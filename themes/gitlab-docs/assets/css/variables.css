@@ -4,6 +4,7 @@
  */
 :root {
   /* Indigo theme */
+  --t-indigo-10: #f8f8ff;
   --t-indigo-50: #f1f1ff;
   --t-indigo-100: #dbdbf8;
   --t-indigo-200: #c7c7f2;
@@ -51,6 +52,9 @@
   --error-icon: #c91c00;
   /* Landing page colors */
   --get-support-card-hover-shadow: rgba(36, 34, 66, 0.25);
+  --ref-arc-background-black-100: rgba(255, 255, 255, 0.16);
+  --ref-arc-background-black-0: rgba(255, 255, 255, 0);
+  --ref-arc-background-indigo-950: #32304e; /* Couldn't find a better match on Pajamas */
 }
 
 /**

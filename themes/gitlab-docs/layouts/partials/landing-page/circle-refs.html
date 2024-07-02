@@ -1,0 +1,24 @@
+{{/*
+    Creates the circle links in Reference Architecture section of the homepage.
+*/}}
+{{ $more_styling := ""}}
+{{ if .extra_styling }}
+    {{ $more_styling = .extra_styling }}
+{{ end }}
+
+{{ $col_md := "col-md-3"}}
+{{ if .second_row }}
+    {{ $col_md = "col-md-4" }}
+{{ end }}
+
+<li class="{{ $col_md }} col-6 gl-flex gl-items-center gl-justify-center gl-py-3 gl-my-2 md:gl-py-0 md:gl-my-0 {{ $more_styling }}">
+    <div class="circle rounded-circle">
+    <a class="gl-text-white" href="{{ absURL "" }}{{ .url }}">
+        <span class="gl-block title gl-pt-7">{{ .total_users}}</span>
+        <span class="gl-block sub-title">users</span>
+        <span class="gl-block">
+        <img src="{{ "arrow-right.svg" | relURL }}" alt="" />
+        </span>
+    </a>
+    </div>
+</li>
