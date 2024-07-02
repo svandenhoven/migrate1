@@ -77,4 +77,8 @@
   --sidebar-collapsed-width: 3.25rem;
   --sidebar-indent: 0.75rem;
   --sidebar-button-height: 2.5rem;
+
+  --search-sm-width: 90vw;
+  --search-md-width: 14rem;
+  --search-lg-width: 25rem;
 }

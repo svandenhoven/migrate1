@@ -1,7 +1,7 @@
 <script>
 import { GlButton } from "@gitlab/ui";
 import menuDataRaw from "../../../../data/navigation.yaml";
-import { NAV_BREAKPOINT } from "../helpers/constants";
+import { NAV_BREAKPOINT } from "../utils/constants";
 import MenuItem from "./sidebar_menu_item.vue";
 
 export default {

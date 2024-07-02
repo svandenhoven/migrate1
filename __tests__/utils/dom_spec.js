@@ -1,5 +1,5 @@
 import { JSDOM } from "jsdom";
-import { getNextUntil } from "../../themes/gitlab-docs/src/utilities/dom";
+import { getNextUntil } from "../../themes/gitlab-docs/src/utils/dom";
 
 describe("getNextUntil", () => {
   let dom;

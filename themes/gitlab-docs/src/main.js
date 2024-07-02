@@ -1,7 +1,8 @@
 import Vue from "vue";
 import tocbot from "tocbot";
-import { expandCollapse } from "./utilities/collapse";
-import { getNextUntil } from "./utilities/dom";
+import { expandCollapse } from "./features/collapse";
+import { getNextUntil } from "./utils/dom";
+import { trackPageHistory } from "./search/history";
 import SidebarMenu from "./components/sidebar_menu.vue";
 import SurveyBanner from "./components/survey_banner.vue";
 import TabbedContent from "./components/tabbed_content.vue";
@@ -30,6 +31,7 @@ const addHeaderPermalinks = () => {
 document.addEventListener("DOMContentLoaded", () => {
   expandCollapse();
   addHeaderPermalinks();
+  trackPageHistory();
 
   /**
    * Set up the table of contents

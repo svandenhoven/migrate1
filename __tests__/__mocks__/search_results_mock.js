@@ -1,0 +1,70 @@
+export const mockResults = {
+  items: [
+    {
+      title: "Lorem ipsum dolor sit amet",
+      link: "https://example.com/1",
+    },
+    {
+      title: "Consectetur adipiscing elit",
+      link: "https://example.com/2",
+    },
+    {
+      title: "Sed do eiusmod tempor incididunt",
+      link: "https://example.com/3",
+    },
+    {
+      title: "Ut labore et dolore magna aliqua",
+      link: "https://example.com/4",
+    },
+    {
+      title: "Mauris blandit aliquet elit",
+      link: "https://example.com/5",
+    },
+    {
+      title: "Pellentesque euismod magna",
+      link: "https://example.com/6",
+    },
+    {
+      title: "Vestibulum ac diam sit amet quam",
+      link: "https://example.com/7",
+    },
+    {
+      title: "Cras ultricies ligula sed magna",
+      link: "https://example.com/8",
+    },
+    {
+      title: "Vivamus magna justo",
+      link: "https://example.com/9",
+    },
+    {
+      title: "Curabitur blandit tempus porttitor",
+      link: "https://example.com/10",
+    },
+  ],
+};
+
+export const mockNoResults = {
+  items: [],
+};
+
+export const mockErrorResults = {
+  error: {
+    code: 403,
+    message: "The request is missing a valid API key.",
+    errors: [
+      {
+        message: "The request is missing a valid API key.",
+        domain: "global",
+        reason: "forbidden",
+      },
+    ],
+    status: "PERMISSION_DENIED",
+  },
+};
+
+export const mockHistoryCookie = [
+  { path: "/runner/", title: "GitLab Runner" },
+  { path: "/topics/plan_and_track", title: "Plan and track work" },
+  { path: "/user/analytics/", title: "Analyze GitLab usage" },
+  { path: "/user/infrastructure/", title: "Infrastructure management" },
+];

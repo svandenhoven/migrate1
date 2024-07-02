@@ -40,6 +40,8 @@ security:
     getenv:
     - ^HUGO_
     - ^CI_
+    - SEARCH_BACKEND
+    - GOOGLE_SEARCH_KEY
 
 menus:
   social:

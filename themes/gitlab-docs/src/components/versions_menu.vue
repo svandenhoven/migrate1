@@ -2,8 +2,8 @@
 import { GlDisclosureDropdown, GlDisclosureDropdownGroup } from "@gitlab/ui";
 import { compareVersions } from "compare-versions";
 import { getVersions, getArchivesVersions } from "../services/versions";
-import { isProduction, relativeCurrentPath } from "../helpers/environment";
-import { HUGO_LAUNCH_VERSION } from "../helpers/constants";
+import { isProduction, relativeCurrentPath } from "../utils/environment";
+import { HUGO_LAUNCH_VERSION } from "../utils/constants";
 
 export default {
   components: {

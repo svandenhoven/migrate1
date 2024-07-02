@@ -3,7 +3,7 @@
 <head>
   {{ partial "head.html" . }}
 </head>
-<body>
+<body class="{{ if .IsHome }}home{{ end }}">
   <nav class="navbar navbar-dark gl-fixed gl-py-0 gl-px-5 gl-z-50 gl-bg-theme-indigo-900">
     {{ partial "header.html" . }}
   </nav>

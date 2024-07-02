@@ -1,6 +1,6 @@
 <script>
 import { GlAlert, GlSafeHtmlDirective as SafeHtml } from "@gitlab/ui";
-import { getCookie, setCookie } from "../helpers/cookies";
+import { getCookie, setCookie } from "../utils/cookies";
 
 export default {
   directives: {

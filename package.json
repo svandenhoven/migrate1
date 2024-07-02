@@ -18,8 +18,10 @@
     "@gitlab/svgs": "^3.103.0",
     "@gitlab/ui": "^85.4.0",
     "compare-versions": "^6.1.0",
+    "lodash": "^4.17.21",
     "mermaid": "^10.9.1",
     "tocbot": "^4.28.2",
+    "v-click-outside": "^3.2.0",
     "vue": "2.7.16"
   },
   "devDependencies": {
