@@ -29,7 +29,7 @@ export default {
     },
     activeClasses() {
       return [
-        "gl-rounded",
+        "gl-rounded-base",
         this.item.isActiveTrail && "sidebar-link-active-trail",
         this.item.isActive && "sidebar-link-active-item",
       ]

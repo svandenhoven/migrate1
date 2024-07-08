@@ -2020,9 +2020,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@gitlab/ui@npm:^85.4.0":
-  version: 85.4.0
-  resolution: "@gitlab/ui@npm:85.4.0"
+"@gitlab/ui@npm:^86.0.1":
+  version: 86.0.1
+  resolution: "@gitlab/ui@npm:86.0.1"
   dependencies:
     "@floating-ui/dom": "npm:1.4.3"
     echarts: "npm:^5.3.2"
@@ -2042,7 +2042,7 @@ __metadata:
     pikaday: ^1.8.0
     tailwindcss: ^3
     vue: ^2.7.16
-  checksum: 10c0/192ef001f00283c1b14d3cbc5694b9689265acf35d3ed4cd9f8b5b016b30dac2fee3fe320a6ec9cdb562adabf05117ccc4214a078c5948f6ead7ee143469dbe1
+  checksum: 10c0/c9b83efa84c7528febbc25bb52cbb774f9ff8c815d68138ace874ba768b7ff9d7c441d3c5209cc5ad62a09f83149d28ef5d0f267c893a1dc160dd48dd4d9b591
   languageName: node
   linkType: hard
 
@@ -6081,7 +6081,7 @@ __metadata:
     "@gitlab/fonts": "npm:^1.3.0"
     "@gitlab/stylelint-config": "npm:^6.1.0"
     "@gitlab/svgs": "npm:^3.103.0"
-    "@gitlab/ui": "npm:^85.4.0"
+    "@gitlab/ui": "npm:^86.0.1"
     "@rollup/plugin-node-resolve": "npm:^15.2.3"
     "@rollup/plugin-yaml": "npm:^4.1.2"
     "@vitejs/plugin-vue2": "npm:^2.3.1"

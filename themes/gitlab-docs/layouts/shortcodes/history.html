@@ -1,7 +1,7 @@
 <div class="version-history gl-text-base gl-pl-4 gl-mb-5">
     <div class="gl-font-bold">
         {{ $historyListID := $.Ordinal }}
-        History <button class="gl-align-middle gl-mb-1 gl-ml-2 gl-rounded gl-border gl-border-solid gl-border-gray-100 gl-h-5" type="button" aria-expanded="false" aria-controls="history-{{ $historyListID }}" aria-label="Toggle version history" data-toggle="collapse" data-target="#history-{{ $historyListID }}"></button>
+        History <button class="gl-align-middle gl-mb-1 gl-ml-2 gl-rounded-base gl-border gl-border-solid gl-border-gray-100 gl-h-5" type="button" aria-expanded="false" aria-controls="history-{{ $historyListID }}" aria-label="Toggle version history" data-toggle="collapse" data-target="#history-{{ $historyListID }}"></button>
     </div>
     <div id="history-{{ $historyListID }}" class="history-list collapse" aria-hidden="true">
         {{- .Inner | markdownify -}}
