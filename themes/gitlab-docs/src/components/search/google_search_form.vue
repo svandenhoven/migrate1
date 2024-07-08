@@ -158,14 +158,14 @@ export default {
         <kbd
           v-show="showTooltip && !isLoading"
           v-gl-tooltip.bottom.hover.html
-          class="gl-absolute gl-z-10 gl-bg-gray-100 gl-text-gray-700"
+          class="gl-absolute gl-z-1 gl-bg-gray-100 gl-text-gray-700"
           title="Use the shortcut keys<br><kbd>/</kbd> or <kbd>s</kbd> to start a search"
           >/</kbd
         >
       </form>
       <div
         v-if="showResultPanel"
-        class="gs-results gl-absolute gl-z-50 gl-bg-white gl-px-4 gl-rounded-sm gl-shadow"
+        class="gs-results gl-absolute gl-z-4 gl-bg-white gl-px-4 gl-rounded-base gl-shadow"
       >
         <ul
           v-if="results.length"
@@ -219,7 +219,7 @@ export default {
     <transition name="fade">
       <div
         v-if="showModal"
-        class="gl-hidden md:gl-block gl-z-40 modal-backdrop"
+        class="gl-hidden md:gl-block gl-z-3 modal-backdrop"
       ></div>
     </transition>
   </div>

@@ -9,4 +9,11 @@ export default {
     "themes/**/*.vue",
     "node_modules/@gitlab/ui/src/components/**/*.vue",
   ],
+  theme: {
+    extend: {
+      width: {
+        limited: "1006px",
+      },
+    },
+  },
 };
