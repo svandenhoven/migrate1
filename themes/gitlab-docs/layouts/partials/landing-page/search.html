@@ -1,0 +1,42 @@
+<section aria-labelledby="find-gitLab-answers-fast" class="search-hero gl-pt-4">
+  <div class="container">
+    <h1 id="find-gitLab-answers-fast" class="gl-text-white gl-my-3">Find GitLab answers fast.</h1>
+    {{ if or (eq (getenv "SEARCH_BACKEND") "google") (eq (getenv "SEARCH_BACKEND") "") }}
+      <div class="js-google-search-form gl-spinner-container">
+        <span aria-label="Loading" class="gl-spinner gl-spinner-light gl-spinner-md"></span>
+      </div>
+    {{ else }} 
+      <!-- Lunr search for archived versions of Doc site -->
+      <div class="js-search-form gl-spinner-container">
+          <span aria-label="Loading" class="gl-spinner gl-spinner-light gl-spinner-md"></span>
+      </div>
+    {{ end }}
+    <ul class="quick-links gl-pb-3 gl-pl-0 gl-mt-7 gl-list-style-none">
+      <li class="gl-mr-4 gl-mb-3 gl-inline-block">
+          <a href="{{ absURL "" }}/tutorials/" class="md:gl-pb-2 gl-text-white gl-inline-block gl-white-space-nowrap">
+              Get started
+          </a>
+      </li>
+      <li class="gl-mr-4 gl-mb-3 gl-inline-block">
+          <a href="{{ absURL "" }}/ci/yaml/" class="md:gl-pb-2 gl-text-white gl-inline-block gl-white-space-nowrap">
+              CI/CD reference
+          </a>
+      </li>
+      <li class="gl-mr-4 gl-mb-3 gl-inline-block">
+          <a href="{{ absURL "" }}/user/ssh" class="md:gl-pb-2 gl-text-white gl-inline-block gl-white-space-nowrap">
+              SSH keys
+          </a>
+      </li>
+      <li class="gl-mr-4 gl-mb-3 gl-inline-block">
+          <a href="{{ absURL "" }}/user/profile/personal_access_tokens" class="md:gl-pb-2 gl-text-white gl-inline-block gl-white-space-nowrap">
+              Personal access tokens
+          </a>
+      </li>
+      <li class="gl-mr-4 gl-mb-3 gl-inline-block">
+          <a href="{{ absURL "" }}/gitlab-basics/start-using-git" class="md:gl-pb-2 gl-text-white gl-inline-block gl-white-space-nowrap">
+              Common Git commands
+          </a>
+      </li>
+    </ul>
+  </div>
+</section>

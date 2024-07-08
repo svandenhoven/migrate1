@@ -40,21 +40,24 @@
   --green-50: #ecf4ee;
   --green-100: #c3e6cd;
   --purple-100: #e1d8f9;
+  --purple-400: #9475db;
   --purple-500: #7b58cf;
   --purple-700: #5943b6;
   --purple-900: #2f2a6b;
   --red-50: #fcf1ef;
   --red-100: #fdd4cd;
+  --red-300: #ec5941;
   /* Docs custom colors */
   --cta-button: #cb4e18;
   --availability-border: #fca326;
   --youtube-logo: #F00;
   --error-icon: #c91c00;
   /* Landing page colors */
-  --get-support-card-hover-shadow: rgba(36, 34, 66, 0.25);
+  --color-tanuki-light: rgb(252, 163, 38);
   --ref-arc-background-black-100: rgba(255, 255, 255, 0.16);
   --ref-arc-background-black-0: rgba(255, 255, 255, 0);
   --ref-arc-background-indigo-950: #32304e; /* Couldn't find a better match on Pajamas */
+  --get-support-card-hover-shadow: rgba(36, 34, 66, 0.25);
 }
 
 /**
