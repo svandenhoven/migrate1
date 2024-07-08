@@ -132,7 +132,7 @@ export default {
 </script>
 
 <template>
-  <div>
+  <div class="gl-relative">
     <div
       v-click-outside="() => deactivate()"
       class="gs-wrapper gl-text-base gl-my-3 md:gl-mt-0 md:gl-mb-0"
