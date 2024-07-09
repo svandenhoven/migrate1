@@ -7,6 +7,13 @@ defaultContentLanguage: en
 theme: gitlab-docs
 enableRobotsTXT: true
 
+caches:
+  # Don't cache remote resources
+  # We always want the most up-to-date versions of these.
+  getresource:
+    dir: :cacheDir/:project
+    maxAge: 0
+
 markup:
   goldmark:
     renderer:
