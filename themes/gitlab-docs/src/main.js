@@ -2,6 +2,7 @@ import Vue from "vue";
 import tocbot from "tocbot";
 import { expandCollapse } from "./features/collapse";
 import { getNextUntil } from "./utils/dom";
+import { docsBaseURL } from "./utils/environment";
 import { trackPageHistory } from "./search/history";
 import SidebarMenu from "./components/sidebar_menu.vue";
 import SurveyBanner from "./components/survey_banner.vue";
@@ -79,9 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
       render(createElement) {
         return createElement(SidebarMenu, {
           props: {
-            baseUrl: document
-              .querySelector('meta[name="gitlab-docs-base-url"]')
-              ?.getAttribute("content"),
+            baseUrl: docsBaseURL(),
           },
         });
       },

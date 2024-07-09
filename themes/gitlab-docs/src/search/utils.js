@@ -198,3 +198,27 @@ export const searchResultQueryParam = (query, link) => {
   if (pages.has(linkPath)) return `?query=${query}`;
   return "";
 };
+
+/**
+ * Remove formatting and boilerplate text from a page title
+ *
+ * We use this when we want to reference the title of a page,
+ * without any extra formatting.
+ */
+export const cleanTitle = (htmlTitle) => {
+  return (
+    htmlTitle
+      // Drop boilerplate text
+      .replace(" | GitLab Docs", "")
+      .replace(" | GitLab", "")
+      // Google adds bold tags to some result strings
+      .replace(" | <b>GitLab</b>", "")
+      .replace(" | <b>GitLab Docs</b>", "")
+      // Google sometimes truncates with the ellipsis
+      .replace(" ...", "")
+      // Some pages use backticks to style words in titles as code.
+      // We don't want to include these in places where we aren't parsing markdown
+      .replaceAll("`", "")
+      .trim()
+  );
+};

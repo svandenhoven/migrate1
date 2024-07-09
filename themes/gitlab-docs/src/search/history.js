@@ -1,4 +1,5 @@
 import { setCookie, getCookie } from "../utils/cookies";
+import { cleanTitle } from "./utils";
 
 /**
  * Store recent page views in a cookie.
@@ -26,7 +27,7 @@ export const trackPageHistory = () => {
   // Add the current page URL to the beginning of the history array
   pageHistory.unshift({
     path: currentPath,
-    title: document.title.replace(" | GitLab", ""),
+    title: cleanTitle(document.title),
   });
 
   // Keep only the designated amount of pages in history
