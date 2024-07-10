@@ -1,6 +1,6 @@
 /* global GOOGLE_SEARCH_KEY */
 
-import { searchResultQueryParam } from "../search/utils";
+import { searchResultQueryParam, cleanTitle } from "../search/utils";
 
 export const GPS_ENDPOINT =
   "https://www.googleapis.com/customsearch/v1/siterestrict?";
@@ -34,12 +34,7 @@ export const fetchResults = async (query, filters, pageNumber, numResults) => {
   if (results.items) {
     results.items = results.items.map((item) => ({
       ...item,
-      formattedTitle: item.htmlTitle
-        .replace(" | GitLab", "")
-        .replace(" | <b>GitLab</b>", "")
-        .replace(" ...", "")
-        .replaceAll("`", "")
-        .trim(),
+      formattedTitle: cleanTitle(item.htmlTitle),
       relativeLink: `${item.link.replace("https://docs.gitlab.com/", "/")}${searchResultQueryParam(
         query,
         item.link,

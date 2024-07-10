@@ -1,6 +1,7 @@
 <script>
 import { GlLink } from "@gitlab/ui";
 import { getCookie } from "../../utils/cookies";
+import { docsBaseURL } from "../../utils/environment";
 
 export default {
   components: {
@@ -10,7 +11,10 @@ export default {
     return {
       pageHistory: [],
       popularItems: [
-        { title: "CI/CD YAML syntax reference", path: "/ci/yaml/" },
+        {
+          title: "CI/CD YAML syntax reference",
+          path: `${docsBaseURL()}ci/yaml/`,
+        },
       ],
     };
   },

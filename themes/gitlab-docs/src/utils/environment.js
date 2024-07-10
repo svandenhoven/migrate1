@@ -2,6 +2,11 @@
  * Utilities for determining site environment.
  */
 
+export const docsBaseURL = () =>
+  document
+    .querySelector('meta[name="gitlab-docs-base-url"]')
+    ?.getAttribute("content");
+
 /**
  * Check if we're on a production domain
  *
@@ -22,9 +27,5 @@ export function isProduction() {
  * @returns String
  */
 export function relativeCurrentPath() {
-  const baseUrl = document
-    .querySelector('meta[name="gitlab-docs-base-url"]')
-    ?.getAttribute("content");
-
-  return `/${window.location.href.replace(baseUrl, "")}`;
+  return `/${window.location.href.replace(docsBaseURL(), "")}`;
 }
