@@ -51,9 +51,9 @@ test:asdf-installation:
     # Set PIP_BREAK_SYSTEM_PACKAGES=1 because we mix Debian-installed Python packages and other Python packages.
     - PIP_BREAK_SYSTEM_PACKAGES=1 make install-dependencies
 
-# Check docs content for Kramdown syntax
+# Check docs content for deprecated markdown syntax
 # This can be removed after we've completed the migration to Hugo
-test:kramdown-audit:
+test:deprecated-markdown-audit:
   stage: test
   extends:
     - .rules_dev
@@ -65,4 +65,4 @@ test:kramdown-audit:
     - apk add --no-cache curl coreutils make bash gcc libc-dev
     - wget https://github.com/mikefarah/yq/releases/download/v${YQ_VERSION}/yq_linux_amd64 -O /usr/local/bin/yq
     - chmod +x /usr/local/bin/yq
-    - make kramdown-audit
+    - make deprecated-markdown-audit

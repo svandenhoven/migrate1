@@ -16,9 +16,11 @@ markdown-link-tests:
 	@lychee --version
 	@lychee --offline --include-fragments README.md **/*.md
 
-.PHONY: kramdown-audit
-kramdown-audit: clone-docs-projects
+.PHONY: deprecated-markdown-audit
+deprecated-markdown-audit: clone-docs-projects
 	@printf "${INFO}Auditing for Kramdown markup...${END}\n"
 	@scripts/kramdown-audit.sh
+	@printf "${INFO}Auditing for nested tabs...${END}\n"
+	@scripts/nested-tabs.sh
 
 .PHONY: all clean test
