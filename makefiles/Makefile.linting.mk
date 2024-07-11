@@ -20,6 +20,7 @@ lint-frontend: install-nodejs-dependencies
 	@yarn eslint
 	@yarn prettier
 	@yarn stylelint
+	@node scripts/frontend/find_deprecated_classes.js
 
 .PHONY: lint-yaml
 lint-yaml:

@@ -46,7 +46,7 @@ export default {
   >
     <div
       v-safe-html="text"
-      class="gl-line-height-24 gl-layout-w-limited gl-m-auto"
+      class="gl-leading-24 gl-layout-w-limited gl-m-auto"
     ></div>
   </gl-alert>
 </template>
