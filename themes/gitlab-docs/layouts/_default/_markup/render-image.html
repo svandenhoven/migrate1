@@ -5,7 +5,11 @@
 {{- $src := $u.String -}}
 
 {{- if not $u.IsAbs -}}
-{{- with or (.PageInner.Resources.Get $u.Path) (.PageInner.Parent.Resources.Get $u.Path) (resources.Get $u.Path) -}}
+  {{- $resource := "" -}}
+  {{- with .Page -}}
+    {{- $resource = or (.Resources.Get $u.Path) (.Parent.Resources.Get $u.Path) -}}
+  {{- end -}}
+  {{- with or $resource (resources.Get $u.Path) -}}
     {{- $src = .Permalink -}}
   {{- end -}}
 {{- end -}}
@@ -17,4 +21,5 @@
       {{- printf " %s=%q" $k $v | safeHTMLAttr -}}
     {{- end -}}
   {{- end -}}>
+
 {{- /**/ -}}

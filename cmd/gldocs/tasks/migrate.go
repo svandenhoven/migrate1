@@ -20,6 +20,7 @@ var migrations = map[string]MigrationFunc{
 	"alerts":      MigrateAlerts,
 	"indexLinks":  MigrateIndexLinks,
 	"history":     MigrateHistory,
+	"tabs":        MigrateTabs,
 }
 
 func Migrate(dirPath string, migrationName string) error {

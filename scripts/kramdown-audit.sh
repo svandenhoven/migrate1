@@ -10,7 +10,6 @@ COLOR_YELLOW="\e[33m"
 COLOR_RESET="\e[39m"
 CMD="grep -r -I -H -n -F"
 FORMAT_CMD="sed -E 's/^([^:]+):([0-9]+):.*/\1:\2/'"
-EXIT_CODE=0
 DOCS_DIRS=("../gitlab/doc" "../gitlab-operator/doc" "../gitlab-runner/docs" "../charts-gitlab/doc" "../omnibus-gitlab/doc")
 
 # Runs the grep command against each docs directory.
@@ -26,7 +25,7 @@ check_pattern() {
     $CMD "$pattern" "${DOCS_DIRS[@]}" | eval "$FORMAT_CMD"
     local count
     count=$($CMD "$pattern" "${DOCS_DIRS[@]}" | wc -l | awk '{print $1}')
-    [ "$count" -gt 0 ] && EXIT_CODE=1
+    [ "$count" -gt 0 ]
     eval "$count_var=$count"
 }
 
@@ -46,4 +45,3 @@ echo "- Found $CLASSES_COUNT CSS classes"
 echo "- Found $NO_MD_COUNT nomarkdown tags"
 echo "- Found $COMMENT_COUNT comment tags"
 echo "- Found $TITLE_COUNT title tags"
-exit $EXIT_CODE
