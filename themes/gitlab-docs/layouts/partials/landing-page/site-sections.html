@@ -1,0 +1,64 @@
+<!-- Read primary section from landing.yaml -->
+{{ $primarySection := $.Site.Data.landing.sectionTabs }}
+{{ $tabTitles := "" }}
+{{ range $index, $element := $primarySection}}
+    {{ if $index }}
+      <!-- Concatenate tab titles with comma separation so that the string splitting can be done in home.js -->
+      <!-- Need to be in a string because data attributes are always converted to string instead of preserving type -->
+      {{ $tabTitles = printf "%s,%s" $tabTitles $element.title }}
+    {{ else }}
+      {{ $tabTitles = $element.title }}
+    {{ end }}
+{{ end }}
+
+{{ $tabContentsStr := "" }}
+{{ $openUL := "<ul class=\"site-section-inner gl-list-none gl-pl-0 gl-m-0 gl-pt-3 gl-pb-5\">" }}
+{{ $closeUL := "</ul>"}}
+
+<!-- Read primary section from landing.yaml and create final string to pass into vue app -->
+{{ range $index, $element := $primarySection }}
+  {{ $refs := $element.refs }}
+  {{ $tabContents := "" }}
+  {{ range $refs }}
+    {{ $page := $.Site.GetPage . }}
+    {{ if $page }}
+        {{ $tabContents = printf "%s%s" $tabContents (partial "landing-page/tabContent.html" (dict "title" $page.Title "url" $page.RelPermalink "description" $page.Description)) }}
+    {{ end }}
+  {{ end }}
+  <!-- Wrap table content per tab with unordered list tags -->
+  {{ $tabContents = printf "%s%s%s" $openUL $tabContents $closeUL }}
+  <!-- Turn table content of each tab into a string separated with comma  -->
+  <!-- Need it in this format because data attributes are converted into strings and array won't work as expected -->
+  {{ if $index }}
+    {{ $tabContentsStr = printf "%s,%s" $tabContentsStr $tabContents }}
+  {{ else }}
+    {{ $tabContentsStr = $tabContents }}
+  {{ end }}
+{{ end }}
+
+<!-- Read secondary sections from landing.yaml -->
+{{ $secondarySection := $.Site.Data.landing.secondarySections }}
+
+<section class="site-sections gl-pt-6">
+  <div class="container">
+    <div data-vue-app="docs-tabs" data-tab-titles={{ $tabTitles }}  data-tab-contents={{ $tabContentsStr }}></div>
+    <div class="secondary-sections lg:gl-flex">
+      {{ range $secondarySection }}
+        <div class="gl-mr-7">
+          <h3 class="gl-mb-4 gl-text-theme-indigo-900! gl-mt-0">{{ .title }}</h3>
+          <ul class="gl-grid gl-grid-cols-2 gl-pl-0 gl-list-none">
+            {{ $links := .links }}
+            {{ range $links }}
+              <!-- if link type is defined, it will be external link so don't use absURL -->
+              {{ if .type }} 
+                <li><a href={{ .url }}>{{.title }}</a></li>
+              {{ else }}
+                <li><a href={{ absURL "" }}{{ .url }}>{{.title }}</a></li>
+              {{ end }}
+            {{ end }}
+          </ul>
+        </div>
+      {{ end }}
+    </div>
+  </div>
+</section>

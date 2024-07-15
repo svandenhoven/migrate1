@@ -45,6 +45,14 @@ export default defineConfig({
         "../fa-icons/facebook.svg",
         "../fa-icons/linkedin.svg",
         "../fa-icons/youtube.svg",
+        // Theme illustrations
+        "../search-hero-bg.svg",
+        "../gradient-bg.svg",
+        "../chevron-lg-right.svg",
+        "../docs-omnibus.svg",
+        "../docs-charts.svg",
+        "../arrow-right-lp.svg",
+        "../download.svg",
         // Fonts
         "../gitlab_ui/fonts/GitLabSans.woff2",
         "../gitlab_ui/fonts/GitLabMono.woff2",

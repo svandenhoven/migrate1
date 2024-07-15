@@ -1,0 +1,88 @@
+sectionTabs:
+  - title: Use GitLab
+    refs:
+      - 'user/gitlab_duo/index.md'
+      - 'topics/set_up_organization.md'
+      - 'user/project/organize_work_with_projects.md'
+      - 'topics/plan_and_track.md'
+      - 'topics/git/index.md'
+      - 'topics/manage_code.md'
+      - 'topics/build_your_application.md'
+      - 'user/application_security/secure_your_application.md'
+      - 'topics/release_your_application.md'
+      - 'user/infrastructure/index.md'
+      - 'operations/index.md'
+      - 'runner/monitoring/index.md'
+      - 'user/analytics/index.md'
+      - 'policy/experiment-beta-support.md'
+      - 'user/version.md'
+  - title: Tutorials
+    refs:
+      - 'tutorials/gitlab_navigation.md'
+      - 'tutorials/learn_git.md'
+      - 'tutorials/plan_and_track.md'
+      - 'tutorials/build_application.md'
+      - 'tutorials/secure_application.md'
+      - 'tutorials/infrastructure.md'
+      - 'tutorials/develop.md'
+  - title: Subscribe
+    refs:
+      - 'subscriptions/choosing_subscription.md'
+      - 'subscriptions/gitlab_com/index.md'
+      - 'subscriptions/self_managed/index.md'
+      - 'subscriptions/gitlab_dedicated/index.md'
+      - 'subscriptions/subscription-add-ons.md'
+      - 'subscriptions/community_programs.md'
+      - 'subscriptions/customers_portal.md'
+      - 'subscriptions/quarterly_reconciliation.md'
+      - 'ci/pipelines/compute_minutes.md'
+  - title: Install
+    refs:
+      - 'install/requirements.md'
+      - 'install/install_methods.md'
+      - 'install/cloud_providers.md'
+      - 'topics/offline/index.md'
+      - 'administration/reference_architectures/index.md'
+      - 'update/index.md'
+      - 'runner/install/index.md'
+      - 'runner/configuration/index.md'
+  - title: Administer
+    refs:
+      - 'administration/get_started.md'
+      - 'user/feature_flags.md'
+      - 'administration/auth/index.md'
+      - 'administration/configure.md'
+      - 'administration/settings/index.md'
+      - 'administration/dedicated/index.md'
+      - 'administration/operations/index.md'
+      - 'security/index.md'
+      - 'user/profile/account/create_accounts.md'
+  - title: Extend
+    refs:
+      - 'integration/index.md'
+      - 'user/project/integrations/webhooks.md'
+      - 'api/rest/index.md'
+      - 'api/graphql/index.md'
+      - 'api/oauth2.md'
+      - 'editor_extensions/index.md'
+
+secondarySections:
+  - title: Contribute
+    links:
+      - title: GitLab
+        url: 'development/contributing/'
+      - title: GitLab Pages
+        url: 'development/pages/'
+      - title: GitLab Design System
+        url: 'https://design.gitlab.com/get-started/contributing'
+        type: 'external'
+      - title: GitLab Runner
+        url: 'runner/development/'
+      - title: GitLab distribution
+        url: 'development/distribution/'
+      - title: GitLab documentation
+        url: 'development/documentation/'
+  - title: Solutions
+    links:
+      - title: Amazon Web Services
+        url: 'solutions/cloud/aws/'
