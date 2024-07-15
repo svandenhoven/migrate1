@@ -19,6 +19,7 @@
     "@gitlab/ui": "^86.0.1",
     "compare-versions": "^6.1.0",
     "lodash": "^4.17.21",
+    "lodash.isequal": "^4.5.0",
     "mermaid": "^10.9.1",
     "tocbot": "^4.28.2",
     "v-click-outside": "^3.2.0",

@@ -1,4 +1,5 @@
 ---
-title: Search the latest docs
+title: Search
+layout: search-results
 feedback: false
 ---

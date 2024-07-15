@@ -9,7 +9,7 @@ jest-tests: install-nodejs-dependencies
 	@printf "\n$(INFO)INFO: Running JavaScript tests...$(END)\n"
 	@yarn test
 
-# See also test:markdown-links job in ../.gitlab-ci.yml
+# See also test:markdown-links job in .gitlab/ci/test.gitlab-ci.yml
 .PHONY: markdown-link-tests
 markdown-link-tests:
 	@printf "\n$(INFO)INFO: Running Markdown link tests...$(END)\n"

@@ -1,0 +1,21 @@
+{{ define "main" }}
+
+<div class="template-search-results gl-container gl-m-auto gl-px-7">
+  <div class="main-content">
+    <div class="docs-content gl-pb-7">
+      <h1 id="skipTarget" class="gl-mt-5 lg:gl-mt-8 gl-mb-6">
+        Search the <span>latest</span> docs
+      </h1>
+      <div class="js-search-results"></div>
+    </div>
+    <footer class="gl-pb-6">
+      {{ partial "footer.html" . }}
+    </footer>
+  </div>
+</div>
+
+{{ if or (eq (getenv "SEARCH_BACKEND") "google") (eq (getenv "SEARCH_BACKEND") "") }}
+  <script type="module" src="{{ absURL "" }}/vite/google_search_results.js"></script>
+{{ end }}
+
+{{ end }}

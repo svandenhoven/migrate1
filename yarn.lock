@@ -6101,6 +6101,7 @@ __metadata:
     jest-environment-jsdom: "npm:^29.7.0"
     jsdom: "npm:^24.1.0"
     lodash: "npm:^4.17.21"
+    lodash.isequal: "npm:^4.5.0"
     markdownlint-cli2: "npm:^0.13.0"
     mermaid: "npm:^10.9.1"
     pikaday: "npm:^1.8.2"
@@ -7932,6 +7933,13 @@ __metadata:
   version: 4.0.8
   resolution: "lodash.debounce@npm:4.0.8"
   checksum: 10c0/762998a63e095412b6099b8290903e0a8ddcb353ac6e2e0f2d7e7d03abd4275fe3c689d88960eb90b0dde4f177554d51a690f22a343932ecbc50a5d111849987
+  languageName: node
+  linkType: hard
+
+"lodash.isequal@npm:^4.5.0":
+  version: 4.5.0
+  resolution: "lodash.isequal@npm:4.5.0"
+  checksum: 10c0/dfdb2356db19631a4b445d5f37868a095e2402292d59539a987f134a8778c62a2810c2452d11ae9e6dcac71fc9de40a6fedcb20e2952a15b431ad8b29e50e28f
   languageName: node
   linkType: hard
 

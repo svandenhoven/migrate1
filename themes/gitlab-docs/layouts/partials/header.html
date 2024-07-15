@@ -6,7 +6,7 @@
     <span class="border-light gl-ml-2 gl-pl-3 gl-py-1 gl-border-0 gl-border-l gl-border-solid gl-border-gray-100 gl-align-middle gl-text-white">Docs</span>
   </a>
 
-  {{ if not .IsHome }}
+  {{ if and (not .IsHome) (ne .RelPermalink "/search/") }}
   <div class="js-google-search-form gl-animate-spinner-container">
     <span aria-label="Loading" class="gl-ml-3 gl-align-text-bottom! gl-animate-spinner gl-animate-spinner-light gl-animate-spinner-sm"></span>
   </div>
