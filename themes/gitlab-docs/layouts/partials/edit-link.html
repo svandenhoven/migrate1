@@ -1,6 +1,6 @@
 {{ if .Context.File }}
   {{ if .Context.File.Section }}
-    {{ $section := partial "functions/page-source-project" . }}
+    {{ $section := partial "functions/page-source-project" .Context }}
 
     <!-- Load Git info from products.yaml based on the page Section -->
     {{ $productData := index .Context.Site.Data.products "products" }}
