@@ -2,13 +2,13 @@
   <div class="container">
     <h1 id="find-gitLab-answers-fast" class="gl-text-white gl-my-3">Find GitLab answers fast.</h1>
     {{ if or (eq (getenv "SEARCH_BACKEND") "google") (eq (getenv "SEARCH_BACKEND") "") }}
-      <div class="js-google-search-form gl-animate-spinner-container">
-        <span aria-label="Loading" class="gl-animate-spinner gl-animate-spinner-light gl-animate-spinner-md"></span>
+      <div class="js-google-search-form gl-spinner-container">
+        <span aria-label="Loading" class="gl-spinner gl-spinner-light gl-spinner-md"></span>
       </div>
-    {{ else }} 
+    {{ else }}
       <!-- Lunr search for archived versions of Doc site -->
-      <div class="js-search-form gl-animate-spinner-container">
-          <span aria-label="Loading" class="gl-animate-spinner gl-animate-spinner-light gl-animate-spinner-md"></span>
+      <div class="js-search-form gl-spinner-container">
+          <span aria-label="Loading" class="gl-spinner gl-spinner-light gl-spinner-md"></span>
       </div>
     {{ end }}
     <ul class="quick-links gl-pb-3 gl-pl-0 gl-mt-7 gl-list-none">
@@ -40,3 +40,4 @@
     </ul>
   </div>
 </section>
+
