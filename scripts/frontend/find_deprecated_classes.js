@@ -77,14 +77,20 @@ function processFiles(dir, equivalents) {
       if (dirent.isDirectory()) {
         process(filePath);
       } else {
-        let content = fs.readFileSync(filePath, "utf8");
+        let content = fs.readFileSync(filePath, {
+          encoding: "utf8",
+          flag: "r",
+        });
         let fileChanged = false;
 
         Object.entries(equivalents).forEach(([oldClass, newClass]) => {
-          if (content.includes(oldClass)) {
+          // Create a regular expression to match the exact class name
+          const regex = new RegExp(`\\b${oldClass}\\b`, "g");
+
+          if (regex.test(content)) {
             foundDeprecated = true;
             if (shouldFix && newClass !== null) {
-              content = content.split(oldClass).join(newClass);
+              content = content.replace(regex, newClass);
               fileChanged = true;
               console.info(
                 `Fixed in ${filePath}: Replaced ${oldClass} with ${newClass}`,
@@ -98,7 +104,7 @@ function processFiles(dir, equivalents) {
         });
 
         if (fileChanged) {
-          fs.writeFileSync(filePath, content, "utf8");
+          fs.writeFileSync(filePath, content, { encoding: "utf8", flag: "w" });
         }
       }
     });
