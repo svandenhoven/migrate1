@@ -12,6 +12,13 @@
   </main>
   <script type="module" src="{{ absURL "" }}/vite/main.js"></script>
 
+  {{ if eq .RelPermalink "/update/deprecations/" }}
+    <script>
+        const GITLAB_RELEASE_DATES = '{{ partial "functions/release-dates" . }}'
+    </script>
+    <script type="module" src="{{ absURL "" }}/vite/deprecations.js"></script>
+  {{ end }}
+
   {{ if .Store.Get "hasMermaid" }}
     <script src="{{ absURL "" }}/vite/mermaid.min.js"></script>
     <script>

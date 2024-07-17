@@ -1,0 +1,13 @@
+<!-- This partial retrieves release dates and version #s of deprecated versions -->
+{{ $data := dict }}
+{{ $deprecationsURL := "https://gitlab.com/gitlab-com/www-gitlab-com/-/raw/master/data/releases.yml" }}
+{{ with resources.GetRemote $deprecationsURL }}
+  {{ with .Err }}
+    {{ warnf "%s" . }}
+  {{ else }}
+    {{ $data = . | transform.Unmarshal | jsonify }}
+    {{ return $data }}
+  {{ end }}
+{{ else }}
+  {{ warnf "Unable to get remote resource %q" $deprecationsURL }}
+{{ end }}
