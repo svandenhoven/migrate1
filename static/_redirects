@@ -1,2 +1,2 @@
-/ee/* /:splat/ 302
-/*.html /:splat/ 302
+/technical-writing-group/gitlab-docs-hugo/ee/* /technical-writing-group/gitlab-docs-hugo/:splat/ 302
+/technical-writing-group/gitlab-docs-hugo/*.html /technical-writing-group/gitlab-docs-hugo/:splat/ 302
