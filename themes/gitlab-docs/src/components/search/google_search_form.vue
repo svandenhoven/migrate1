@@ -8,6 +8,7 @@ import {
 import { debounce } from "lodash";
 import { directive as clickOutside } from "v-click-outside";
 import { fetchResults } from "../../services/google_search_api";
+import { docsBaseURL } from "../../utils/environment";
 import SuggestedItems from "./suggested_items.vue";
 
 export default {
@@ -59,7 +60,7 @@ export default {
       this.showResultPanel = false;
       this.showTooltip = this.searchQuery.length === 0;
       this.submitted = false;
-      this.moreResultsPath = `/search/?q=${encodeURI(this.searchQuery)}`;
+      this.moreResultsPath = `${docsBaseURL()}search/?q=${encodeURI(this.searchQuery)}`;
       this.debouncedGetResults();
     },
   },
