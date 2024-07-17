@@ -132,7 +132,7 @@ export default {
 </script>
 
 <template>
-  <div class="gl-relative">
+  <div>
     <div
       v-click-outside="() => deactivate()"
       class="gs-wrapper gl-text-base gl-my-3 md:gl-mt-0 md:gl-mb-0"
@@ -165,7 +165,7 @@ export default {
       </form>
       <div
         v-if="showResultPanel"
-        class="gs-results gl-absolute gl-z-4 gl-bg-white gl-px-4 gl-rounded-base gl-shadow"
+        class="gs-results gl-absolute gl-z-4 gl-bg-white gl-px-4 gl-shadow"
       >
         <ul
           v-if="results.length"
@@ -219,7 +219,7 @@ export default {
     <transition name="fade">
       <div
         v-if="showModal"
-        class="gl-hidden md:gl-block gl-z-3 modal-backdrop"
+        class="gl-hidden lg:gl-block gl-z-3 modal-backdrop"
       ></div>
     </transition>
   </div>

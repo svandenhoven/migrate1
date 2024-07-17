@@ -65,7 +65,7 @@
  */
 :root {
   --header-height: 3rem;
-  --header-mobile-open-height: 11rem;
+  --header-mobile-open-height: 15rem;
   --footer-height: 9rem;
   --header-offset: calc(var(--header-height) + 1rem);
 
@@ -85,7 +85,5 @@
   --sidebar-indent: 0.75rem;
   --sidebar-button-height: 2.5rem;
 
-  --search-sm-width: 90vw;
-  --search-md-width: 14rem;
   --search-lg-width: 25rem;
 }

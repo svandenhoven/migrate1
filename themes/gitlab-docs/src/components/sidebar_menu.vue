@@ -126,7 +126,7 @@ export default {
     </transition>
     <gl-button
       icon="hamburger"
-      class="lg:gl-hidden gl-mt-7"
+      class="lg:gl-hidden gl-mt-6"
       aria-label="Toggle sidebar"
       @click="toggleOverlay('open')"
     />

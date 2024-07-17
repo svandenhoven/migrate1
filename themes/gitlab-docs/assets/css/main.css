@@ -4,12 +4,12 @@
 @import "typography";
 @import "layout";
 
-.placeholder {
-  font-size: 0.75rem;
-  font-style: italic;
-}
-
 /* Header */
+a.header-logo {
+  @media (max-width: 991px) {
+    max-width: 30%;
+  }
+}
 a.header-logo:hover {
   text-decoration: none;
 }
@@ -55,6 +55,9 @@ a.header-logo:hover {
   height: 16px;
   background-color: var(--white);
   mask-image: url("../gitlab_ui/svgs/ellipsis_h.svg");
+  position: absolute;
+  top: 0;
+  right: 1rem;
 }
 .gl-disclosure-dropdown .gl-button.gl-button.btn-default {
   background-color: var(--t-indigo-500);
@@ -639,26 +642,17 @@ ul.docs-social a::before {
   max-height: 99em;
   transition: max-height .5s ease-in-out;
 }
-.mobile-header.collapse {
-  @media (min-width: 992px) {
-    max-height: initial;
-    display: block;
-  }
-}
 /* Needed for smooth collapse/expand */
 .help-feedback .collapse:not(.show) {
   display: block;
 }
 
 /* Search */
-.navbar {
+nav.header {
   .search-form,
   .gs-wrapper,
   .gs-results {
-    width: var(--search-sm-width);
-    @media (min-width: 768px) {
-      width: var(--search-md-width);
-    }
+    width: calc(100vw - 3rem);
     @media (min-width: 992px) {
       width: var(--search-lg-width);
     }
@@ -684,7 +678,7 @@ ul.docs-social a::before {
 }
 .gs-wrapper kbd {
   display: none;
-  @media (min-width: 768px) {
+  @media (min-width: 992px) {
     display: inline;
     top: 0.25rem;
     right: 0.3rem;

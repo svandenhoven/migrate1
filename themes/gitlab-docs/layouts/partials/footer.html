@@ -12,9 +12,9 @@
   </ul>
 </div>
 
-<ul class="docs-footer-links gl-list-none gl-flex gl-pl-0">
+<ul class="docs-footer-links gl-list-none gl-pl-0 xl:gl-flex">
   {{- range site.Menus.footer }}
-    <li class="gl-pr-5">
+    <li class="gl-pr-5 gl-mb-2 xl:gl-mb-0">
       <a href="{{ .URL }}" class="gl-text-gray-600">
         {{ .Name }}
       </a>
@@ -27,5 +27,7 @@
     {{ partial "edit-link.html" (dict "Context" . "editText" "View page source" "linkType" "source") }}
     {{ partial "edit-link.html" (dict "Context" . "editText" "Edit in Web IDE" "linkType" "ide") }}
   </nav>
-  <a href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" src="{{ absURL "" }}/by-sa.svg"></a>
+  <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="gl-mb-5 md:gl-mb-0">
+    <img alt="Creative Commons License" src="{{ absURL "" }}/by-sa.svg">
+  </a>
 </div>

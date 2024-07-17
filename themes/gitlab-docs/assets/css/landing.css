@@ -2,7 +2,11 @@
 .search-hero {
   background-color: var(--t-indigo-900);
   padding: 1.5rem 0 1rem;
-  
+
+  div > .gs-wrapper {
+    position: relative;
+  }
+
   @media (min-width: 768px) {
     height: 15.25rem;
     background-repeat: no-repeat;
@@ -113,7 +117,7 @@
   h3 {
     max-width: 100%;
   }
-  
+
   h3
   a {
     color: var(--t-indigo-700);
@@ -394,7 +398,7 @@
   background: radial-gradient(75.78% 75.78% at 50% 1.83%, var(--ref-arc-background-black-100) 0%, var(--ref-arc-background-black-0) 100%), var(--ref-arc-background-indigo-950);
 
   @media (max-width: 768px) {
-    padding: 0 15px; 
+    padding: 0 15px;
   }
 
   a {
@@ -457,33 +461,33 @@
       box-shadow: 0 0.5rem 1.5rem -0.75rem var(--get-support-card-hover-shadow);
       transition: all 0.5s;
       flex: 1;
-  
+
       h2 {
           font-weight: 500;
           font-size: 2.5rem;
           margin-top: 0;
           max-width: none;
       }
-  
+
       .card-title {
         color: var(--purple-900);
       }
-  
+
       .card-text {
           color: var(--gray-600);
           font-size: 1.125rem;
           line-height: 1.313rem;
       }
-  
+
       &:hover {
         box-shadow: 0.1rem 0.5rem 2rem 0 var(--get-support-card-hover-shadow);
       }
-  
+
       .btn-outline-primary {
           transition: .3s all;
           border-color: var(--purple-500);
           color: var(--purple-500);
-  
+
           &:hover {
               color: var(--white);
               background-color: var(--purple-500);
@@ -518,7 +522,7 @@
       }
   }
 
-  a, 
+  a,
   .ot-sdk-show-settings {
       font-style: normal;
       font-weight: normal;
