@@ -18,6 +18,7 @@ import {
   setCookie,
 } from "../../themes/gitlab-docs/src/utils/cookies";
 import { fetchResults } from "../../themes/gitlab-docs/src/services/google_search_api";
+import { setMetatag } from "../helpers/jest_helpers";
 
 jest.mock("../../themes/gitlab-docs/src/services/google_search_api", () => ({
   fetchResults: jest.fn(),
@@ -38,6 +39,8 @@ describe("themes/gitlab-docs/src/components/search/google_search_form.vue", () =
   beforeEach(() => {
     jest.clearAllMocks();
 
+    setMetatag("gitlab-docs-base-url", "http://localhost/");
+
     // Add a container around the mounted component.
     // We need this to avoid tooltip errors from BootstrapVue.
     const createContainer = (tag = "div") => {
@@ -55,6 +58,7 @@ describe("themes/gitlab-docs/src/components/search/google_search_form.vue", () =
   });
 
   afterEach(() => {
+    document.querySelector('meta[name="gitlab-docs-base-url"]').remove();
     wrapper.destroy();
   });
 
@@ -95,7 +99,9 @@ describe("themes/gitlab-docs/src/components/search/google_search_form.vue", () =
 
     const moreResultsLink = wrapper.find('[data-testid="more-results"]');
     expect(moreResultsLink.exists()).toBe(true);
-    expect(moreResultsLink.attributes("href")).toBe("/search/?q=test");
+    expect(moreResultsLink.attributes("href")).toBe(
+      "http://localhost/search/?q=test",
+    );
   });
 });
 
