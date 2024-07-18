@@ -1,4 +1,3 @@
-<!-- Define variables -->
 {{ $DOCS_IMAGES_ENDPOINT_V1 :=
     "https://gitlab.com/api/v4/projects/1794617/registry/repositories/631635/tags?per_page=100" }}
 {{ $DOCS_IMAGES_ENDPOINT_V2 :=
@@ -18,12 +17,12 @@
 {{ else }}
     <!-- Version 2 - version gathering -->
     {{ $responseDataV2 := $endpointTwoResponse | transform.Unmarshal }}
-    {{ range $responseDataV2 }} 
+    {{ range $responseDataV2 }}
         {{ if eq (partial "functions/is-stable-version" (dict "version" .name)) "true" }} <!-- Remove strings and only keep numerical versions -->
             {{ $preSortedV2Versions = $preSortedV2Versions | append .name }}
         {{ end }}
     {{ end }}
-    
+
     <!-- Sort versions in descending order: Version 2 -->
     {{ $numbers := $preSortedV2Versions }}
     {{ $padded := apply $numbers "partial" "functions/padZeroPrefix.html" "." }}
@@ -44,21 +43,14 @@
         {{ $mainVersion := cast.ToInt (index $splitStr 0) }}
         {{ $subVersion := cast.ToInt (index $splitStr 1) }}
 
-        {{ if or (and (eq $mainVersion 15) (ge $subVersion 6)) (gt $mainVersion 15) }} 
-            <div class="archives-list">
-                <h3 id={{.name}}>{{ .name }}</h3>
-                <div class="highlight">
-                    <pre class="highlight shell">
-                    <code>docker run <span class="nt">-it</span> <span class="nt">--rm</span> <span class="nt">-p</span> 4000:4000 {{ .location }}</code>
-                </pre>
-                </div>
-            </div>
+        {{ if or (and (eq $mainVersion 15) (ge $subVersion 6)) (gt $mainVersion 15) }}
+          {{- partial "archiveItem.html" . -}}
         {{ end }}
     {{ end }}
 
     <!-- Version 1 - version gathering -->
     {{ $responseDataV1 := $endpointOneResponse | transform.Unmarshal}}
-    {{ range $responseDataV1 }} 
+    {{ range $responseDataV1 }}
         {{ if eq (partial "functions/is-stable-version" (dict "version" .name)) "true" }} <!-- Remove strings and only keep numerical versions -->
             {{ $preSortedV1Versions = $preSortedV1Versions | append .name }}
         {{ end }}
@@ -83,16 +75,9 @@
         {{ $splitStr := split .name "." }}
         {{ $mainVersion := cast.ToInt (index $splitStr 0) }}
         {{ $subVersion := cast.ToInt (index $splitStr 1) }}
-        
+
         {{ if or (lt $mainVersion 15) (and (eq $mainVersion 15) (lt $subVersion 6)) }}
-            <div class="archives-list">
-                <h3 id={{.name}}>{{ .name }}</h3>
-                <div class="highlight">
-                <pre class="highlight shell">
-                    <code>docker run <span class="nt">-it</span> <span class="nt">--rm</span> <span class="nt">-p</span> 4000:4000 {{ .location }}</code>
-                </pre>
-                </div>
-            </div>
+          {{- partial "archiveItem.html" . -}}
         {{ end }}
     {{ end }}
 {{ end }}

@@ -29,3 +29,14 @@ export const setMetatag = (tagName, tagContent) => {
   meta.setAttribute("content", tagContent);
   document.head.appendChild(meta);
 };
+
+/**
+ * Creates a generic container element.
+ *
+ * @param {*} tag
+ */
+export const createContainer = (tag = "div") => {
+  const container = document.createElement(tag);
+  document.body.appendChild(container);
+  return container;
+};
