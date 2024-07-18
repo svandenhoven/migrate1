@@ -343,16 +343,12 @@ div.docs-content {
     background-color: var(--gray-50);
   }
   pre {
-    padding: 1rem 0.75rem;
+    padding: 1rem;
   }
-
-  /* Code sample for archives page only */
-  .archives-list pre.highlight {
-    margin-top: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: var(--gray);
+  .clipboard-icon {
+    outline: none;
+    height: 14px;
+    width: 14px;
   }
 
   *:not(pre)>code {

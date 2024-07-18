@@ -4,6 +4,7 @@ import { expandCollapse } from "./features/collapse";
 import { getNextUntil } from "./utils/dom";
 import { docsBaseURL } from "./utils/environment";
 import { trackPageHistory } from "./search/history";
+import ClipboardCopy from "./components/clipboard_copy.vue";
 import SidebarMenu from "./components/sidebar_menu.vue";
 import SurveyBanner from "./components/survey_banner.vue";
 import TabbedContent from "./components/tabbed_content.vue";
@@ -43,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
     positionFixedSelector: ".js-toc",
     contentSelector: ".docs-content",
     headingSelector: "h2, h3, h4",
-    ignoreSelector: ".help-feedback h2, .help-feedback h3, .archives-list h3",
+    ignoreSelector: ".help-feedback h2, .help-feedback h3, h3.archive-item",
     collapseDepth: 3,
     // These should match our header-offset CSS variable.
     // header-offset = 4rem = 64px
@@ -125,6 +126,24 @@ document.addEventListener("DOMContentLoaded", () => {
               tabTitles,
               tabContents,
               responsive: false,
+            },
+          });
+        },
+      }))();
+  });
+
+  // Clipboard copy
+  document.querySelectorAll(".codeblock-wrapper").forEach((codeblock) => {
+    (() =>
+      new Vue({
+        el: codeblock.querySelector('[data-vue-app="codeblock-toolbar"]'),
+        components: {
+          ClipboardCopy,
+        },
+        render(createElement) {
+          return createElement(ClipboardCopy, {
+            props: {
+              codeContent: codeblock.querySelector("pre").textContent,
             },
           });
         },

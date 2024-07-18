@@ -18,7 +18,7 @@ import {
   setCookie,
 } from "../../themes/gitlab-docs/src/utils/cookies";
 import { fetchResults } from "../../themes/gitlab-docs/src/services/google_search_api";
-import { setMetatag } from "../helpers/jest_helpers";
+import { createContainer, setMetatag } from "../helpers/jest_helpers";
 
 jest.mock("../../themes/gitlab-docs/src/services/google_search_api", () => ({
   fetchResults: jest.fn(),
@@ -43,11 +43,6 @@ describe("themes/gitlab-docs/src/components/search/google_search_form.vue", () =
 
     // Add a container around the mounted component.
     // We need this to avoid tooltip errors from BootstrapVue.
-    const createContainer = (tag = "div") => {
-      const container = document.createElement(tag);
-      document.body.appendChild(container);
-      return container;
-    };
     const componentData = {
       attachTo: createContainer(),
       propsData: {

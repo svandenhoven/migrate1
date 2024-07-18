@@ -1,0 +1,10 @@
+{{/*
+  Add the clipboard copy toolbar to code samples.
+  Changes to the wrapper divs here should also be made in
+  themes/gitlab-docs/layouts/partials/archiveItem.html.
+*/}}
+<div class="codeblock-wrapper">
+  <div data-vue-app="codeblock-toolbar"></div>
+  {{- $result := transform.HighlightCodeBlock . -}}
+  {{- $result.Wrapped -}}
+</div>
