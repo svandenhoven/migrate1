@@ -38,8 +38,3 @@ test: lint-markdown lint-shell-scripts lint-go lint-frontend lint-yaml go-tests 
 view:
 	@yarn build
 	@hugo serve
-
-.PHONY: view-prod
-view-prod:
-	@yarn build-prod
-	@hugo serve -e production
