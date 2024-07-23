@@ -115,3 +115,18 @@ To exclude a directory so the contents aren't published to the docs site, add th
 as an `excludeFiles` setting in the Hugo [config file](../config/_default/hugo.yaml).
 For more information, see the Hugo
 [module config documentation](https://gohugo.io/hugo-modules/configuration/#module-configuration-mounts).
+
+## Local development with extensionless URLs
+
+Hugo is [configured](https://gohugo.io/content-management/urls/#appearance) to create all pages with a `.html` extension.
+However, the GitLab Pages webserver will return a `200 OK` for requests without the extension.
+See the [GitLab Pages docs](https://docs.gitlab.com/ee/user/project/pages/introduction.html#resolving-ambiguous-urls) for
+more information and examples of this behavior.
+
+If you need to emulate this behavior locally:
+
+1. Run `make view` to compile the site as usual.
+2. Edit `hugo.yaml` and remove the line with `uglyUrls: true`. This will trigger a new
+  build where pages are generated with "pretty" URLs.
+3. The local site should now have both "pretty" and "ugly" URLs, which is similar to the
+  behavior we have on GitLab Pages.
