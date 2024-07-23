@@ -5,7 +5,9 @@
 
 {{- partial "functions/validate-shortcode.html" (dict "shortcodeName" "icon" "allowedValues" $allowedIcons "paramName" "name" "paramValue" $name "sourceFile" .Position.Filename "lineNumber" .Position.LineNumber) -}}
 
-<svg role="img" aria-label="{{ $name }}" class="gl-icon s16 gl-mx-2">
-  <use href="{{ printf "%s#%s" $iconsSVG $name }}" />
-  <title>{{ $name }}</title>
-</svg>{{- "" -}}
+<span>
+  <svg role="img" aria-label="{{ $name }}" class="gl-icon s16">
+    <use href="{{ printf "%s#%s" $iconsSVG $name }}" />
+    <title>{{ $name }}</title>
+  </svg>
+</span>{{- "" -}}
