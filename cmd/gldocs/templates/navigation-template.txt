@@ -2,15 +2,13 @@
 #
 # For each entry:
 #
-# - Do not start the URL with "/".
-# - URLs must be relative to root. For example, a page at https://docs.gitlab.com/runner/install/osx
-#   has the entry `runner/install/osx`.
-# - If you're referring to a section within a page, include only the anchor. 
-#   For example, url: `page/#some-anchor`
+# - Do not start or end the URL with "/". Hugo renders all pages with a .html suffix.
+# - URLs must be relative to root. For example, a page at https://docs.gitlab.com/runner/install/osx.html
+#   has the entry `runner/install/osx.html`.
 #
 # For more information, see:
-# - Docs Site architecture: https://docs.gitlab.com/ee/development/documentation/site_architecture/
-# - Global Navigation: https://docs.gitlab.com/ee/development/documentation/site_architecture/global_nav.html
+# - Docs Site architecture: https://docs.gitlab.com/development/documentation/site_architecture.html
+# - Global Navigation: https://docs.gitlab.com/development/documentation/site_architecture/global_nav.html
 #
 # Top-level titles:
 #

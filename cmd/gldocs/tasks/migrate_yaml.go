@@ -1,6 +1,7 @@
 package tasks
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"path/filepath"
@@ -46,7 +47,7 @@ func modifyDataFile(filePath string) error {
 
 func modifyNavigationYAML(data string) string {
 	modifiedData := replaceCommentBlock(data)
-	modifiedData = updateYAMLKeys(modifiedData)
+	modifiedData = updateYAML(modifiedData)
 	modifiedData = fixIndentation(modifiedData)
 	return modifiedData
 }
@@ -84,23 +85,42 @@ func replaceCommentBlock(data string) string {
 	return modifiedData
 }
 
-// Update YAML keys by performing string replacements
-func updateYAMLKeys(data string) string {
-	modifiedData := strings.ReplaceAll(data, "sections:", "")
-	modifiedData = strings.ReplaceAll(modifiedData, "section_title:", "title:")
-	modifiedData = strings.ReplaceAll(modifiedData, "category_title:", "title:")
-	modifiedData = strings.ReplaceAll(modifiedData, "doc_title:", "title:")
-	modifiedData = strings.ReplaceAll(modifiedData, "category_url:", "url:")
-	modifiedData = strings.ReplaceAll(modifiedData, "section_url:", "url:")
-	modifiedData = strings.ReplaceAll(modifiedData, "doc_url:", "url:")
-	modifiedData = strings.ReplaceAll(modifiedData, "section_categories:", "submenu:")
-	modifiedData = strings.ReplaceAll(modifiedData, "docs:", "submenu:")
+// Update YAML by performing string replacements
+func updateYAML(data string) string {
+	lines := strings.Split(data, "\n")
+	for i, line := range lines {
+		// Replace keys
+		line = strings.ReplaceAll(line, "sections:", "")
+		line = strings.ReplaceAll(line, "section_title:", "title:")
+		line = strings.ReplaceAll(line, "category_title:", "title:")
+		line = strings.ReplaceAll(line, "doc_title:", "title:")
+		line = strings.ReplaceAll(line, "category_url:", "url:")
+		line = strings.ReplaceAll(line, "section_url:", "url:")
+		line = strings.ReplaceAll(line, "doc_url:", "url:")
+		line = strings.ReplaceAll(line, "section_categories:", "submenu:")
+		line = strings.ReplaceAll(line, "docs:", "submenu:")
 
-	// Drop the "ee" prefix and ".html" suffix from URLs
-	modifiedData = strings.ReplaceAll(modifiedData, "'ee/", "'")
-	modifiedData = strings.ReplaceAll(modifiedData, ".html", "")
+		// Drop the "ee" prefix from URLs
+		line = strings.ReplaceAll(line, "'ee/", "'")
 
-	return modifiedData
+		// Modify URLs ending with a slash.
+		// When using the "uglyURLs" setting, all URLs end in ".html"
+		// See https://github.com/gohugoio/hugo/issues/4428
+		if strings.Contains(line, "url:") {
+			urlPattern := regexp.MustCompile(`url:\s*['"]?([^'"]+)['"]?`)
+			matches := urlPattern.FindStringSubmatch(line)
+			if len(matches) > 1 {
+				url := matches[1]
+				if strings.HasSuffix(url, "/") {
+					newURL := strings.TrimSuffix(url, "/") + ".html"
+					line = urlPattern.ReplaceAllString(line, fmt.Sprintf("url: '%s'", newURL))
+				}
+			}
+		}
+
+		lines[i] = line
+	}
+	return strings.Join(lines, "\n")
 }
 
 // Fix indentation by removing two spaces from the beginning of each line

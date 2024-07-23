@@ -53,7 +53,7 @@ sections:
 	}
 }
 
-func TestUpdateYAMLKeys(t *testing.T) {
+func TestUpdateYAML(t *testing.T) {
 	testCases := []struct {
 		name           string
 		input          string
@@ -67,20 +67,26 @@ func TestUpdateYAMLKeys(t *testing.T) {
     section_categories:
       - category_title: Category 1
         category_url: 'ee/category1.html'
+				docs:
+				  - doc_title: Doc 1
+					- doc_url: 'ee/category1/doc1/'
 `,
 			expectedOutput: `
   - title: Section 1
-    url: 'section1'
+    url: 'section1.html'
     submenu:
       - title: Category 1
-        url: 'category1'
+        url: 'category1.html'
+				submenu:
+				  - title: Doc 1
+					- url: 'category1/doc1.html'
 `,
 		},
 	}
 
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
-			result := updateYAMLKeys(tc.input)
+			result := updateYAML(tc.input)
 			require.Equal(t, tc.expectedOutput, result)
 		})
 	}

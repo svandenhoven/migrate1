@@ -6,6 +6,7 @@ title: GitLab Docs
 defaultContentLanguage: en
 theme: gitlab-docs
 enableRobotsTXT: true
+uglyURLs: true
 
 caches:
   # Don't cache remote resources
