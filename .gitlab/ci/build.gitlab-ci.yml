@@ -21,7 +21,7 @@ prebuild:compile_frontend:
     - .frontend
     - .rules_dev_and_prod
   script:
-    - yarn build-prod
+    - yarn build
   needs:
     - job: prebuild:fetch_data
   cache:
