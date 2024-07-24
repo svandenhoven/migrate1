@@ -48,7 +48,7 @@ export const getRedirectUrl = (currentUrl) => {
 
   if (currentUrl.startsWith(oldDomain)) {
     if (currentUrl === `${oldDomain}/` || currentUrl === oldDomain) {
-      return "https://new.gitlab.com";
+      return "https://new.docs.gitlab.com";
     }
     return currentUrl.replace(oldDomain, newDomain);
   }
