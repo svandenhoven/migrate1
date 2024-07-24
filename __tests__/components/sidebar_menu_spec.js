@@ -58,7 +58,7 @@ describe("component: SidebarMenu", () => {
 
   it("applies the active trail class to the correct menu items based on the current URL", async () => {
     // Mock the window.location.pathname
-    const currentPath = "/topics/git/clone/";
+    const currentPath = "/topics/git/clone.html";
     Object.defineProperty(window, "location", {
       value: {
         pathname: currentPath,
@@ -89,11 +89,39 @@ describe("component: SidebarMenu", () => {
     expect(activeItem.text()).toContain("Clone a Git repository");
   });
 
+  it("correctly identifies active item with trailing slash", async () => {
+    Object.defineProperty(window, "location", {
+      value: { pathname: "/topics/git/" },
+      writable: true,
+    });
+
+    await wrapper.vm.$nextTick();
+    wrapper = mount(SidebarMenu, { propsData: { baseUrl } });
+
+    const activeItem = wrapper.find(".sidebar-link-active-item");
+    expect(activeItem.exists()).toBe(true);
+    expect(activeItem.text()).toContain("Learn Git");
+  });
+
+  it("correctly identifies active item without a trailing slash", async () => {
+    Object.defineProperty(window, "location", {
+      value: { pathname: "/topics/git" },
+      writable: true,
+    });
+
+    await wrapper.vm.$nextTick();
+    wrapper = mount(SidebarMenu, { propsData: { baseUrl } });
+
+    const activeItem = wrapper.find(".sidebar-link-active-item");
+    expect(activeItem.exists()).toBe(true);
+    expect(activeItem.text()).toContain("Learn Git");
+  });
+
   it("uses the correct URL prefix for relative links", () => {
     const relativeUrlItem = wrapper.vm.menuItems.find(
-      (item) => item.url === "user/",
+      (item) => item.url === "user.html",
     );
-    expect(relativeUrlItem.prefixedUrl).toBe(`${baseUrl}user/`);
+    expect(relativeUrlItem.prefixedUrl).toBe(`${baseUrl}user.html`);
   });
 
   it("uses the correct URL prefix for external links", () => {
@@ -113,9 +141,9 @@ describe("component: SidebarMenu", () => {
     });
 
     const relativeUrlItem = wrapper.vm.menuItems.find(
-      (item) => item.url === "user/",
+      (item) => item.url === "user.html",
     );
-    expect(relativeUrlItem.prefixedUrl).toBe(`${subdirBaseUrl}user/`);
+    expect(relativeUrlItem.prefixedUrl).toBe(`${subdirBaseUrl}user.html`);
   });
 
   it("toggles the overlay state when the hamburger button is clicked", async () => {

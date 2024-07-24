@@ -62,19 +62,15 @@ export default {
     },
     isActiveItem(item) {
       const currentPath = window.location.pathname;
-      // Allow for matching extensionless URLs.
-      // GitLab Pages will serve a page like /user.html at
-      // both /user/ and /user.html.
-      const normalizedPath = currentPath.replace(/\/$/, ".html");
+
+      // Normalize the current path by removing trailing slash (if present),
+      // and ensuring it ends with .html.
+      const normalizedCurrentPath =
+        currentPath.replace(/\/$/, "") +
+        (currentPath.endsWith(".html") ? "" : ".html");
       const itemUrl = `/${item.url}`;
 
-      return [
-        currentPath,
-        `${currentPath}/`,
-        normalizedPath,
-        `${normalizedPath}/`,
-        normalizedPath.replace(".html", ""),
-      ].some((path) => path.endsWith(itemUrl));
+      return normalizedCurrentPath.endsWith(itemUrl);
     },
     processMenuData(currMenu) {
       let isActiveTrail = false;

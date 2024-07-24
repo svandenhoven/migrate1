@@ -47,8 +47,8 @@ describe("getRedirectUrl", () => {
   const newDomain = "https://new.docs.gitlab.com";
 
   test("redirects root old domain to new gitlab.com", () => {
-    expect(getRedirectUrl(oldDomain)).toBe("https://new.gitlab.com");
-    expect(getRedirectUrl(`${oldDomain}/`)).toBe("https://new.gitlab.com");
+    expect(getRedirectUrl(oldDomain)).toBe("https://new.docs.gitlab.com");
+    expect(getRedirectUrl(`${oldDomain}/`)).toBe("https://new.docs.gitlab.com");
   });
 
   test("redirects old domain pages to new domain", () => {
