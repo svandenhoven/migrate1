@@ -4,6 +4,7 @@ import { expandCollapse } from "./features/collapse";
 import { getNextUntil } from "./utils/dom";
 import { docsBaseURL } from "./utils/environment";
 import { trackPageHistory } from "./search/history";
+import { primaryDomainRedirect } from "./utils/migration";
 import ClipboardCopy from "./components/clipboard_copy.vue";
 import SidebarMenu from "./components/sidebar_menu.vue";
 import SurveyBanner from "./components/survey_banner.vue";
@@ -31,6 +32,9 @@ const addHeaderPermalinks = () => {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
+  // Temporary redirect to the new test domain, new.docs.gitlab.com
+  primaryDomainRedirect();
+
   expandCollapse();
   addHeaderPermalinks();
   trackPageHistory();

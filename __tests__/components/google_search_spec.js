@@ -95,7 +95,7 @@ describe("themes/gitlab-docs/src/components/search/google_search_form.vue", () =
     const moreResultsLink = wrapper.find('[data-testid="more-results"]');
     expect(moreResultsLink.exists()).toBe(true);
     expect(moreResultsLink.attributes("href")).toBe(
-      "http://localhost/search/?q=test",
+      "http://localhost/search.html/?q=test",
     );
   });
 });

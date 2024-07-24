@@ -60,7 +60,7 @@ export default {
       this.showResultPanel = false;
       this.showTooltip = this.searchQuery.length === 0;
       this.submitted = false;
-      this.moreResultsPath = `${docsBaseURL()}search/?q=${encodeURI(this.searchQuery)}`;
+      this.moreResultsPath = `${docsBaseURL()}search.html/?q=${encodeURI(this.searchQuery)}`;
       this.debouncedGetResults();
     },
   },

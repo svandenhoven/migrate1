@@ -2,6 +2,7 @@
 
 import { searchResultQueryParam, cleanTitle } from "../search/utils";
 import { docsBaseURL } from "../utils/environment";
+import { rewriteLegacyURL } from "../utils/migration";
 
 export const GPS_ENDPOINT =
   "https://www.googleapis.com/customsearch/v1/siterestrict?";
@@ -24,10 +25,23 @@ export const MAX_TOTAL_RESULTS = 100;
  */
 const rewriteResultLink = (link, query) => {
   const queryParams = searchResultQueryParam(query, link);
-  const resultLink = link.replace("https://docs.gitlab.com/", docsBaseURL());
+  let resultLink = link.replace("https://docs.gitlab.com/", docsBaseURL());
+
+  // Temporary: Rewrite legacy paths
+  resultLink = rewriteLegacyURL(resultLink);
+
   return `${resultLink}${queryParams}`;
 };
 
+/**
+ * Fetch search results from Google
+ *
+ * @param {String} query
+ * @param {Array} filters
+ * @param {Int} pageNumber
+ * @param {Int} numResults
+ * @returns Array
+ */
 export const fetchResults = async (query, filters, pageNumber, numResults) => {
   if (!query || query.length < 2 || typeof query !== "string") {
     return [];
