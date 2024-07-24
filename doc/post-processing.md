@@ -15,11 +15,11 @@ that modify file names, front matter, and content
 When it's time to launch the Hugo site, the content migration scripts can then be used to
 update the source documentation.
 
-YAML data files are not currently tracked in Git (see `.gitignore`) because we need
-to fetch and modify them at build time. After launch, these will be part of the
+`data/navigation.yaml` is not currently tracked in Git because we need
+to fetch and modify it at build time. After launch, it will be part of the
 project repository.
 
-## Exclude files
+## Exclude files from processing
 
 Some files are not published to the website and thus should not be processed.
 
@@ -28,8 +28,8 @@ To exclude a file or directory, add its path to the `IgnoreFiles` slice in
 
 ## Data files on CI
 
-Because we refresh YAML data files as part of the content clone process (`make clone-docs-projects`),
-these are not available for frontend jobs running on CI during the migration project.
+Because we refresh `data/navigation.yaml` as part of the content clone process (`make clone-docs-projects`),
+it is not available for frontend jobs running on CI during the migration project.
 
 If you need to reference a YAML data file from a frontend file:
 

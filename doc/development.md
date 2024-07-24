@@ -1,5 +1,15 @@
 # GitLab docs site development
 
+Before starting development, follow the [Setup guide](setup.md) to clone the project
+and install dependencies.
+
+## Development tools
+
+Ensure your editor supports [`editorconfig`](https://docs.gitlab.com/ee/development/contributing/style_guides.html#editoride-styling-standardization).
+
+If you'll be working on frontend code, set up VS code using the [following settings](https://docs.gitlab.com/ee/development/fe_guide/tooling.html#vs-code-settings),
+or apply similar settings to your editor of choice.
+
 ## Theme development
 
 The `gitlab-docs` theme contains the site's CSS and JavaScript code, as well as Hugo templates,
@@ -60,6 +70,32 @@ This project uses vanilla CSS, and we aim to keep custom styling minimal in orde
 maintain consistency with GitLab UI. Try to use
 [utility classes](https://docs.gitlab.com/ee/development/fe_guide/style/scss.html#utility-classes) where possible.
 
+## Exclude a directory from the build
+
+To exclude a directory so the contents aren't published to the docs site, add the path
+as an `excludeFiles` setting in the Hugo [config file](../config/_default/hugo.yaml).
+For more information, see the Hugo
+[module config documentation](https://gohugo.io/hugo-modules/configuration/#module-configuration-mounts).
+
+## Local development with extensionless URLs
+
+Hugo is [configured](https://gohugo.io/content-management/urls/#appearance) to create all pages with a `.html` extension.
+However, the GitLab Pages webserver will return a `200 OK` for requests without the extension.
+See the [GitLab Pages docs](https://docs.gitlab.com/ee/user/project/pages/introduction.html#resolving-ambiguous-urls) for
+more information and examples of this behavior.
+
+If you need to emulate this behavior locally:
+
+1. Run `make view` to compile the site as usual.
+2. Edit `hugo.yaml` and remove the line with `uglyUrls: true`. This will trigger a new
+  build where pages are generated with "pretty" URLs.
+3. The local site should now have both "pretty" and "ugly" URLs, which is similar to the
+  behavior we have on GitLab Pages.
+
+A limitation of this is that GitLab Pages will serve the page with or without a trailing
+slash at the end. In general, we should avoid adding behavior that relies on an exact
+match on a URL path.
+
 ## Add a new product
 
 NOTE:
@@ -108,25 +144,3 @@ any product documentation already added to the site):
       - `source`: The relative path to the new content source. This will be the `clone_dir` you used in `products.yaml`,
         plus the directory name for where the documentation files are located (`docs_dir` in the previous step).
       - `target`: This should always be `content`.
-
-## Exclude a directory
-
-To exclude a directory so the contents aren't published to the docs site, add the path
-as an `excludeFiles` setting in the Hugo [config file](../config/_default/hugo.yaml).
-For more information, see the Hugo
-[module config documentation](https://gohugo.io/hugo-modules/configuration/#module-configuration-mounts).
-
-## Local development with extensionless URLs
-
-Hugo is [configured](https://gohugo.io/content-management/urls/#appearance) to create all pages with a `.html` extension.
-However, the GitLab Pages webserver will return a `200 OK` for requests without the extension.
-See the [GitLab Pages docs](https://docs.gitlab.com/ee/user/project/pages/introduction.html#resolving-ambiguous-urls) for
-more information and examples of this behavior.
-
-If you need to emulate this behavior locally:
-
-1. Run `make view` to compile the site as usual.
-2. Edit `hugo.yaml` and remove the line with `uglyUrls: true`. This will trigger a new
-  build where pages are generated with "pretty" URLs.
-3. The local site should now have both "pretty" and "ugly" URLs, which is similar to the
-  behavior we have on GitLab Pages.
