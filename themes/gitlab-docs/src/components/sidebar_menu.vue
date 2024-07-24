@@ -72,6 +72,7 @@ export default {
         currentPath,
         `${currentPath}/`,
         normalizedPath,
+        `${normalizedPath}/`,
         normalizedPath.replace(".html", ""),
       ].some((path) => path.endsWith(itemUrl));
     },

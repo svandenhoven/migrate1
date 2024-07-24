@@ -16,7 +16,7 @@ export const docsBaseURL = () =>
  * @returns Boolean
  */
 export function isProduction() {
-  const prodHosts = ["docs.gitlab.com", "localhost", "gitlab-org.gitlab.io"];
+  const prodHosts = ["docs.gitlab.com", "localhost", "new.docs.gitlab.com"];
   return prodHosts.includes(window.location.hostname);
 }
 
