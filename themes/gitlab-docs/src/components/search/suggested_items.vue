@@ -13,7 +13,7 @@ export default {
       popularItems: [
         {
           title: "CI/CD YAML syntax reference",
-          path: `${docsBaseURL()}ci/yaml/`,
+          path: `${docsBaseURL()}ci/yaml.html`,
         },
       ],
     };
