@@ -70,19 +70,19 @@ secondarySections:
   - title: Contribute
     links:
       - title: GitLab
-        url: 'development/contributing/'
+        url: 'development/contributing.html'
       - title: GitLab Pages
-        url: 'development/pages/'
+        url: 'development/pages.html'
       - title: GitLab Design System
         url: 'https://design.gitlab.com/get-started/contributing'
         type: 'external'
       - title: GitLab Runner
-        url: 'runner/development/'
+        url: 'runner/development.html'
       - title: GitLab distribution
-        url: 'development/distribution/'
+        url: 'development/distribution.html'
       - title: GitLab documentation
-        url: 'development/documentation/'
+        url: 'development/documentation.html'
   - title: Solutions
     links:
       - title: Amazon Web Services
-        url: 'solutions/cloud/aws/'
+        url: 'solutions/cloud/aws.html'
