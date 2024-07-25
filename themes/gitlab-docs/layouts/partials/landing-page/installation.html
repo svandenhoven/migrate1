@@ -1,5 +1,5 @@
 {{ $selfManagedCards := slice }}
-{{ $selfManagedCards = 
+{{ $selfManagedCards =
   $selfManagedCards | append (dict "title" "Install with Docker" "url" "install/docker" "description" "GitLab maintains a set of official Docker images based on the Omnibus GitLab package.") (dict "title" "Compile from source" "url" "install/installation" "description" "If the Omnibus GitLab package isn't available for your distribution, you can install GitLab from source.")
   (dict "title" "Install from cloud provider" "url" "install/cloud_providers" "description" "Install directly from platforms like AWS, Azure, GCP, OpenShift, and DigitalOcean.")
 }}
@@ -10,7 +10,7 @@
         <h2 id="install-self-managed-gitlab">Install self-managed GitLab</h2>
       </div>
       <div class="col-12 options">
-        <p>You've got options. <a href="{{ absURL "" }}install/install_methods">See them all <img src="{{ "arrow-right-lp.svg" | relURL }}" class="gl--mt-2" alt="" /></a></p>
+        <p>You've got options. <a href="{{ absURL "" }}install/install_methods.html">See them all <img src="{{ "arrow-right-lp.svg" | relURL }}" class="gl--mt-2" alt="" /></a></p>
       </div>
     </div>
     <div class="row">
@@ -20,7 +20,7 @@
             <img class="card-img-top" src="{{ "docs-omnibus.svg" | relURL }}" alt="" />
             <h3 class="card-title gl-my-0 gl-pb-2 gl-max-w-none">Install on Linux</h3>
             <p class="card-text">The Omnibus package includes services and tools to install GitLab without laborious configuration.</p>
-            <a href="{{ absURL "" }}omnibus/installation/" class="card-link">Use the Omnibus package <img src="{{ "arrow-right-lp.svg" | relURL }}" class="gl--mt-2" alt="" /></a>
+            <a href="{{ absURL "" }}omnibus/installation.html" class="card-link">Use the Omnibus package <img src="{{ "arrow-right-lp.svg" | relURL }}" class="gl--mt-2" alt="" /></a>
           </div>
         </div>
       </div>
@@ -30,8 +30,8 @@
             <img class="card-img-top" src="{{ "docs-charts.svg" | relURL }}" alt="" />
             <h3 class="card-title gl-my-0 gl-pb-2 gl-max-w-none">Install on Kubernetes</h3>
             <p class="card-text">If you're using cluster management, we recommend the Helm chart or the Operator for installing cloud-native GitLab.</p>
-            <a href="{{ absURL "" }}charts/" class="card-link">Use the Helm chart <img src="{{ "arrow-right-lp.svg" | relURL }}" class="gl--mt-2" alt="" /></a>
-            <a href="{{ absURL "" }}operator/" class="card-link">Use the Operator <img src="{{ "arrow-right-lp.svg" | relURL }}" class="gl--mt-2" alt="" /></a>
+            <a href="{{ absURL "" }}charts.html" class="card-link">Use the Helm chart <img src="{{ "arrow-right-lp.svg" | relURL }}" class="gl--mt-2" alt="" /></a>
+            <a href="{{ absURL "" }}operator.html" class="card-link">Use the Operator <img src="{{ "arrow-right-lp.svg" | relURL }}" class="gl--mt-2" alt="" /></a>
           </div>
         </div>
       </div>
@@ -56,7 +56,7 @@
     <div class="row">
       <div class="col related gl-pt-5">
         <p>
-          <strong>Related topic:</strong> <a href="{{ absURL "" }}runner/install/">Install GitLab Runner,</a> an application that works with GitLab CI/CD to run jobs in a pipeline.
+          <strong>Related topic:</strong> <a href="{{ absURL "" }}runner/install.html">Install GitLab Runner,</a> an application that works with GitLab CI/CD to run jobs in a pipeline.
         </p>
       </div>
     </div>
