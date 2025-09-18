@@ -1,0 +1,2 @@
+variables:
+    VARIABLE: 'Value defined in project .gitlab-ci.yml'
