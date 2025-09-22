@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace dotnetcore
 {
@@ -6,7 +6,7 @@ namespace dotnetcore
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Hello World & Universe");
         }
     }
 }
