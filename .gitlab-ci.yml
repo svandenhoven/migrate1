@@ -73,7 +73,7 @@ variables:
   # will already be there — unzipped from cache.
 
   # 'pull-push' policy is the default cache policy, you do not have to specify it explicitly.
-  policy: pull-push
+  # policy: pull-push
 
 # ### Restore project dependencies
 #
@@ -101,6 +101,9 @@ build:
   # Only one project path can be passed as a parameter to 'dotnet build' command.
   script:
     - 'dotnet build --no-restore'
+    - 'echo "This is line 1"'
+    - 'echo "This is line 2"'
+    - 'echo "This is line 3"'
 
 tests:
   stage: test
