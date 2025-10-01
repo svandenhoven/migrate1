@@ -1,0 +1,4 @@
+project job:
+  stage: test
+  script:
+    - echo "Project CI script"
