@@ -1,0 +1,10 @@
+name: gitlab-org/security-risk-management/security-policies/team-member-environment/andys-test-group/verify-mr-205695/test
+on:
+  push:
+  workflow_dispatch:
+jobs:
+  project-job:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4.1.0
+    - run: echo "Project CI script"
