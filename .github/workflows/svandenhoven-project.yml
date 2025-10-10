@@ -1,0 +1,137 @@
+name: svandenhoven-group/svandenhoven-project
+on:
+  push:
+  workflow_dispatch:
+concurrency:
+  group: "${{ github.ref }}"
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/dotnet/sdk:7.0
+    timeout-minutes: 60
+    env:
+      OBJECTS_DIRECTORY: obj
+      NUGET_PACKAGES_DIRECTORY: ".nuget"
+      SOURCE_CODE_PATH: "*/*/"
+    steps:
+    - run: |
+        echo "Checking for git-lfs installation..."
+        echo "[INFO]: This step is a migration safeguard to ensure git-lfs is installed on the container. This step can be safely removed if the container image guarantees git-lfs presence"
+        if git lfs version > /dev/null 2>&1; then
+          echo "git-lfs already installed"
+          exit 0
+        fi
+        echo "Installing git-lfs..."
+        if command -v apt-get > /dev/null 2>&1; then
+          apt-get update && apt-get install -y git-lfs
+        elif command -v yum > /dev/null 2>&1; then
+          yum install -y git-lfs
+        elif command -v dnf > /dev/null 2>&1; then
+          dnf install -y git-lfs
+        elif command -v apk > /dev/null 2>&1; then
+          apk add --no-cache git-lfs
+        elif command -v choco > /dev/null 2>&1; then
+          choco install git-lfs -y
+        elif command -v brew > /dev/null 2>&1; then
+          brew install git-lfs
+        else
+          echo "WARNING: No supported package manager found to install git-lfs"
+        fi
+        git lfs install
+      shell: bash
+    - uses: actions/checkout@v4.1.0
+      with:
+        fetch-depth: 20
+        lfs: true
+    - run: dotnet restore --packages $NUGET_PACKAGES_DIRECTORY
+    - run: dotnet build --no-restore
+    - run: echo "This is line 1"
+    - run: echo "This is line 2"
+    - run: echo "This is line 3"
+  tests:
+    needs: build
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/dotnet/sdk:7.0
+    timeout-minutes: 60
+    env:
+      OBJECTS_DIRECTORY: obj
+      NUGET_PACKAGES_DIRECTORY: ".nuget"
+      SOURCE_CODE_PATH: "*/*/"
+    steps:
+    - run: |
+        echo "Checking for git-lfs installation..."
+        echo "[INFO]: This step is a migration safeguard to ensure git-lfs is installed on the container. This step can be safely removed if the container image guarantees git-lfs presence"
+        if git lfs version > /dev/null 2>&1; then
+          echo "git-lfs already installed"
+          exit 0
+        fi
+        echo "Installing git-lfs..."
+        if command -v apt-get > /dev/null 2>&1; then
+          apt-get update && apt-get install -y git-lfs
+        elif command -v yum > /dev/null 2>&1; then
+          yum install -y git-lfs
+        elif command -v dnf > /dev/null 2>&1; then
+          dnf install -y git-lfs
+        elif command -v apk > /dev/null 2>&1; then
+          apk add --no-cache git-lfs
+        elif command -v choco > /dev/null 2>&1; then
+          choco install git-lfs -y
+        elif command -v brew > /dev/null 2>&1; then
+          brew install git-lfs
+        else
+          echo "WARNING: No supported package manager found to install git-lfs"
+        fi
+        git lfs install
+      shell: bash
+    - uses: actions/checkout@v4.1.0
+      with:
+        fetch-depth: 20
+        lfs: true
+    - run: dotnet restore --packages $NUGET_PACKAGES_DIRECTORY
+    - run: dotnet test --no-restore
+  deploy:
+    needs: tests
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/dotnet/sdk:7.0
+    environment: production
+    timeout-minutes: 60
+    env:
+      OBJECTS_DIRECTORY: obj
+      NUGET_PACKAGES_DIRECTORY: ".nuget"
+      SOURCE_CODE_PATH: "*/*/"
+    steps:
+    - run: |
+        echo "Checking for git-lfs installation..."
+        echo "[INFO]: This step is a migration safeguard to ensure git-lfs is installed on the container. This step can be safely removed if the container image guarantees git-lfs presence"
+        if git lfs version > /dev/null 2>&1; then
+          echo "git-lfs already installed"
+          exit 0
+        fi
+        echo "Installing git-lfs..."
+        if command -v apt-get > /dev/null 2>&1; then
+          apt-get update && apt-get install -y git-lfs
+        elif command -v yum > /dev/null 2>&1; then
+          yum install -y git-lfs
+        elif command -v dnf > /dev/null 2>&1; then
+          dnf install -y git-lfs
+        elif command -v apk > /dev/null 2>&1; then
+          apk add --no-cache git-lfs
+        elif command -v choco > /dev/null 2>&1; then
+          choco install git-lfs -y
+        elif command -v brew > /dev/null 2>&1; then
+          brew install git-lfs
+        else
+          echo "WARNING: No supported package manager found to install git-lfs"
+        fi
+        git lfs install
+      shell: bash
+    - uses: actions/checkout@v4.1.0
+      with:
+        fetch-depth: 20
+        lfs: true
+    - run: dotnet restore --packages $NUGET_PACKAGES_DIRECTORY
+    - run: echo "Define your deployment script!"
